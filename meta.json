@@ -1,0 +1,10 @@
+{
+  "name": "storefront-flux",
+  "version": "0.1.0",
+  "title": "Common stores and actions for Storefront apps",
+  "owner": "vtex",
+  "dependencies": {},
+  "schemas": {
+    "storefront": 1
+  }
+}

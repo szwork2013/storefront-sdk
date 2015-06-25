@@ -1,0 +1,10 @@
+{
+  "url": "http://api.beta.vtex.com/:account/products/:product",
+  "cacheDuration": 60,
+  "parameters": {
+    "account": "{{ account.name }}"
+  },
+  "queryString": {
+    "query": "{{ parameters.query }}"
+  }
+}
