@@ -1,6 +1,7 @@
 {
   "name": "storefront-flux",
   "version": null,
+  "private": true,
   "description": "Common stores and actions for Storefront apps",
   "main": "storefront/assets/storefront-flux.js",
   "scripts": {
