@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "immutable": "^3.7.3",
+    "alt": "^0.16.10",
     "lodash": "^3.8.0"
   },
   "devDependencies": {

@@ -1,7 +1,5 @@
-import Constants from './LibConstants.js';
-import _extend from 'lodash/object/extend';
-
-const CHECKOUT_CONSTANTS = {
+export default {
+  BASE_URL: "http://api.beta.vtex.com/",
   BASE_CHECKOUT_URL: '/api/checkout/pub/',
   COOKIE_NAME: 'checkout.vtex.com',
   COOKIE_ORDER_FORM_ID_KEY: '__ofid',
@@ -30,7 +28,3 @@ const CHECKOUT_CONSTANTS = {
     dataType: 'json'
   }
 };
-
-const CONSTANTS = _extend({}, Constants, CHECKOUT_CONSTANTS);
-
-export default CONSTANTS;

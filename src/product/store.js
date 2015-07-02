@@ -1,6 +1,8 @@
+import storefront from 'storefront';
 import Immutable from 'immutable';
-import immutable from '../utils/immutable';
+import immutable from 'alt/utils/ImmutableUtil';
 
+@immutable
 class ProductStore {
 
   constructor() {
@@ -38,4 +40,4 @@ ProductStore.config = {
   }
 };
 
-export default immutable(ProductStore);
+storefront.flux.createStore(ProductStore, 'ProductStore');

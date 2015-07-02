@@ -1,7 +1,7 @@
 import jQuery from 'jQuery';
 import _extend from 'lodash/object/assign';
 import _each from 'lodash/collection/each';
-import Constants from '../constants/CheckoutConstants.js';
+import Constants from './CheckoutConstants.js';
 
 class Checkout {
   constructor(options) {

@@ -1,23 +1,16 @@
 import storefront from 'storefront';
+import each from 'lodash/collection/each';
 
-// Actions
-import CartActions from './actions/CartActions';
-import ProductActions from './actions/ProductActions';
-import SearchActions from './actions/SearchActions';
-import ShopActions from './actions/ShopActions';
+// Create Flux
+storefront.flux = new Alt();
 
-// Stores
-import CartStore from './stores/CartStore';
-import ProductStore from './stores/ProductStore';
-import SearchStore from './stores/SearchStore';
-import ShopStore from './stores/ShopStore';
+// Debug mode in localhost
+if (window.location.host.indexOf(':3000') !== -1) {
+  storefront.flux.dispatcher.register(console.log.bind(console));
+}
 
-storefront.exportActions('CartActions', CartActions);
-storefront.exportActions('ProductActions', ProductActions);
-storefront.exportActions('SearchActions', SearchActions);
-storefront.exportActions('ShopActions', ShopActions);
-
-storefront.exportStore('CartStore', CartStore);
-storefront.exportStore('ProductStore', ProductStore);
-storefront.exportStore('SearchStore', SearchStore);
-storefront.exportStore('ShopStore', ShopStore);
+// Bundle default actions and stores
+import cart from './cart';
+import product from './product';
+import search from './search';
+import shop from './shop';

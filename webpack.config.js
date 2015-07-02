@@ -36,7 +36,10 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
+    alias: {
+      'services': __dirname + '/src/services/'
+    }
   },
 
   jshint: {

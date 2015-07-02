@@ -1,4 +1,4 @@
-import Search from "../services/Search";
+import storefront from 'storefront';
 
 class ProductActions {
   requestProduct(params) {
@@ -27,4 +27,4 @@ class ProductActions {
   }
 }
 
-export default ProductActions;
+storefront.flux.createActions(ProductActions, 'ProductActions');

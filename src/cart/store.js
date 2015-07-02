@@ -1,7 +1,9 @@
+import storefront from 'storefront';
 import _each from 'lodash/collection/each';
 import Immutable from 'immutable';
-import immutable from '../utils/immutable';
+import immutable from 'alt/utils/ImmutableUtil';
 
+@immutable
 class CartStore {
   constructor() {
     this.bindActions(this.alt.actions.CartActions);
@@ -78,26 +80,4 @@ class CartStore {
   }
 }
 
-CartStore.config = {
-  onSerialize(state) {
-    return {
-      orderForm: state.get('orderForm').toJS(),
-      loading: state.get('loading'),
-      addLoading: state.get('addLoading'),
-      updateLoading: state.get('updateLoading'),
-      error: state.get('error')
-    };
-  },
-
-  onDeserialize(data) {
-    return Immutable.Map({
-      orderForm: Immutable.Map(data.orderForm),
-      loading: data.loading,
-      addLoading: data.addLoading,
-      updateLoading: data.updateLoading,
-      error: data.error
-    });
-  }
-};
-
-export default immutable(CartStore);
+storefront.flux.createStore(CartStore, 'CartStore');

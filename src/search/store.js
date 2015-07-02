@@ -1,6 +1,8 @@
+import storefront from 'storefront';
 import Immutable from 'immutable';
-import immutable from '../utils/immutable';
+import immutable from 'alt/utils/ImmutableUtil';
 
+@immutable
 class SearchStore {
   constructor() {
     this.bindActions(this.alt.actions.SearchActions);
@@ -38,14 +40,4 @@ class SearchStore {
 
 }
 
-SearchStore.config = {
-  onSerialize(state) {
-    return state.toJS();
-  },
-
-  onDeserialize(data) {
-    return Immutable.Map(data);
-  }
-};
-
-export default immutable(SearchStore);
+storefront.flux.createStore(SearchStore, 'SearchStore');
