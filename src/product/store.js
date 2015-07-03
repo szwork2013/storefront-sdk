@@ -4,12 +4,11 @@ import immutable from 'alt/utils/ImmutableUtil';
 
 @immutable
 class ProductStore {
-
   constructor() {
     this.bindActions(storefront.flux.actions.SearchActions);
     this.bindActions(storefront.flux.actions.ProductActions);
 
-    this.state = Immutable.Map();
+    this.state = Immutable.Map({});
   }
 
   onRequestProductSuccess(product) {
@@ -27,17 +26,6 @@ class ProductStore {
 
     this.setState(newProducts);
   }
-
 }
-
-ProductStore.config = {
-  onSerialize(state) {
-    return state.toJS();
-  },
-
-  onDeserialize(data) {
-    return Immutable.Map(data);
-  }
-};
 
 storefront.flux.addStore('ProductStore', ProductStore);

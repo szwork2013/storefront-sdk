@@ -37,7 +37,6 @@ class SearchStore {
   onRequestFacetsFail({ params, error }) {
     this.setState(this.state.setIn([params.id, 'error'], error));
   }
-
 }
 
 storefront.flux.addStore('SearchStore', SearchStore);

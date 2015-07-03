@@ -3,28 +3,28 @@ import Search from 'services/Search';
 
 class ProductActions {
   requestProduct(params) {
-    this.dispatch(params.product);
-
     // Call API with query parameter
     Search.products(params)
-      .done((product) =>
-        this.actions.requestProductSuccess(product)
-      )
-      .fail((error) =>
-        this.actions.requestProductFail(error)
-      );
+    .done((product) =>
+      this.actions.requestProductSuccess(product)
+    )
+    .fail((error) =>
+      this.actions.requestProductFail(error)
+    );
+
+    return params.product;
   }
 
   requestProductSuccess(product) {
-    this.dispatch(product);
+    return product;
   }
 
   requestProductFail(error) {
-    this.dispatch(error);
+    return error;
   }
 
   selectVariation(variation) {
-    this.dispatch(variation);
+    return variation;
   }
 }
 
