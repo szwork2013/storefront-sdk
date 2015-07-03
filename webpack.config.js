@@ -38,7 +38,7 @@ module.exports = {
   resolve: {
     extensions: ['', '.js'],
     alias: {
-      'services': __dirname + '/src/services/'
+      'services': path.join(__dirname, '/src/services/')
     }
   },
 
@@ -50,13 +50,16 @@ module.exports = {
     preLoaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'jsxhint'
+      loader: 'eslint-loader'
     }],
 
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      loader: 'babel-loader',
+      query: {
+        stage: 1
+      }
     }]
   }
 };

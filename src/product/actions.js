@@ -1,4 +1,5 @@
 import storefront from 'storefront';
+import Search from 'services/Search';
 
 class ProductActions {
   requestProduct(params) {

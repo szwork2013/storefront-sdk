@@ -1,6 +1,6 @@
 import storefront from 'storefront';
-import Checkout from "services/Checkout";
-import _debounce from "lodash/function/debounce";
+import Checkout from 'services/Checkout';
+import _debounce from 'lodash/function/debounce';
 import Constants from 'services/CheckoutConstants.js';
 
 let checkout = new Checkout();
