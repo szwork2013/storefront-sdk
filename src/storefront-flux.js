@@ -1,16 +1,7 @@
-import Alt from 'alt';
-import storefront from 'storefront';
-
-// Create Flux
-storefront.flux = new Alt();
-
-// Debug mode in localhost
-if (window.location.host.indexOf(':3000') !== -1) {
-  storefront.flux.dispatcher.register(console.log.bind(console)); //eslint-disable-line no-console
-}
-
 // Bundle default actions and stores
 /*eslint-disable no-unused-vars*/
+import flux from './flux.js'; // must be imported first
+console.log('bananana');
 import CartActions from './cart/actions.js';
 import CartStore from './cart/store.js';
 import ProductActions from './product/actions.js';

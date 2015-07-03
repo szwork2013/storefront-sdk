@@ -5,10 +5,8 @@ import immutable from 'alt/utils/ImmutableUtil';
 @immutable
 class ShopStore {
   constructor() {
-    this.bindActions(storefront.actions.ShopActions);
-
-    this.state = Immutable.fromJS(storefront.ShopStore);
+    this.state = Immutable.fromJS(window._storefront.ShopStore);
   }
 }
 
-storefront.flux.createStore(ShopStore, 'ShopStore');
+storefront.flux.addStore('ShopStore', ShopStore);

@@ -48,4 +48,4 @@ class SearchActions {
   }
 }
 
-storefront.flux.createActions(SearchActions, 'SearchActions');
+storefront.flux.addActions('SearchActions', SearchActions);

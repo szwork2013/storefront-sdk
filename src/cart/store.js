@@ -6,7 +6,7 @@ import immutable from 'alt/utils/ImmutableUtil';
 @immutable
 class CartStore {
   constructor() {
-    this.bindActions(this.alt.actions.CartActions);
+    this.bindActions(storefront.flux.actions.CartActions);
 
     this.state = Immutable.Map({
       orderForm: Immutable.Map(),
@@ -80,4 +80,4 @@ class CartStore {
   }
 }
 
-storefront.flux.createStore(CartStore, 'CartStore');
+storefront.flux.addStore('CartStore', CartStore);

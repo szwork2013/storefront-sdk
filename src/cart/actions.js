@@ -78,4 +78,4 @@ class CartActions {
   }
 }
 
-storefront.flux.createActions(CartActions, 'CartActions');
+storefront.flux.addActions('CartActions', CartActions);

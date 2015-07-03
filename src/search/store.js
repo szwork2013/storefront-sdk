@@ -5,7 +5,7 @@ import immutable from 'alt/utils/ImmutableUtil';
 @immutable
 class SearchStore {
   constructor() {
-    this.bindActions(this.alt.actions.SearchActions);
+    this.bindActions(storefront.flux.actions.SearchActions);
 
     this.state = Immutable.Map();
   }
@@ -40,4 +40,4 @@ class SearchStore {
 
 }
 
-storefront.flux.createStore(SearchStore, 'SearchStore');
+storefront.flux.addStore('SearchStore', SearchStore);

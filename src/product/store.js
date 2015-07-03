@@ -6,8 +6,8 @@ import immutable from 'alt/utils/ImmutableUtil';
 class ProductStore {
 
   constructor() {
-    this.bindActions(this.alt.actions.SearchActions);
-    this.bindActions(this.alt.actions.ProductActions);
+    this.bindActions(storefront.flux.actions.SearchActions);
+    this.bindActions(storefront.flux.actions.ProductActions);
 
     this.state = Immutable.Map();
   }
@@ -40,4 +40,4 @@ ProductStore.config = {
   }
 };
 
-storefront.flux.createStore(ProductStore, 'ProductStore');
+storefront.flux.addStore('ProductStore', ProductStore);
