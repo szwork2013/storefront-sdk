@@ -1,11 +1,11 @@
 import jQuery from 'jQuery';
 import _extend from 'lodash/object/assign';
 import _each from 'lodash/collection/each';
-import Constants from '../constants/CheckoutConstants.js';
+import Constants from './CheckoutConstants.js';
 
 class Checkout {
-  constructor(options) {
-    this.HOST_URL = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+  constructor() {
+    this.HOST_URL = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
   }
 
   _getSaveAttachmentURL(orderFormId, attachmentId) {

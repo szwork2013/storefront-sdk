@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var publicPath = '/assets/@vtex.storefront-flux/';
+var production = process.env.NODE_ENV === 'production';
 
 module.exports = {
 
@@ -28,15 +29,18 @@ module.exports = {
     reasons: false
   },
 
-  plugins: [
+  plugins: (production ? [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin()
-  ],
+  ] : []),
 
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
+    alias: {
+      'services': path.join(__dirname, '/src/services/')
+    }
   },
 
   jshint: {
@@ -47,13 +51,16 @@ module.exports = {
     preLoaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'jsxhint'
+      loader: 'eslint-loader'
     }],
 
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      loader: 'babel-loader',
+      query: {
+        stage: 1
+      }
     }]
   }
 };

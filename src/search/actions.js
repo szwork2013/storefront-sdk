@@ -1,9 +1,8 @@
-import Search from "../services/Search";
+import storefront from 'storefront';
+import Search from 'services/Search';
 
 class SearchActions {
   requestSearch(params) {
-    this.dispatch(params);
-
     // Call API with query parameter
     Search.products(params)
       .done((products) => {
@@ -12,21 +11,20 @@ class SearchActions {
       .fail((error) =>
         this.actions.requestSearchFail({ params, error })
       );
+
+    return params;
   }
 
   requestSearchSuccess(results) {
-    this.dispatch(results);
+    return results;
   }
 
   requestSearchFail(error) {
-    this.dispatch(error);
+    return error;
   }
 
   requestFacets(params) {
     let self = this;
-
-    // we dispatch an event here so we can have a "loading" state
-    this.dispatch(params);
 
     // Call API with query parameter
     Search.facets(params)
@@ -36,15 +34,18 @@ class SearchActions {
       .fail((error) =>
         self.actions.requestFacetsFail({ params, error })
       );
+
+    // we dispatch an event here so we can have a "loading" state
+    return params;
   }
 
   requestFacetsSuccess(results) {
-    this.dispatch(results);
+    return results;
   }
 
   requestFacetsFail(error) {
-    this.dispatch(error);
+    return error;
   }
 }
 
-export default SearchActions;
+storefront.flux.addActions('SearchActions', SearchActions);

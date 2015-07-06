@@ -1,23 +1,10 @@
-import storefront from 'storefront';
-
-// Actions
-import CartActions from './actions/CartActions';
-import ProductActions from './actions/ProductActions';
-import SearchActions from './actions/SearchActions';
-import ShopActions from './actions/ShopActions';
-
-// Stores
-import CartStore from './stores/CartStore';
-import ProductStore from './stores/ProductStore';
-import SearchStore from './stores/SearchStore';
-import ShopStore from './stores/ShopStore';
-
-storefront.exportActions('CartActions', CartActions);
-storefront.exportActions('ProductActions', ProductActions);
-storefront.exportActions('SearchActions', SearchActions);
-storefront.exportActions('ShopActions', ShopActions);
-
-storefront.exportStore('CartStore', CartStore);
-storefront.exportStore('ProductStore', ProductStore);
-storefront.exportStore('SearchStore', SearchStore);
-storefront.exportStore('ShopStore', ShopStore);
+// Bundle default actions and stores
+/*eslint-disable no-unused-vars*/
+import flux from './flux.js'; // must be imported first
+import CartActions from './cart/actions.js';
+import SearchActions from './search/actions.js';
+import ProductActions from './product/actions.js';
+import CartStore from './cart/store.js';
+import SearchStore from './search/store.js';
+import ProductStore from './product/store.js';
+import ShopStore from './shop/store.js';

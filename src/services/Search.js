@@ -2,18 +2,18 @@ import jQuery from 'jQuery';
 import extend from 'lodash/object/extend';
 import _omit from 'lodash/object/omit';
 
-const baseUrl = "http://api.beta.vtex.com/";
+const baseUrl = 'http://api.beta.vtex.com/';
 
 const basicAjax = {
-  type: "GET",
+  type: 'GET',
   crossDomain: true,
-  dataType: "json"
+  dataType: 'json'
 };
 
 class Search {
 
   static products(params) {
-    let url = baseUrl + params.accountName + '/products/' + (params.product || "");
+    let url = baseUrl + params.accountName + '/products/' + (params.product || '');
 
     let props = {
       url: url,
