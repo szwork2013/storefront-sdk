@@ -75,21 +75,29 @@
 	
 	var _productActionsJs2 = _interopRequireDefault(_productActionsJs);
 	
+	var _componentActionsJs = __webpack_require__(77);
+	
+	var _componentActionsJs2 = _interopRequireDefault(_componentActionsJs);
+	
 	var _cartStoreJs = __webpack_require__(2);
 	
 	var _cartStoreJs2 = _interopRequireDefault(_cartStoreJs);
 	
-	var _searchStoreJs = __webpack_require__(77);
+	var _searchStoreJs = __webpack_require__(78);
 	
 	var _searchStoreJs2 = _interopRequireDefault(_searchStoreJs);
 	
-	var _productStoreJs = __webpack_require__(78);
+	var _productStoreJs = __webpack_require__(79);
 	
 	var _productStoreJs2 = _interopRequireDefault(_productStoreJs);
 	
-	var _shopStoreJs = __webpack_require__(79);
+	var _shopStoreJs = __webpack_require__(80);
 	
 	var _shopStoreJs2 = _interopRequireDefault(_shopStoreJs);
+	
+	var _componentStoreJs = __webpack_require__(81);
+	
+	var _componentStoreJs2 = _interopRequireDefault(_componentStoreJs);
 
 /***/ },
 /* 2 */
@@ -9094,6 +9102,99 @@
 	
 	var _storefront2 = _interopRequireDefault(_storefront);
 	
+	var _jQuery = __webpack_require__(48);
+	
+	var _jQuery2 = _interopRequireDefault(_jQuery);
+	
+	var ComponentActions = (function () {
+	  function ComponentActions() {
+	    _classCallCheck(this, ComponentActions);
+	  }
+	
+	  _createClass(ComponentActions, [{
+	    key: 'saveSettings',
+	    value: function saveSettings(_ref) {
+	      var _this = this;
+	
+	      var accountName = _ref.accountName;
+	      var route = _ref.route;
+	      var component = _ref.component;
+	      var id = _ref.id;
+	      var settings = _ref.settings;
+	
+	      var url = 'http://api.beta.vtex.com/' + accountName + '/storefront/components/' + route + '/' + id;
+	      var data = {
+	        'component': component,
+	        'settings': settings
+	      };
+	      var token = _storefront2['default'].flux.stores.ShopStore.getState().get('token');
+	      var authorization = 'token ' + token;
+	
+	      _jQuery2['default'].ajax({
+	        url: url,
+	        method: 'PUT',
+	        contentType: 'application/json; charset=utf-8',
+	        dataType: 'json',
+	        headers: {
+	          'Accept': 'application/vnd.vtex.storefront.v0+json',
+	          'Authorization': authorization
+	        },
+	        data: JSON.stringify(data)
+	      }).done(function () {
+	        return _this.actions.saveSettingsSuccess({ route: route, id: id, settings: settings });
+	      }).fail(this.actions.saveSettingsError);
+	
+	      return arguments[0];
+	    }
+	  }, {
+	    key: 'saveSettingsSuccess',
+	    value: function saveSettingsSuccess(settings) {
+	      return settings;
+	    }
+	  }, {
+	    key: 'saveSettingsError',
+	    value: function saveSettingsError(error) {
+	      return error;
+	    }
+	  }, {
+	    key: 'requestComponent',
+	    value: function requestComponent(route) {
+	      // TODO GET :account/routes/:route/resources
+	      return route;
+	    }
+	  }, {
+	    key: 'requestComponentSuccess',
+	    value: function requestComponentSuccess(Component) {
+	      return Component;
+	    }
+	  }, {
+	    key: 'requestComponentError',
+	    value: function requestComponentError(error) {
+	      return error;
+	    }
+	  }]);
+	
+	  return ComponentActions;
+	})();
+	
+	_storefront2['default'].flux.addActions('ComponentActions', ComponentActions);
+
+/***/ },
+/* 78 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	var _storefront = __webpack_require__(3);
+	
+	var _storefront2 = _interopRequireDefault(_storefront);
+	
 	var _immutable = __webpack_require__(31);
 	
 	var _immutable2 = _interopRequireDefault(_immutable);
@@ -9170,7 +9271,7 @@
 	_storefront2['default'].flux.addStore('SearchStore', SearchStore);
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9237,7 +9338,7 @@
 	_storefront2['default'].flux.addStore('ProductStore', ProductStore);
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9262,6 +9363,7 @@
 	  function ShopStore() {
 	    _classCallCheck(this, _ShopStore);
 	
+	    window._storefront.ShopStore.token = ('; ' + document.cookie).split('; VtexIdclientAutCookie=').pop().split(';').shift();
 	    this.state = _immutable2['default'].fromJS(window._storefront.ShopStore);
 	  }
 	
@@ -9271,6 +9373,62 @@
 	})();
 	
 	_storefront2['default'].flux.addStore('ShopStore', ShopStore);
+
+/***/ },
+/* 81 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	var _storefront = __webpack_require__(3);
+	
+	var _storefront2 = _interopRequireDefault(_storefront);
+	
+	var _immutable = __webpack_require__(31);
+	
+	var _immutable2 = _interopRequireDefault(_immutable);
+	
+	var _altUtilsImmutableUtil = __webpack_require__(32);
+	
+	var _altUtilsImmutableUtil2 = _interopRequireDefault(_altUtilsImmutableUtil);
+	
+	var ComponentStore = (function () {
+	  function ComponentStore() {
+	    _classCallCheck(this, _ComponentStore);
+	
+	    this.bindActions(_storefront2['default'].flux.actions.ComponentActions);
+	
+	    this.state = _immutable2['default'].fromJS(_storefront2['default'].settings);
+	  }
+	
+	  var _ComponentStore = ComponentStore;
+	
+	  _createClass(_ComponentStore, [{
+	    key: 'onSaveSettingsSuccess',
+	    value: function onSaveSettingsSuccess(_ref) {
+	      var route = _ref.route;
+	      var id = _ref.id;
+	      var settings = _ref.settings;
+	
+	      this.setState(this.state.merge(_defineProperty({}, route, _defineProperty({}, id, {
+	        settings: settings
+	      }))));
+	    }
+	  }]);
+	
+	  ComponentStore = (0, _altUtilsImmutableUtil2['default'])(ComponentStore) || ComponentStore;
+	  return ComponentStore;
+	})();
+	
+	_storefront2['default'].flux.addStore('ComponentStore', ComponentStore);
 
 /***/ }
 /******/ ]);
