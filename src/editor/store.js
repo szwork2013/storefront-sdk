@@ -8,7 +8,8 @@ class EditorStore {
     this.bindActions(storefront.flux.actions.EditorActions);
 
     this.state = Immutable.fromJS({
-      edit: false
+      edit: false,
+      admin: null
     });
   }
 
@@ -17,7 +18,15 @@ class EditorStore {
   }
 
   onExitEditMode() {
-    this.setState(this.state.set('edit', false));
+    this.setState(this.state.merge({ edit: false, admin: null }));
+  }
+
+  onOpenAdmin(adminComponentName) {
+    this.setState(this.state.set('admin', adminComponentName));
+  }
+
+  onCloseAdmin() {
+    this.setState(this.state.set('admin', null));
   }
 }
 
