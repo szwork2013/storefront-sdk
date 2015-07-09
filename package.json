@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack -w & vtex watch",
-    "prereleasy": "webpack",
-    "postreleasy": "NODE_ENV=production vtex publish"
+    "prereleasy": "NODE_ENV=production webpack",
+    "postreleasy": "vtex publish"
   },
   "dependencies": {
     "immutable": "^3.7.3",
