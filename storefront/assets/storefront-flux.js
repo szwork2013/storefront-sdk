@@ -79,7 +79,7 @@
 	
 	var _componentActionsJs2 = _interopRequireDefault(_componentActionsJs);
 	
-	var _editorActionsJs = __webpack_require__(82);
+	var _editorActionsJs = __webpack_require__(78);
 	
 	var _editorActionsJs2 = _interopRequireDefault(_editorActionsJs);
 	
@@ -87,19 +87,19 @@
 	
 	var _cartStoreJs2 = _interopRequireDefault(_cartStoreJs);
 	
-	var _searchStoreJs = __webpack_require__(78);
+	var _searchStoreJs = __webpack_require__(79);
 	
 	var _searchStoreJs2 = _interopRequireDefault(_searchStoreJs);
 	
-	var _productStoreJs = __webpack_require__(79);
+	var _productStoreJs = __webpack_require__(80);
 	
 	var _productStoreJs2 = _interopRequireDefault(_productStoreJs);
 	
-	var _shopStoreJs = __webpack_require__(80);
+	var _shopStoreJs = __webpack_require__(81);
 	
 	var _shopStoreJs2 = _interopRequireDefault(_shopStoreJs);
 	
-	var _componentStoreJs = __webpack_require__(81);
+	var _componentStoreJs = __webpack_require__(82);
 	
 	var _componentStoreJs2 = _interopRequireDefault(_componentStoreJs);
 	
@@ -9193,6 +9193,28 @@
 
 	'use strict';
 	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	var _storefront = __webpack_require__(3);
+	
+	var _storefront2 = _interopRequireDefault(_storefront);
+	
+	var EditorActions = function EditorActions() {
+	  _classCallCheck(this, EditorActions);
+	
+	  this.generateActions('enterEditMode', 'exitEditMode');
+	};
+	
+	_storefront2['default'].flux.addActions('EditorActions', EditorActions);
+
+/***/ },
+/* 79 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -9279,7 +9301,7 @@
 	_storefront2['default'].flux.addStore('SearchStore', SearchStore);
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9346,7 +9368,7 @@
 	_storefront2['default'].flux.addStore('ProductStore', ProductStore);
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9383,7 +9405,7 @@
 	_storefront2['default'].flux.addStore('ShopStore', ShopStore);
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9437,28 +9459,6 @@
 	})();
 	
 	_storefront2['default'].flux.addStore('ComponentStore', ComponentStore);
-
-/***/ },
-/* 82 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
-	var _storefront = __webpack_require__(3);
-	
-	var _storefront2 = _interopRequireDefault(_storefront);
-	
-	var EditorActions = function EditorActions() {
-	  _classCallCheck(this, EditorActions);
-	
-	  this.generateActions('enterEditMode', 'exitEditMode');
-	};
-	
-	_storefront2['default'].flux.addActions('EditorActions', EditorActions);
 
 /***/ },
 /* 83 */
