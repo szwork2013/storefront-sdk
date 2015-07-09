@@ -21,8 +21,8 @@ class EditorStore {
     this.setState(this.state.merge({ edit: false, admin: null }));
   }
 
-  onOpenAdmin(adminComponentName) {
-    this.setState(this.state.set('admin', adminComponentName));
+  onOpenAdmin(admin) {
+    this.setState(this.state.set('admin', Immutable.Map(admin)));
   }
 
   onCloseAdmin() {

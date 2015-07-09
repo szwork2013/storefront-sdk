@@ -9510,8 +9510,8 @@
 	    }
 	  }, {
 	    key: 'onOpenAdmin',
-	    value: function onOpenAdmin(adminComponentName) {
-	      this.setState(this.state.set('admin', adminComponentName));
+	    value: function onOpenAdmin(admin) {
+	      this.setState(this.state.set('admin', _immutable2['default'].Map(admin)));
 	    }
 	  }, {
 	    key: 'onCloseAdmin',
