@@ -79,6 +79,10 @@
 	
 	var _componentActionsJs2 = _interopRequireDefault(_componentActionsJs);
 	
+	var _editorActionsJs = __webpack_require__(82);
+	
+	var _editorActionsJs2 = _interopRequireDefault(_editorActionsJs);
+	
 	var _cartStoreJs = __webpack_require__(2);
 	
 	var _cartStoreJs2 = _interopRequireDefault(_cartStoreJs);
@@ -98,6 +102,10 @@
 	var _componentStoreJs = __webpack_require__(81);
 	
 	var _componentStoreJs2 = _interopRequireDefault(_componentStoreJs);
+	
+	var _editorStoreJs = __webpack_require__(83);
+	
+	var _editorStoreJs2 = _interopRequireDefault(_editorStoreJs);
 
 /***/ },
 /* 2 */
@@ -9429,6 +9437,83 @@
 	})();
 	
 	_storefront2['default'].flux.addStore('ComponentStore', ComponentStore);
+
+/***/ },
+/* 82 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	var _storefront = __webpack_require__(3);
+	
+	var _storefront2 = _interopRequireDefault(_storefront);
+	
+	var EditorActions = function EditorActions() {
+	  _classCallCheck(this, EditorActions);
+	
+	  this.generateActions('enterEditMode', 'exitEditMode');
+	};
+	
+	_storefront2['default'].flux.addActions('EditorActions', EditorActions);
+
+/***/ },
+/* 83 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	var _storefront = __webpack_require__(3);
+	
+	var _storefront2 = _interopRequireDefault(_storefront);
+	
+	var _immutable = __webpack_require__(31);
+	
+	var _immutable2 = _interopRequireDefault(_immutable);
+	
+	var _altUtilsImmutableUtil = __webpack_require__(32);
+	
+	var _altUtilsImmutableUtil2 = _interopRequireDefault(_altUtilsImmutableUtil);
+	
+	var EditorStore = (function () {
+	  function EditorStore() {
+	    _classCallCheck(this, _EditorStore);
+	
+	    this.bindActions(_storefront2['default'].flux.actions.EditorActions);
+	
+	    this.state = _immutable2['default'].fromJS({
+	      edit: false
+	    });
+	  }
+	
+	  var _EditorStore = EditorStore;
+	
+	  _createClass(_EditorStore, [{
+	    key: 'onEnterEditMode',
+	    value: function onEnterEditMode() {
+	      this.setState(this.state.set('edit', true));
+	    }
+	  }, {
+	    key: 'onExitEditMode',
+	    value: function onExitEditMode() {
+	      this.setState(this.state.set('edit', false));
+	    }
+	  }]);
+	
+	  EditorStore = (0, _altUtilsImmutableUtil2['default'])(EditorStore) || EditorStore;
+	  return EditorStore;
+	})();
+	
+	_storefront2['default'].flux.addStore('EditorStore', EditorStore);
 
 /***/ }
 /******/ ]);
