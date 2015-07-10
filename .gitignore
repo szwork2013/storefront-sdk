@@ -31,5 +31,4 @@ node_modules/
 .tmp
 .idea
 npm-debug.log
-
-dist/
+storefront/assets/*storefront*
