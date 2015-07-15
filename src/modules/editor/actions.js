@@ -2,8 +2,11 @@ import storefront from 'storefront';
 
 class EditorActions {
   constructor() {
-    this.generateActions('enterEditMode', 'exitEditMode',
-      'openAdmin', 'closeAdmin');
+    this.generateActions('openAdmin', 'closeAdmin');
+  }
+
+  enterMode(mode) {
+    return mode;
   }
 }
 

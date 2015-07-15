@@ -8,17 +8,13 @@ class EditorStore {
     this.bindActions(storefront.flux.actions.EditorActions);
 
     this.state = Immutable.fromJS({
-      edit: false,
+      activeMode: 'preview',
       admin: null
     });
   }
 
-  onEnterEditMode() {
-    this.setState(this.state.set('edit', true));
-  }
-
-  onExitEditMode() {
-    this.setState(this.state.merge({ edit: false, admin: null }));
+  onEnterMode(mode) {
+    this.setState(this.state.set('activeMode', mode));
   }
 
   onOpenAdmin(admin) {
@@ -26,7 +22,8 @@ class EditorStore {
   }
 
   onCloseAdmin() {
-    this.setState(this.state.set('admin', null));
+    let state = this.state.set('admin', null);
+    this.setState(state.set('activeMode', 'preview'));
   }
 }
 
