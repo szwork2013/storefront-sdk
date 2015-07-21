@@ -1,6 +1,6 @@
 {
   "name": "storefront-flux",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "title": "Common stores and actions",
   "vendor": "vtex",
   "dependencies": {},
