@@ -1,7 +1,7 @@
 import storefront from 'storefront';
 import Checkout from 'services/Checkout';
 import _debounce from 'lodash/function/debounce';
-import Constants from 'services/CheckoutConstants.js';
+import constants from 'services/constants.js';
 
 let checkout = new Checkout();
 
@@ -59,7 +59,7 @@ class CartActions {
   addShippingData(orderFormId, shippingData, expectedOrderFormSections = undefined){
     this.dispatch();
 
-    return checkout.sendAttachment(orderFormId, Constants.SESSIONS.shippingData,
+    return checkout.sendAttachment(orderFormId, constants.SESSIONS.shippingData,
         shippingData, expectedOrderFormSections)
       .done((updatedShippingData) =>
         this.actions.requestSuccess(updatedShippingData)

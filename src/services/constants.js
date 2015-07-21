@@ -22,7 +22,12 @@ export default {
   SESSIONS: {
     shippingData: 'shippingData'
   },
-  BASIC_AJAX: {
+  SEARCH_AJAX: {
+    type: 'GET',
+    crossDomain: true,
+    dataType: 'json'
+  },
+  CHECKOUT_AJAX: {
     type: 'POST',
     contentType: 'application/json; charset=utf-8',
     dataType: 'json'
