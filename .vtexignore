@@ -1,5 +1,7 @@
+.eslintrc
+.gitignore
 node_modules/
 src/
 webpack.config.js
-webpack.flux.config.js
 package.json
+README.md
