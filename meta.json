@@ -1,8 +1,8 @@
 {
-  "name": "storefront-core",
+  "name": "storefront-sdk",
   "version": "1.0.0",
-  "title": "VTEX Storefront Core",
-  "description": "React bindings and common stores and actions for Storefront apps",
+  "title": "VTEX Storefront SDK",
+  "description": "React routing, component registry, Flux and VTEX common stores and actions for Storefront apps.",
   "vendor": "vtex",
   "dependencies": {},
   "schemas": {

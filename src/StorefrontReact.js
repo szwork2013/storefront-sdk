@@ -7,7 +7,7 @@ import { create, HistoryLocation, Route } from 'react-router';
 
 let rootInstance;
 
-class StorefrontReact {
+class StorefrontSDK {
   connectToStores = connectToStores;
   flux = flux;
 
@@ -59,6 +59,6 @@ class StorefrontReact {
   }
 }
 
-window.storefront = extend(new StorefrontReact(), window.storefront);
+window.storefront = new StorefrontSDK();
 
 export default window.storefront;

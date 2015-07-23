@@ -1,8 +1,8 @@
 {
-  "name": "storefront-core",
+  "name": "storefront-sdk",
   "version": null,
   "private": true,
-  "description": "VTEX Storefront core",
+  "description": "VTEX Storefront SDK",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack -w & vtex watch",

@@ -1,18 +1,18 @@
-# Storefront Core
+# Storefront SDK
 
-React bindings and common stores and actions for Storefront apps.
+React routing, component registry, Flux and VTEX common stores and actions for Storefront apps.
 
 ## Usage
 
-In your theme, include `storefront-core.js` before any other script.
+In your theme, include `storefront-sdk.js` before any other script.
 
 This will provide new functionality under `window.storefront`.
 
 ## Flux
 
-Storefront Core uses [Alt](http://alt.js.org/) as its Flux implementation, so it's simple and pratical to create your own stores and actions.
+Storefront SDK uses [Alt](http://alt.js.org/) as its Flux implementation, so it's simple and pratical to create your own stores and actions.
 
-All the stores offered by Storefront Core are [Immutable](http://facebook.github.io/immutable-js/) objects, making the code safer.
+All the stores offered by Storefront SDK are [Immutable](http://facebook.github.io/immutable-js/) objects, making the code safer.
 
 The actions and stores are available under `storefront.flux.actions` and `storefront.flux.stores`, respectively.
 
@@ -57,7 +57,7 @@ To bind a route to a component you **must** have a corresponding React component
 
 When Storefront starts, the routes will be matched based on the **component name**, having the following structure: `<filename>@<owner.app>`.
 
-So basically, Storefront Core will find the component to render like this:
+So basically, Storefront SDK will find the component to render like this:
 ```js
 let ProductPage = storefront.flux.stores.ComponentStore.getState().get('ProductPage@vtex.storefront-theme');
 ```
