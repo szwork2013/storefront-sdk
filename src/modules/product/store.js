@@ -28,4 +28,4 @@ class ProductStore {
   }
 }
 
-storefront.flux.addStore('ProductStore', ProductStore);
+export default ProductStore;

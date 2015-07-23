@@ -1,7 +1,7 @@
 import jQuery from 'jQuery';
 import _extend from 'lodash/object/assign';
 import _each from 'lodash/collection/each';
-import constants from './constants.js';
+import StorefrontConstants from 'constants/StorefrontConstants';
 
 class Checkout {
   constructor() {
@@ -13,7 +13,7 @@ class Checkout {
   }
 
   _getBaseOrderFormURL() {
-    return this.HOST_URL + constants.BASE_CHECKOUT_URL + 'orderForm';
+    return this.HOST_URL + StorefrontConstants.BASE_CHECKOUT_URL + 'orderForm';
   }
 
   _getOrderFormURL(orderFormId) {
@@ -28,7 +28,7 @@ class Checkout {
     return this._getOrderFormURL(orderFormId) + '/items';
   }
 
-  getOrderForm(expectedOrderFormSections = constants.ALL_ORDERFORM_SECTIONS) {
+  getOrderForm(expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
     let checkoutRequest = { 'expectedOrderFormSections': expectedOrderFormSections };
 
     let props = {
@@ -36,10 +36,10 @@ class Checkout {
       data: JSON.stringify(checkoutRequest)
     };
 
-    return jQuery.ajax(_extend({}, constants.BASIC_AJAX, props));
+    return jQuery.ajax(_extend({}, StorefrontConstants.BASIC_AJAX, props));
   }
 
-  updateItems(orderFormId, items, expectedOrderFormSections = constants.ALL_ORDERFORM_SECTIONS) {
+  updateItems(orderFormId, items, expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
     let checkoutRequest = {
       orderItems: items,
       'expectedOrderFormSections': expectedOrderFormSections
@@ -50,15 +50,15 @@ class Checkout {
       data: JSON.stringify(checkoutRequest)
     };
 
-    return jQuery.ajax(_extend({}, constants.BASIC_AJAX, props));
+    return jQuery.ajax(_extend({}, StorefrontConstants.BASIC_AJAX, props));
   }
 
-  removeItems(orderFormId, items, expectedOrderFormSections = constants.ALL_ORDERFORM_SECTIONS) {
+  removeItems(orderFormId, items, expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
     _each(items, (item) => item.quantity = 0);
     return this.updateItems(orderFormId, items, expectedOrderFormSections);
   }
 
-  sendAttachment(orderFormId, attachmentId, attachment, expectedOrderFormSections = constants.ALL_ORDERFORM_SECTIONS) {
+  sendAttachment(orderFormId, attachmentId, attachment, expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
     let checkoutRequest = {
       [attachmentId]: attachment,
       'expectedOrderFormSections': expectedOrderFormSections
@@ -69,10 +69,10 @@ class Checkout {
       data: JSON.stringify(checkoutRequest)
     };
 
-    return jQuery.ajax(_extend({}, constants.BASIC_AJAX, props));
+    return jQuery.ajax(_extend({}, StorefrontConstants.BASIC_AJAX, props));
   }
 
-  addToCart(orderFormId, items, expectedOrderFormSections = constants.ALL_ORDERFORM_SECTIONS) {
+  addToCart(orderFormId, items, expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
     let checkoutRequest = {
       orderItems: items,
       expectedOrderFormSections: expectedOrderFormSections
@@ -83,7 +83,7 @@ class Checkout {
       data: JSON.stringify(checkoutRequest)
     };
 
-    return jQuery.ajax(_extend({}, constants.BASIC_AJAX, props));
+    return jQuery.ajax(_extend({}, StorefrontConstants.BASIC_AJAX, props));
   }
 
 }

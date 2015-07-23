@@ -39,4 +39,4 @@ class SearchStore {
   }
 }
 
-storefront.flux.addStore('SearchStore', SearchStore);
+export default SearchStore;

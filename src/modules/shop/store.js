@@ -1,4 +1,3 @@
-import storefront from 'storefront';
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
 
@@ -10,4 +9,4 @@ class ShopStore {
   }
 }
 
-storefront.flux.addStore('ShopStore', ShopStore);
+export default ShopStore;

@@ -1,5 +1,3 @@
-import storefront from 'storefront';
-
 class EditorActions {
   constructor() {
     this.generateActions('openAdmin', 'closeAdmin');
@@ -10,4 +8,4 @@ class EditorActions {
   }
 }
 
-storefront.flux.addActions('EditorActions', EditorActions);
+export default EditorActions;

@@ -27,4 +27,4 @@ class EditorStore {
   }
 }
 
-storefront.flux.addStore('EditorStore', EditorStore);
+export default EditorStore;

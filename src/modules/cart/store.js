@@ -80,4 +80,4 @@ class CartStore {
   }
 }
 
-storefront.flux.addStore('CartStore', CartStore);
+export default CartStore;

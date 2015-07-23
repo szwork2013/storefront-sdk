@@ -1,6 +1,6 @@
 import jQuery from 'jQuery';
 import _extend from 'lodash/object/assign';
-import constants from './constants.js';
+import StorefrontConstants from 'constants/StorefrontConstants';
 
 class Storefront {
   constructor() {
@@ -17,7 +17,7 @@ class Storefront {
   }
 
   saveComponentSettings({accountName, route, component, id, settings}) {
-    const url = `${constants.BASE_URL}${accountName}/storefront/components/${route}/${id}`;
+    const url = `${StorefrontConstants.BASE_URL}${accountName}/storefront/components/${route}/${id}`;
 
     const data = {
       'component': component,

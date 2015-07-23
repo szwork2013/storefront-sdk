@@ -1,66 +1,101 @@
 var webpack = require('webpack');
 var path = require('path');
-var publicPath = '/assets/@vtex.storefront-flux/';
+var nodeModulesDir = path.join(__dirname, 'node_modules');
+var pkg = require('./package.json');
+var meta = require('./meta.json');
+var publicPath = '/assets/@' + meta.vendor + '.' + pkg.name + '/';
 var production = process.env.NODE_ENV === 'production';
+var hot = process.env.NODE_ENV === 'hot';
 
 module.exports = {
-
-  output: {
-    publicPath: publicPath,
-    path: path.resolve(__dirname, './storefront/assets/'),
-    filename: 'storefront-flux.js'
-  },
-
-  debug: false,
-
   devtool: 'sourcemap',
 
-  entry: [
-    './src/storefront-flux'
-  ],
+  watch: production ? false : true,
+
+  entry: hot ? {
+    '.': ['webpack-dev-server/client?http://0.0.0.0:3000',
+          'webpack/hot/only-dev-server',
+          './' + pkg.name + '.jsx']
+  } : {
+    '.': './src/' + pkg.name + '.jsx'
+  },
 
   externals: {
+    'react': 'React',
+    'react-router': 'ReactRouter',
     'storefront': 'storefront',
     'jQuery': 'jQuery'
   },
 
-  stats: {
-    colors: true,
-    reasons: false
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+    alias: {
+      'modules': path.join(__dirname, '/src/modules/'),
+      'dispatcher': path.join(__dirname, '/src/dispatcher/'),
+      'constants': path.join(__dirname, '/src/constants/'),
+      'services': path.join(__dirname, '/src/services/'),
+      'utils': path.join(__dirname, '/src/utils/')
+    }
   },
 
-  plugins: (production ? [
+  output: {
+    path: path.resolve(__dirname, './storefront/assets/'),
+    publicPath: publicPath,
+    filename: '[name]/' + pkg.name + '.js',
+    chunkFilename: pkg.name + '-[name].js',
+    devtoolModuleFilenameTemplate: 'webpack:///' + pkg.name + '/[resource]?[hash][id]'
+  },
+
+  eslint: {
+    configFile: '.eslintrc'
+  },
+
+  module: {
+    preLoaders: [
+      {
+        test: /\.js$|\.jsx$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      }
+    ],
+
+    loaders: [
+      {
+        test: /\.js$|\.jsx$/,
+        exclude: [nodeModulesDir],
+        loaders: hot ? ['react-hot', 'babel-loader?stage=0'] : ['babel-loader?stage=0']
+      }
+    ]
+  },
+
+  plugins: production ? [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin()
-  ] : []),
+  ] : [],
 
-  resolve: {
-    extensions: ['', '.js'],
-    alias: {
-      'services': path.join(__dirname, '/src/services/')
+  quiet: false,
+
+  noInfo: false,
+
+  devServer: {
+    publicPath: publicPath,
+    port: 3000,
+    hot: true,
+    inline: true,
+    stats: {
+      assets: false,
+      colors: true,
+      version: true,
+      hash: false,
+      timings: true,
+      chunks: true,
+      chunkModules: false
+    },
+    historyApiFallback: true,
+    proxy: {
+      '*': 'http://janus-edge.vtex.com.br/'
     }
-  },
-
-  jshint: {
-    esnext: true
-  },
-
-  module: {
-    preLoaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'eslint-loader'
-    }],
-
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-      query: {
-        stage: 1
-      }
-    }]
   }
 };
