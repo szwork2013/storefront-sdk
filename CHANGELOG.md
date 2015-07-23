@@ -43,7 +43,7 @@ Since now **ComponentStore** and **ComponentActions** takes care of the *Compone
 Our dear **connectToStores** annotation now lives inside the storefront object, so you can access it with : `storefront.connectToStores`.
 
 ```js
-@connectToStores([
+@storefront.connectToStores([
   storefront.flux.stores.CartStore
 ])
 class MyReactComponent extends React.Component {
