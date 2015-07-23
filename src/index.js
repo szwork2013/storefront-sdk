@@ -1,4 +1,4 @@
-import StorefrontReact from './StorefrontReact'; // eslint-disable-line
+import StorefrontSDK from './StorefrontSDK'; // eslint-disable-line
 
 import Cart from 'modules/cart'; // eslint-disable-line
 import Component from 'modules/component'; // eslint-disable-line

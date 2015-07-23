@@ -15,9 +15,9 @@ module.exports = {
   entry: hot ? {
     '.': ['webpack-dev-server/client?http://0.0.0.0:3000',
           'webpack/hot/only-dev-server',
-          './' + pkg.name + '.jsx']
+          './src/index.js']
   } : {
-    '.': './src/' + pkg.name + '.jsx'
+    '.': './src/index.js'
   },
 
   externals: {

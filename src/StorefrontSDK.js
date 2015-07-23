@@ -1,5 +1,4 @@
 import React from 'react';
-import extend from 'lodash/object/extend';
 import map from 'lodash/collection/map';
 import flux from 'dispatcher/StorefrontDispatcher';
 import connectToStores from 'utils/connectToStores.js';
