@@ -1,12 +1,13 @@
-import storefront from 'storefront';
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
+import SearchActions from '../search/actions';
+import ProductActions from './actions';
 
 @immutable
 class ProductStore {
   constructor() {
-    this.bindActions(storefront.flux.actions.SearchActions);
-    this.bindActions(storefront.flux.actions.ProductActions);
+    this.bindActions(SearchActions);
+    this.bindActions(ProductActions);
 
     this.state = Immutable.Map({});
   }

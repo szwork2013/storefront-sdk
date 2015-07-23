@@ -1,11 +1,12 @@
 import storefront from 'storefront';
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
+import SettingsActions from './actions';
 
 @immutable
 class SettingsStore {
   constructor() {
-    this.bindActions(storefront.flux.actions.SettingsActions);
+    this.bindActions(SettingsActions);
 
     this.state = Immutable.fromJS(storefront.settings);
   }

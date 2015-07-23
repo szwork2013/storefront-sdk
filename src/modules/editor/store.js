@@ -1,11 +1,11 @@
-import storefront from 'storefront';
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
+import EditorActions from './actions';
 
 @immutable
 class EditorStore {
   constructor() {
-    this.bindActions(storefront.flux.actions.EditorActions);
+    this.bindActions(EditorActions);
 
     this.state = Immutable.fromJS({
       activeMode: 'preview',

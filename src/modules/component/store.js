@@ -1,12 +1,12 @@
-import storefront from 'storefront';
 import Immutable from 'immutable';
 import isArray from 'lodash/lang/isArray';
 import immutable from 'alt/utils/ImmutableUtil';
+import ComponentActions from './actions';
 
 @immutable
 class ComponentStore {
   constructor() {
-    this.bindActions(storefront.flux.actions.ComponentActions);
+    this.bindActions(ComponentActions);
 
     this.state = Immutable.Map();
   }
