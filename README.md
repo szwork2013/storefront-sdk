@@ -63,3 +63,24 @@ let ProductPage = dispatcher.stores.ComponentStore.getState().get('ProductPage@v
 ```
 
 In this example, If the user navigates to `/foo/p`, the `ProductPage` component will be rendered.
+
+
+### Addons
+
+You may want to use [connectToStores](./src/utils/connectToStores.js) to connect you React components to the changes made in the store. `connectToStores` is a high order component that can be used as an annotation in you React components:
+
+```js
+import React from 'react';
+import { dispatcher, connectToStores } from 'sdk';
+
+@connectToStores([
+  dispatcher.stores.ShopStore
+])
+class ProductPage extends React.Component {
+  ...
+}
+
+export default ProductPage;
+```
+
+In this example, the Store state will be available at `this.props.ShopStore`.
