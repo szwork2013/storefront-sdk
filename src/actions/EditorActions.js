@@ -1,10 +1,6 @@
 class EditorActions {
   constructor() {
-    this.generateActions('openAdmin', 'closeAdmin');
-  }
-
-  enterMode(mode) {
-    return mode;
+    this.generateActions('openEditor', 'closeEditor', 'setActive');
   }
 }
 

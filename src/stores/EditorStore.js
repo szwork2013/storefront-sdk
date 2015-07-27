@@ -7,22 +7,22 @@ class EditorStore {
     this.bindActions(dispatcher.actions.EditorActions);
 
     this.state = Immutable.fromJS({
-      activeMode: 'preview',
-      admin: null
+      isActive: false,
+      editor: null
     });
   }
 
-  onEnterMode(mode) {
-    this.setState(this.state.set('activeMode', mode));
+  onSetActive(active) {
+    this.setState(this.state.set('isActive', active));
   }
 
-  onOpenAdmin(admin) {
-    this.setState(this.state.set('admin', Immutable.Map(admin)));
+  onOpenEditor(editor) {
+    this.setState(this.state.set('editor', Immutable.Map(editor)));
   }
 
-  onCloseAdmin() {
-    let state = this.state.set('admin', null);
-    this.setState(state.set('activeMode', 'preview'));
+  onCloseEditor() {
+    let state = this.state.set('editor', null);
+    this.setState(state.set('isActive', false));
   }
 }
 
