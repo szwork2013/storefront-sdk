@@ -6,15 +6,15 @@ React routing, component registry, Flux and VTEX common stores and actions for S
 
 In your theme, include `storefront-sdk.js` before any other script.
 
-This will provide new functionality under `window.storefront`.
+This will provide new functionality under `window.storefront.sdk`.
 
 ## Flux
 
-Storefront SDK uses [Alt](http://alt.js.org/) as its Flux implementation, so it's simple and pratical to create your own stores and actions.
+Storefront SDK uses [Alt](http://alt.js.org/) as its Flux implementation, so it's simple and practical to create your own stores and actions.
 
 All the stores offered by Storefront SDK are [Immutable](http://facebook.github.io/immutable-js/) objects, making the code safer.
 
-The actions and stores are available under `storefront.flux.actions` and `storefront.flux.stores`, respectively.
+The actions and stores are available under `window.storefront.sdk.dispatcher.actions` and `window.storefront.sdk.dispatcher.stores`, respectively.
 
 
 ### Components
@@ -24,7 +24,7 @@ You can register your components using the `ComponentActions`.
 ```js
 // ProductPage.js
 import React from 'react';
-import storefront from 'storefront';
+import { dispatcher } from 'sdk';
 
 class ProductPage extends React.Component {
   ...
@@ -34,7 +34,7 @@ let component = {
   name: 'ProductPage@vtex.storefront-theme',
   constructor: ProductPage
 }
-storefront.flux.actions.ComponentActions.register(component);
+dispatcher.actions.ComponentActions.register(component);
 ```
 
 All the components will be available at the `ComponentStore`.
@@ -59,7 +59,7 @@ When Storefront starts, the routes will be matched based on the **component name
 
 So basically, Storefront SDK will find the component to render like this:
 ```js
-let ProductPage = storefront.flux.stores.ComponentStore.getState().get('ProductPage@vtex.storefront-theme');
+let ProductPage = dispatcher.stores.ComponentStore.getState().get('ProductPage@vtex.storefront-theme');
 ```
 
 In this example, If the user navigates to `/foo/p`, the `ProductPage` component will be rendered.
