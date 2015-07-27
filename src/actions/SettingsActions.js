@@ -6,7 +6,7 @@ class SettingsActions {
   saveComponent({accountName, route, component, id, settings}) {
 
     storefrontService.saveComponentSettings({accountName, route, component, id, settings})
-      .done(() => this.actions.saveSettingsSuccess({route, id, settings}))
+      .done(() => this.actions.saveComponentSuccess({route, id, settings}))
       .fail(this.actions.saveSettingsError);
 
     return arguments[0];
