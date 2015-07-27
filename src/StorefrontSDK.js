@@ -1,17 +1,17 @@
 import React from 'react';
 import map from 'lodash/collection/map';
-import flux from 'dispatcher/StorefrontDispatcher';
-import connectToStores from 'utils/connectToStores.js';
 import { create, HistoryLocation, Route } from 'react-router';
+import dispatcher from './dispatcher/StorefrontDispatcher';
+import connectToStores from './utils/connectToStores.js';
 
 let rootInstance;
 
 class StorefrontSDK {
   connectToStores = connectToStores;
-  flux = flux;
+  dispatcher = dispatcher;
 
   createRouter() {
-    let components = flux.stores.ComponentStore.getState();
+    let components = this.dispatcher.stores.ComponentStore.getState();
 
     let children = map(window.storefront.routes, (route, routeName) => {
       let component = components.getIn([route.component, 'constructor']);
@@ -31,7 +31,7 @@ class StorefrontSDK {
       </Route>
     );
     // TODO check browser support, degrade to hash
-    return create({routes, location: HistoryLocation});
+    return ReactRouter.create({routes, location: ReactRouter.HistoryLocation});
   }
 
   // Enable react hot loading with external React
@@ -48,16 +48,16 @@ class StorefrontSDK {
 
   init() {
     this.router = this.createRouter();
+    let locale = this.dispatcher.stores.ShopStore.getState().get('locale');
     this.router.run((Handler) =>
       rootInstance = React.render((
-        <Handler messages={window.storefront.i18n}
-          locales={window.storefront.ShopStore.locale}/>
+        <Handler messages={window.storefront.i18n} locales={locale}/>
       ), document.getElementById('storefront-container'))
     );
     this.enableHotLoad();
   }
 }
 
-window.storefront = new StorefrontSDK();
+let storefront = new StorefrontSDK();
 
-export default window.storefront;
+export default storefront;

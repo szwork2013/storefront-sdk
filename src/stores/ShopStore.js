@@ -5,6 +5,7 @@ import immutable from 'alt/utils/ImmutableUtil';
 class ShopStore {
   constructor() {
     window._storefront.ShopStore.token = ('; ' + document.cookie).split('; VtexIdclientAutCookie=').pop().split(';').shift();
+
     this.state = Immutable.fromJS(window._storefront.ShopStore);
   }
 }

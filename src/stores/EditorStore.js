@@ -1,11 +1,10 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import EditorActions from './actions';
 
 @immutable
 class EditorStore {
-  constructor() {
-    this.bindActions(EditorActions);
+  constructor(dispatcher) {
+    this.bindActions(dispatcher.actions.EditorActions);
 
     this.state = Immutable.fromJS({
       activeMode: 'preview',

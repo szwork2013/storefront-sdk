@@ -1,11 +1,10 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import SearchActions from './actions';
 
 @immutable
 class SearchStore {
-  constructor() {
-    this.bindActions(SearchActions);
+  constructor(dispatcher) {
+    this.bindActions(dispatcher.actions.SearchActions);
 
     this.state = Immutable.Map();
   }

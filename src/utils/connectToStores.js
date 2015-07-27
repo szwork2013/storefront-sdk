@@ -24,7 +24,9 @@ const assign = function(target, ...source) {
 
 const getStateFromStores = function (stores) {
   const state = {};
-  stores.forEach( store => state[store.displayName] = store.state );
+  stores.forEach((store) =>
+    state[store.displayName] = store.getState()
+  );
   return state;
 };
 

@@ -1,12 +1,11 @@
 import _each from 'lodash/collection/each';
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import CartActions from './actions';
 
 @immutable
 class CartStore {
-  constructor() {
-    this.bindActions(CartActions);
+  constructor(dispatcher) {
+    this.bindActions(dispatcher.actions.CartActions);
 
     this.state = Immutable.Map({
       orderForm: Immutable.Map(),

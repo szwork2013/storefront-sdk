@@ -1,6 +1,5 @@
 import Alt from 'alt';
 
-// Create Flux
-let flux = new Alt();
+let dispatcher = new Alt();
 
-export default flux;
+export default dispatcher;
