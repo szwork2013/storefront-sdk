@@ -23,15 +23,12 @@ module.exports = {
   externals: {
     'react': 'React',
     'react-router': 'ReactRouter',
-    'storefront': 'storefront',
     'jQuery': 'jQuery'
   },
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias: {
-      'modules': path.join(__dirname, '/src/modules/'),
-      'dispatcher': path.join(__dirname, '/src/dispatcher/'),
       'constants': path.join(__dirname, '/src/constants/'),
       'services': path.join(__dirname, '/src/services/'),
       'utils': path.join(__dirname, '/src/utils/')
@@ -54,7 +51,7 @@ module.exports = {
     preLoaders: [
       {
         test: /\.js$|\.jsx$/,
-        exclude: /node_modules/,
+        exclude: [nodeModulesDir],
         loader: 'eslint-loader'
       }
     ],

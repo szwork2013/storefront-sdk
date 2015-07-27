@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'expose?React!react/addons';
+import ReactRouter, { Route } from 'expose?ReactRouter!react-router';
+import ReactIntl from 'expose?ReactIntl!react-intl'; // eslint-disable-line
 import map from 'lodash/collection/map';
-import { create, HistoryLocation, Route } from 'react-router';
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import connectToStores from './utils/connectToStores.js';
 
