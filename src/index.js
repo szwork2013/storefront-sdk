@@ -1,4 +1,4 @@
-import storefront from './StorefrontSDK';
+import sdk from 'expose?storefront.sdk!./StorefrontSDK';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import actions from './actions';
 import stores from './stores';
@@ -11,8 +11,5 @@ import map from 'lodash/collection/map';
 injectTapEventPlugin();
 
 // Register all actions and stores
-map(actions, (action) => storefront.dispatcher.addActions(action.name, action.obj));
-map(stores, (store) => storefront.dispatcher.addStore(store.name, store.obj, storefront.dispatcher));
-
-window.storefront = window.storefront ? window.storefront : {};
-window.storefront.sdk = storefront;
+map(actions, (action) => sdk.dispatcher.addActions(action.name, action.obj));
+map(stores, (store) => sdk.dispatcher.addStore(store.name, store.obj, sdk.dispatcher));
