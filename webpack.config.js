@@ -38,7 +38,7 @@ module.exports = {
     publicPath: publicPath,
     filename: '[name]/' + pkg.name + '.js',
     chunkFilename: pkg.name + '-[name].js',
-    devtoolModuleFilenameTemplate: 'webpack:///' + pkg.name + '/[resource]?[hash][id]'
+    devtoolModuleFilenameTemplate: 'webpack:///' + pkg.name + '/[resource]?[id]-[hash]'
   },
 
   eslint: {
