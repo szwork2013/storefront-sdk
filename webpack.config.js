@@ -21,8 +21,6 @@ module.exports = {
   },
 
   externals: {
-    'react': 'React',
-    'react-router': 'ReactRouter',
     'jQuery': 'jQuery'
   },
 
