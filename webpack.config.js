@@ -49,7 +49,7 @@ module.exports = {
     preLoaders: [
       {
         test: /\.js$|\.jsx$/,
-        exclude: [nodeModulesDir],
+        exclude: /node_modules/,
         loader: 'eslint-loader'
       }
     ],
@@ -57,7 +57,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$|\.jsx$/,
-        exclude: [nodeModulesDir],
+        exclude: /node_modules/,
         loaders: hot ? ['react-hot', 'babel-loader?stage=0'] : ['babel-loader?stage=0']
       }
     ]
