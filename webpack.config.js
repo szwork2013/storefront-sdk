@@ -68,6 +68,8 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin()
+  ] : hot ? [
+    new webpack.HotModuleReplacementPlugin()
   ] : [],
 
   quiet: false,
