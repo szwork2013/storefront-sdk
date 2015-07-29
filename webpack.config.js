@@ -20,9 +20,7 @@ module.exports = {
     '.': './src/index.js'
   },
 
-  externals: {
-    'jQuery': 'jQuery'
-  },
+  externals: {},
 
   resolve: {
     extensions: ['', '.js', '.jsx'],

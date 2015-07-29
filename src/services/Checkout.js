@@ -1,4 +1,4 @@
-import jQuery from 'jQuery';
+import jQuery from 'jquery';
 import _extend from 'lodash/object/assign';
 import _each from 'lodash/collection/each';
 import StorefrontConstants from 'constants/StorefrontConstants';
