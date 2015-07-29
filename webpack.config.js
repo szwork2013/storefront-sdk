@@ -1,6 +1,5 @@
 var webpack = require('webpack');
 var path = require('path');
-var nodeModulesDir = path.join(__dirname, 'node_modules');
 var pkg = require('./package.json');
 var meta = require('./meta.json');
 var publicPath = '/assets/@' + meta.vendor + '.' + pkg.name + '/';
