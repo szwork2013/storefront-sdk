@@ -10,7 +10,8 @@ class SearchStore {
   }
 
   onRequestSearch(params) {
-    this.setState(this.state.set(params.id, params));
+    let paramsMap = Immutable.Map(params);
+    this.setState(this.state.set(params.id, paramsMap));
   }
 
   onRequestSearchSuccess({ params, products }) {
@@ -18,7 +19,7 @@ class SearchStore {
 
     search.results = products.map( product => product.slug );
 
-    this.setState(this.state.set(params.id, search));
+    this.setState(this.state.setIn([params.id, 'results'], search.results));
   }
 
   onRequestSearchFail({ params, error }) {
