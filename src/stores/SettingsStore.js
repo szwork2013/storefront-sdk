@@ -6,7 +6,11 @@ class SettingsStore {
   constructor(dispatcher) {
     this.bindActions(dispatcher.actions.SettingsActions);
 
-    this.state = Immutable.fromJS(window.storefront.settings);
+    let bootstrap = {};
+    if (window.storefront.resources && window.storefront.resources._settings) {
+      bootstrap = window.storefront.resources._settings;
+    }
+    this.state = Immutable.fromJS(bootstrap);
   }
 
   onSaveComponentSuccess({route, id, settings}) {
