@@ -1,4 +1,5 @@
 import React from 'expose?React!react/addons';
+import ReactMount from 'expose?ReactMount!react/lib/ReactMount'; // eslint-disable-line
 import ReactRouter, { Route } from 'expose?ReactRouter!react-router';
 import Intl from 'expose?Intl!intl'; // eslint-disable-line
 import ReactIntl from 'expose?ReactIntl!react-intl'; // eslint-disable-line
