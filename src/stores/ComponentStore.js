@@ -36,10 +36,7 @@ class ComponentStore {
   constructor(dispatcher) {
     this.bindActions(dispatcher.actions.ComponentActions);
 
-    let emptyState = Immutable.Map();
-    let bootstrap = window._storefront.ComponentStore;
-
-    this.state = _registerComponents(emptyState, bootstrap);
+    this.state = Immutable.Map();
   }
 
   onRegister(param) {
