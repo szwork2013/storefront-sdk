@@ -12,12 +12,20 @@ In you Storefront theme app add this app to your dependency:
   "name": "my-app",
   ...
   "depedencies": {
-    "vtex.storefront-sdk": "0.1.0"
+    "vtex.storefront-sdk": "0.2.1"
   },
   "schema": {
     "storefront": 1
   }
 }
+```
+
+Add it as an external to your `webpack.config.js`:
+
+```js
+externals: {
+  'sdk': 'storefront.sdk'
+},
 ```
 
 And add the main script to your `layout.html` and, after all is done, init the SDK:
