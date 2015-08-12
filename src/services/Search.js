@@ -1,41 +1,26 @@
-import jQuery from 'jquery';
-import _extend from 'lodash/object/extend';
 import _omit from 'lodash/object/omit';
 import StorefrontConstants from 'constants/StorefrontConstants';
+import axios from 'axios';
 
 class Search {
 
   static products(params) {
-    let url = StorefrontConstants.BASE_URL + params.accountName + '/products/' + (params.product || '');
+    const url = StorefrontConstants.BASE_URL + params.accountName + '/products/' + (params.product || '');
 
-    let props = {
-      url: url,
-      data: _omit(params, ['accountName', 'product', 'id'])
-    };
-
-    return jQuery.ajax(_extend({}, StorefrontConstants.SEARCH_AJAX, props));
+    return axios.get(url, _omit(params, ['accountName', 'product', 'id']));
   }
 
   static facets(params) {
-    let url = StorefrontConstants.BASE_URL + params.accountName + '/facets';
+    const url = StorefrontConstants.BASE_URL + params.accountName + '/facets';
 
-    let props = {
-      url: url,
-      data: _omit(params, ['accountName'])
-    };
-
-    return jQuery.ajax(_extend({}, StorefrontConstants.SEARCH_AJAX, props));
+    return axios.get(url, _omit(params, ['accountName']));
   }
 
   static categories(params) {
-    let categoryId = params.category ? params.category : '';
-    let url = StorefrontConstants.BASE_URL + params.accountName + '/categories/' + categoryId;
+    const categoryId = params.category ? params.category : '';
+    const url = StorefrontConstants.BASE_URL + params.accountName + '/categories/' + categoryId;
 
-    let props = {
-      url: url
-    };
-
-    return jQuery.ajax(_extend({}, StorefrontConstants.SEARCH_AJAX, props));
+    return axios.get(url);
   }
 
 }

@@ -4,10 +4,11 @@ class SearchActions {
   requestSearch(params) {
     // Call API with query parameter
     Search.products(params)
-      .done((products) => {
+      .then((result) => {
+        const products = result.data;
         this.actions.requestSearchSuccess({ params, products });
       })
-      .fail((error) =>
+      .catch((error) =>
         this.actions.requestSearchFail({ params, error })
       );
 
@@ -23,15 +24,14 @@ class SearchActions {
   }
 
   requestFacets(params) {
-    let self = this;
-
     // Call API with query parameter
     Search.facets(params)
-      .done((results) =>
-        self.actions.requestFacetsSuccess({ params, results })
-      )
-      .fail((error) =>
-        self.actions.requestFacetsFail({ params, error })
+      .then((result) => {
+        const results = result.data;
+        this.actions.requestFacetsSuccess({ params, results })
+      })
+      .catch((error) =>
+        this.actions.requestFacetsFail({ params, error })
       );
 
     // we dispatch an event here so we can have a "loading" state
