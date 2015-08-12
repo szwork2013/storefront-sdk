@@ -6,7 +6,8 @@ import ReactIntl from 'expose?ReactIntl!react-intl'; // eslint-disable-line
 import map from 'lodash/collection/map';
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import connectToStores from './utils/connectToStores.js';
-import { Promise } from 'es6-promise'; // eslint-disable-line
+import { polyfill } from 'es6-promise';
+polyfill();
 
 let rootInstance;
 
