@@ -2,17 +2,17 @@ import Checkout from 'services/Checkout';
 import _debounce from 'lodash/function/debounce';
 import StorefrontConstants from 'constants/StorefrontConstants';
 
-let checkout = new Checkout();
+const checkout = new Checkout();
 
 class CartActions {
   requestCart() {
     this.dispatch();
 
     return checkout.getOrderForm()
-      .done((orderForm) =>
-        this.actions.requestSuccess(orderForm)
+      .then((result) =>
+        this.actions.requestSuccess(result.data)
       )
-      .fail((error) =>
+      .catch((error) =>
         this.actions.requestFail(error)
       );
   }
@@ -22,10 +22,10 @@ class CartActions {
 
     return (_debounce(() => {
       return checkout.updateItems(orderFormId, items, expectedOrderFormSections)
-        .done((updatedOrderForm) =>
-          this.actions.requestSuccess(updatedOrderForm)
+        .then((result) =>
+          this.actions.requestSuccess(result.data)
         )
-        .fail((error) =>
+        .catch((error) =>
           this.actions.requestFail(error)
         );
     }, waitTime)());
@@ -35,10 +35,10 @@ class CartActions {
     this.dispatch(items);
 
     return checkout.removeItems(orderFormId, items, expectedOrderFormSections)
-      .done((updatedOrderForm) =>
+      .then((updatedOrderForm) =>
         this.actions.requestSuccess(updatedOrderForm)
       )
-      .fail((error) =>
+      .catch((error) =>
         this.actions.requestFail(error)
       );
   }
@@ -47,10 +47,10 @@ class CartActions {
     this.dispatch();
 
     return checkout.addToCart(orderFormId, items, expectedOrderFormSections)
-      .done((updatedOrderForm) =>
-        this.actions.requestSuccess(updatedOrderForm)
+      .then((result) =>
+        this.actions.requestSuccess(result.data)
       )
-      .fail((error) =>
+      .catch((error) =>
         this.actions.requestFail(error)
       );
   }
@@ -60,10 +60,10 @@ class CartActions {
 
     return checkout.sendAttachment(orderFormId, StorefrontConstants.SESSIONS.shippingData,
         shippingData, expectedOrderFormSections)
-      .done((updatedShippingData) =>
+      .then((updatedShippingData) =>
         this.actions.requestSuccess(updatedShippingData)
       )
-      .fail((error) =>
+      .catch((error) =>
         this.actions.requestFail(error)
       );
   }
