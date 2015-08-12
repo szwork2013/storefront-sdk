@@ -12,6 +12,7 @@
   "dependencies": {
     "alt": "^0.17.0",
     "axios": "^0.5.4",
+    "es6-promise": "^3.0.2",
     "immutable": "^3.7.3",
     "intl": "^1.0.0",
     "lodash": "^3.10.0",
