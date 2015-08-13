@@ -1,8 +1,12 @@
 import sdk from 'expose?storefront.sdk!./StorefrontSDK';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import { polyfill } from 'es6-promise';
 import actions from './actions';
 import stores from './stores';
 import map from 'lodash/collection/map';
+
+// Polyfill Promise for IE8
+polyfill();
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
