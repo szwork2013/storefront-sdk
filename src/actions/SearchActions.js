@@ -28,7 +28,7 @@ class SearchActions {
     Search.facets(params)
       .then((result) => {
         const results = result.data;
-        this.actions.requestFacetsSuccess({ params, results })
+        this.actions.requestFacetsSuccess({ params, results });
       })
       .catch((error) =>
         this.actions.requestFacetsFail({ params, error })
