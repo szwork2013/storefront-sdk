@@ -1,7 +1,8 @@
-.eslintrc
-.gitignore
+.git/
 node_modules/
 src/
+.eslintrc
+.gitignore
 webpack.config.js
 package.json
 README.md
