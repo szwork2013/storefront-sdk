@@ -4,10 +4,10 @@ class ProductActions {
   requestProduct(params) {
     // Call API with query parameter
     Search.products(params)
-    .done((product) =>
-      this.actions.requestProductSuccess(product)
+    .then((result) =>
+      this.actions.requestProductSuccess(result.data)
     )
-    .fail((error) =>
+    .catch((error) =>
       this.actions.requestProductFail(error)
     );
 

@@ -1,7 +1,6 @@
-import jQuery from 'jquery';
-import _extend from 'lodash/object/assign';
 import _each from 'lodash/collection/each';
 import StorefrontConstants from 'constants/StorefrontConstants';
+import axios from 'axios';
 
 class Checkout {
   constructor() {
@@ -29,28 +28,18 @@ class Checkout {
   }
 
   getOrderForm(expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
-    let checkoutRequest = { 'expectedOrderFormSections': expectedOrderFormSections };
+    const checkoutRequest = { 'expectedOrderFormSections': expectedOrderFormSections };
 
-    let props = {
-      url: this._getBaseOrderFormURL(),
-      data: JSON.stringify(checkoutRequest)
-    };
-
-    return jQuery.ajax(_extend({}, StorefrontConstants.BASIC_AJAX, props));
+    return axios.get(this._getBaseOrderFormURL(), checkoutRequest);
   }
 
   updateItems(orderFormId, items, expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
-    let checkoutRequest = {
+    const checkoutRequest = {
       orderItems: items,
       'expectedOrderFormSections': expectedOrderFormSections
     };
 
-    let props = {
-      url: this._getUpdateItemURL(orderFormId),
-      data: JSON.stringify(checkoutRequest)
-    };
-
-    return jQuery.ajax(_extend({}, StorefrontConstants.BASIC_AJAX, props));
+    return axios.post(this._getUpdateItemURL(orderFormId), checkoutRequest);
   }
 
   removeItems(orderFormId, items, expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
@@ -59,31 +48,21 @@ class Checkout {
   }
 
   sendAttachment(orderFormId, attachmentId, attachment, expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
-    let checkoutRequest = {
+    const checkoutRequest = {
       [attachmentId]: attachment,
       'expectedOrderFormSections': expectedOrderFormSections
     };
 
-    let props = {
-      url: this._getSaveAttachmentURL(orderFormId, attachmentId),
-      data: JSON.stringify(checkoutRequest)
-    };
-
-    return jQuery.ajax(_extend({}, StorefrontConstants.BASIC_AJAX, props));
+    return axios.post(this._getSaveAttachmentURL(orderFormId, attachmentId), checkoutRequest);
   }
 
   addToCart(orderFormId, items, expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
-    let checkoutRequest = {
+    const checkoutRequest = {
       orderItems: items,
       expectedOrderFormSections: expectedOrderFormSections
     };
 
-    let props = {
-      url: this._getAddToCartURL(orderFormId),
-      data: JSON.stringify(checkoutRequest)
-    };
-
-    return jQuery.ajax(_extend({}, StorefrontConstants.BASIC_AJAX, props));
+    return axios.post(this._getAddToCartURL(orderFormId), checkoutRequest);
   }
 
 }
