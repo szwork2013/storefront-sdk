@@ -8,6 +8,23 @@ class ProductStore {
     this.bindActions(dispatcher.actions.ProductActions);
 
     this.state = Immutable.Map({});
+
+    this.exportPublicMethods({
+      getProducts: this.getProducts
+    });
+  }
+
+  getProducts(products) {
+    let result = [];
+
+    for (var i = 0; i < products.length; i++) {
+      let product = this.state.get(products[i]);
+      if (product) {
+        result.push(product);
+      }
+    }
+
+    return result;
   }
 
   onRequestProductSuccess(product) {
