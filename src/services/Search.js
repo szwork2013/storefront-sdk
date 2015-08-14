@@ -3,17 +3,16 @@ import StorefrontConstants from 'constants/StorefrontConstants';
 import axios from 'axios';
 
 class Search {
-
   static products(params) {
     const url = StorefrontConstants.BASE_URL + params.accountName + '/products/' + (params.product || '');
 
-    return axios.get(url, _omit(params, ['accountName', 'product', 'id']));
+    return axios.get(url, {params: _omit(params, ['accountName', 'product', 'id'])});
   }
 
   static facets(params) {
     const url = StorefrontConstants.BASE_URL + params.accountName + '/facets';
 
-    return axios.get(url, _omit(params, ['accountName']));
+    return axios.get(url, {params: _omit(params, ['accountName'])});
   }
 
   static categories(params) {
@@ -22,7 +21,6 @@ class Search {
 
     return axios.get(url);
   }
-
 }
 
 export default Search;
