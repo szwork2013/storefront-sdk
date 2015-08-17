@@ -15,13 +15,7 @@ class SettingsStore {
   }
 
   onSaveComponentSuccess({route, id, settings}) {
-    this.setState(this.state.merge({
-      [route]: {
-        [id]: {
-          settings
-        }
-      }
-    }));
+    this.setState(this.state.set(route, { [id]: { settings } }));
   }
 }
 
