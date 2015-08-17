@@ -1,5 +1,6 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
+import isArray from 'lodash/lang/isArray';
 
 @immutable
 class ProductStore {
@@ -36,6 +37,10 @@ class ProductStore {
   }
 
   onRequestSearchSuccess({ products }) {
+    if (!isArray(products)) {
+      products = [products];
+    }
+
     let newProducts = this.state.withMutations(map => {
       products.forEach( product => map.set(product.slug, product) );
     });
