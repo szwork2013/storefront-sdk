@@ -1,6 +1,5 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import find from 'lodash/collection/find';
 
 @immutable
 class SettingsStore {
@@ -8,9 +7,9 @@ class SettingsStore {
     this.bindActions(dispatcher.actions.SettingsActions);
 
     let bootstrap = {};
-    if (window.storefront.resources && window.storefront.resources.length > 0) {
-      let _settings = find(window.storefront.resources, (resource) => resource.name === '_settings');
-      bootstrap.home = _settings.data;
+    if (window.storefront.currentRoute) {
+      let data = window.storefront.currentRoute;
+      bootstrap[data.name] = data.resources._settings;
     }
     this.state = Immutable.fromJS(bootstrap);
   }
