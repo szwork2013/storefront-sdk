@@ -5,7 +5,12 @@ class SearchActions {
     // Call API with query parameter
     Search.products(params)
       .then((result) => {
-        const products = result.data;
+        let products;
+        if (result.data['product@vtex.storefront-sdk']) {
+          products = result.data['product@vtex.storefront-sdk']._page;
+        } else if (result.data['products@vtex.storefront-sdk']) {
+          products = result.data['products@vtex.storefront-sdk']._page;
+        }
         this.actions.requestSearchSuccess({ params, products });
       })
       .catch((error) =>
