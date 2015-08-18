@@ -20,15 +20,7 @@ const getStateFromStores = function (stores) {
 
 function connectToStores(stores) {
   return function decorator(Component) {
-    let storefrontProps = Component.storefront;
-
-    if (storefrontProps && !storefrontProps.name) {
-      storefrontProps.name = Component.name;
-    }
-
     class StoreConnection extends React.Component {
-      static storefront = storefrontProps
-
       state = getStateFromStores(stores)
 
       constructor(props) {
@@ -55,6 +47,13 @@ function connectToStores(stores) {
           assign({}, this.props, this.state)
         );
       }
+    }
+
+    let staticProperties = keys(Component);
+
+    for (let i = 0; i < staticProperties.length; i++) {
+      let property = staticProperties[i];
+      StoreConnection[property] = Component[property];
     }
 
     return StoreConnection;
