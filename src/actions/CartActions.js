@@ -1,5 +1,5 @@
 import Checkout from 'services/Checkout';
-import _debounce from 'lodash/function/debounce';
+import { debounce } from 'lodash';
 import StorefrontConstants from 'constants/StorefrontConstants';
 
 const checkout = new Checkout();
@@ -20,7 +20,7 @@ class CartActions {
   updateItems(orderFormId, items, expectedOrderFormSections = undefined, waitTime = 0) {
     this.dispatch();
 
-    return (_debounce(() => {
+    return (debounce(() => {
       return checkout.updateItems(orderFormId, items, expectedOrderFormSections)
         .then((result) =>
           this.actions.requestSuccess(result.data)

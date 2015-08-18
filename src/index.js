@@ -2,7 +2,7 @@ import sdk from 'expose?storefront.sdk!./StorefrontSDK';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import actions from './actions';
 import stores from './stores';
-import map from 'lodash/collection/map';
+import { map } from 'lodash';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release

@@ -4,7 +4,7 @@ import ReactRouter, { Route } from 'expose?ReactRouter!react-router';
 import 'expose?Intl!intl';
 import 'expose?ReactIntl!react-intl';
 import 'expose?axios!axios';
-import map from 'lodash/collection/map';
+import _ from 'expose?lodash!lodash-compat';
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import connectToStores from './utils/connectToStores.js';
 import editable from './utils/editable.js';
@@ -19,7 +19,7 @@ class StorefrontSDK {
   createRouter() {
     let components = this.dispatcher.stores.ComponentStore.getState();
 
-    let children = map(window.storefront.routes, (route, routeName) => {
+    let children = _.map(window.storefront.routes, (route, routeName) => {
       let component = components.getIn([route.component, 'constructor']);
       return <Route name={routeName} key={routeName} path={route.path} handler={component} />;
     });

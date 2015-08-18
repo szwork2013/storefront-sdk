@@ -1,4 +1,4 @@
-import _each from 'lodash/collection/each';
+import { each } from 'lodash';
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
 
@@ -25,7 +25,7 @@ class CartStore {
     let orderForm = this.state.get('orderForm');
     let items = orderForm.items;
 
-    _each(items, function(item) {
+    each(items, function(item) {
       value += item.sellingPrice * item.quantity;
     });
 
@@ -41,7 +41,7 @@ class CartStore {
   onRemoveItems(items) {
     let orderForm = this.state.get('orderForm');
 
-    _each(items, function(item) {
+    each(items, function(item) {
       let totalItemValue = item.sellingPrice * item.quantity;
       orderForm.items.splice(item.index, 1);
       orderForm.value -= totalItemValue;

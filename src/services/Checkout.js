@@ -1,4 +1,4 @@
-import _each from 'lodash/collection/each';
+import { each } from 'lodash';
 import StorefrontConstants from 'constants/StorefrontConstants';
 import axios from 'axios';
 
@@ -43,7 +43,7 @@ class Checkout {
   }
 
   removeItems(orderFormId, items, expectedOrderFormSections = StorefrontConstants.ALL_ORDERFORM_SECTIONS) {
-    _each(items, (item) => item.quantity = 0);
+    each(items, (item) => item.quantity = 0);
     return this.updateItems(orderFormId, items, expectedOrderFormSections);
   }
 

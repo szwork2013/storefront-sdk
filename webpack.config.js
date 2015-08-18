@@ -19,7 +19,9 @@ module.exports = {
     '.': './src/index.js'
   },
 
-  externals: {},
+  externals: {
+    'lodash': 'lodash'
+  },
 
   resolve: {
     extensions: ['', '.js', '.jsx'],

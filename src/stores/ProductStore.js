@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import isArray from 'lodash/lang/isArray';
+import { isArray } from 'lodash';
 
 @immutable
 class ProductStore {

@@ -8,19 +8,7 @@
  */
 
 import React from 'react';
-
-const eachObject = function(f, o) {
-  o.forEach((from) => {
-    Object.keys(Object(from)).forEach((key) => {
-      f(key, from[key]);
-    });
-  });
-};
-
-const assign = function(target, ...source) {
-  eachObject((key, value) => target[key] = value, source);
-  return target;
-};
+import { keys, assign } from 'lodash';
 
 const getStateFromStores = function (stores) {
   const state = {};
