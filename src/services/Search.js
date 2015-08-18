@@ -5,7 +5,11 @@ class Search {
   static productsResource = '/_resources/products@vtex.storefront-sdk/'
 
   static products(params) {
-    return axios.get(this.productResource, { params: params });
+    if (params.product) {
+      return axios.get(this.productResource, { params: params });
+    } else {
+      return axios.get(this.productsResource, { params: params });
+    }
   }
 
   static facets(params) {
