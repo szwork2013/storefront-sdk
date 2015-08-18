@@ -3,6 +3,7 @@ import 'expose?ReactMount!react/lib/ReactMount';
 import ReactRouter, { Route } from 'expose?ReactRouter!react-router';
 import 'expose?Intl!intl';
 import 'expose?ReactIntl!react-intl';
+import 'expose?axios!axios';
 import map from 'lodash/collection/map';
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import connectToStores from './utils/connectToStores.js';
