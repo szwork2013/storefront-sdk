@@ -7,12 +7,14 @@ import 'expose?axios!axios';
 import map from 'lodash/collection/map';
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import connectToStores from './utils/connectToStores.js';
+import editable from './utils/editable.js';
 
 let rootInstance;
 
 class StorefrontSDK {
   connectToStores = connectToStores;
   dispatcher = dispatcher;
+  editable = editable;
 
   createRouter() {
     let components = this.dispatcher.stores.ComponentStore.getState();
