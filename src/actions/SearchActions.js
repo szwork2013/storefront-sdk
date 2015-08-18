@@ -39,7 +39,6 @@ class SearchActions {
         this.actions.requestFacetsFail({ params, error })
       );
 
-    // we dispatch an event here so we can have a "loading" state
     return params;
   }
 

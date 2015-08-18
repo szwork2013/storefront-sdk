@@ -11,6 +11,7 @@ class SearchStore {
 
   onRequestSearch(params) {
     let paramsMap = Immutable.Map(params);
+
     this.setState(this.state.set(params.id, paramsMap));
   }
 

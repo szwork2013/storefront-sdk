@@ -1,8 +1,6 @@
 import decorate from './decorate';
 
-const DEFAULT_MSG = 'This function will be removed in future versions.';
-
-function handleDescriptor(target, key, descriptor, [msg = DEFAULT_MSG, options = {}]) { // eslint-disable-line
+function handleDescriptor(target, key, descriptor, [options = {}]) { // eslint-disable-line
   if (typeof descriptor.value !== 'function' || key !== 'render') {
     throw new SyntaxError('Only the render function can be marked as editable');
   }
@@ -16,6 +14,7 @@ function handleDescriptor(target, key, descriptor, [msg = DEFAULT_MSG, options =
       if (editMode && EditComponent) {
         return <EditComponent {...this.props}/>;
       }
+
       return descriptor.value.apply(this, arguments);
     }
   };
