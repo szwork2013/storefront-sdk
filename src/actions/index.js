@@ -3,7 +3,7 @@ import ComponentActions from './ComponentActions';
 import EditorActions from './EditorActions';
 import ProductActions from './ProductActions';
 import SearchActions from './SearchActions';
-import SettingsActions from './SettingsActions';
+import ResourceActions from './ResourceActions';
 
 let actions = [
   {name: 'CartActions', obj: CartActions},
@@ -11,7 +11,7 @@ let actions = [
   {name: 'EditorActions', obj: EditorActions},
   {name: 'ProductActions', obj: ProductActions},
   {name: 'SearchActions', obj: SearchActions},
-  {name: 'SettingsActions', obj: SettingsActions}
+  {name: 'ResourceActions', obj: ResourceActions}
 ];
 
 export default actions;
