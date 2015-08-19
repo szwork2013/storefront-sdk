@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import { isArray } from 'lodash';
+import { isArray, values, flatten } from 'lodash';
 
 let addProducts = function addProducts(state, products) {
   if (!isArray(products)) {
@@ -54,12 +54,12 @@ class ProductStore {
   }
 
   onGetRouteResourcesSuccess({ resources }) {
-    if (resources['product@vtex.storefront-sdk'] && resources['product@vtex.storefront-sdk']._page) {
-      let product = resources['product@vtex.storefront-sdk']._page;
-      return this.setState(addProducts(this.state, product));
+    if (resources['product@vtex.storefront-sdk']) {
+      let products = values(resources['product@vtex.storefront-sdk']);
+      return this.setState(addProducts(this.state, products));
     }
-    if (resources['products@vtex.storefront-sdk'] && resources['products@vtex.storefront-sdk']._page) {
-      let products = resources['products@vtex.storefront-sdk']._page;
+    if (resources['products@vtex.storefront-sdk']) {
+      let products = flatten(values(resources['products@vtex.storefront-sdk']));
       return this.setState(addProducts(this.state, products));
     }
   }

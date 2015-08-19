@@ -14,8 +14,8 @@ class SettingsStore {
   }
 
   onGetRouteResourcesSuccess({route, resources}) {
-    if (resources._settings && resources._settings._page) {
-      let settings = resources._settings._page;
+    if (resources._settings) {
+      let settings = resources._settings;
       this.setState(this.state.set(route, settings));
     }
   }
