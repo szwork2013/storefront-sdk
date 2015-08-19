@@ -1,5 +1,5 @@
 {
-  "url": "http://api.beta.vtex.com/:account/products/:product",
+  "url": "http://api.beta.vtex.com/:account/products/:slug",
   "cacheDuration": 60,
   "parameters": {
     "account": "{{ account.name }}"
