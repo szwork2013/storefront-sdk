@@ -4,18 +4,20 @@ import immutable from 'alt/utils/ImmutableUtil';
 @immutable
 class SettingsStore {
   constructor(dispatcher) {
-    this.bindActions(dispatcher.actions.SettingsActions);
+    this.bindActions(dispatcher.actions.ResourceActions);
 
-    let bootstrap = {};
-    if (window.storefront.currentRoute) {
-      let data = window.storefront.currentRoute;
-      bootstrap[data.name] = data.resources._settings;
-    }
-    this.state = Immutable.fromJS(bootstrap);
+    this.state = Immutable.Map();
   }
 
-  onSaveComponentSuccess({route, id, settings}) {
+  onSaveSettingsSuccess({route, id, settings}) {
     this.setState(this.state.set(route, { [id]: { settings } }));
+  }
+
+  onGetRouteResourcesSuccess({route, resources}) {
+    if (resources._settings && resources._settings._page) {
+      let settings = resources._settings._page;
+      this.setState(this.state.set(route, settings));
+    }
   }
 }
 
