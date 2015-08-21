@@ -1,4 +1,3 @@
-import StorefrontConstants from 'constants/StorefrontConstants';
 import axios from 'axios';
 
 class Storefront {
@@ -15,23 +14,19 @@ class Storefront {
     };
   }
 
-  saveComponentSettings({accountName, route, component, id, settings}) {
-    const url = `${StorefrontConstants.BASE_URL}${accountName}/storefront/components/${route}/${id}`;
-    const data = {
-      'component': component,
-      'settings': settings
-    };
+  saveComponentSettings({route, id, component, settings}) {
+    const url = `/_resources/_settings/`;
+    const params = { route, id };
+    const data = { component, settings };
 
-    return axios({
-      method: 'PUT',
-      url: url,
+    return axios.put(url, data, {
       headers: this.defaultHeaders,
-      data: data
+      params
     });
   }
 
   getRouteResources(route, params) {
-    return axios.get(`/_routes/${route}/resources/`, { params: params });
+    return axios.get(`/_routes/${route}/resources/`, { params });
   }
 
 }

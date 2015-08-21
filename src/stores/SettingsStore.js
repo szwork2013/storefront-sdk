@@ -6,17 +6,25 @@ class SettingsStore {
   constructor(dispatcher) {
     this.bindActions(dispatcher.actions.ResourceActions);
 
-    this.state = Immutable.Map();
+    let settings = window.storefront.currentRoute.resources._settings;
+
+    this.state = Immutable.fromJS({'home': settings});
   }
 
-  onSaveSettingsSuccess({route, id, settings}) {
-    this.setState(this.state.set(route, { [id]: { settings } }));
+  onSaveSettings({route, id, settings}) {
+    this.oldState = this.state;
+    this.setState(this.state.setIn([route, id, 'settings'], Immutable.Map(settings)));
   }
 
-  onGetRouteResourcesSuccess({route, resources}) {
+  onSaveSettingsFail(error) {
+    console.warn('Error while saving settings', error);
+    this.setState(this.oldState);
+  }
+
+  onGetRouteResourcesSuccess({pathname, resources}) {
     if (resources._settings) {
       let settings = resources._settings;
-      this.setState(this.state.set(route, settings));
+      this.setState(this.state.set(pathname, Immutable.fromJS(settings)));
     }
   }
 }
