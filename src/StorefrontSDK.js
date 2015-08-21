@@ -54,13 +54,6 @@ class StorefrontSDK {
     }
   }
 
-  bootstrap() {
-    let route = window.storefront.currentRoute.name;
-    let params = window.storefront.currentRoute.params ? window.storefront.currentRoute.params : {};
-    let resources = window.storefront.currentRoute.resources;
-    dispatcher.actions.ResourceActions.getRouteResourcesSuccess(route, params, resources);
-  }
-
   init() {
     this.router = this.createRouter();
     let locale = this.dispatcher.stores.ShopStore.getState().get('locale');
@@ -70,7 +63,6 @@ class StorefrontSDK {
       ), document.getElementById('storefront-container'))
     );
     this.enableHotLoad();
-    this.bootstrap();
   }
 }
 
