@@ -6,7 +6,7 @@ class ResourceActions {
 
   saveSettings({accountName, route, component, id, settings}) {
     storefrontService.saveComponentSettings({accountName, route, component, id, settings})
-      .then(() => this.actions.saveComponentSuccess({route, id, settings}))
+      .then(() => this.actions.saveSettingsSuccess({route, id, settings}))
       .catch(this.actions.saveSettingsError);
 
     return arguments[0];
