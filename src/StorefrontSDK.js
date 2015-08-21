@@ -8,6 +8,7 @@ import _ from 'expose?lodash!lodash-compat';
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import connectToStores from './utils/connectToStores.js';
 import editable from './utils/editable.js';
+import hashRoute from './utils/hashRoute.js';
 
 let rootInstance;
 
@@ -15,6 +16,7 @@ class StorefrontSDK {
   connectToStores = connectToStores;
   dispatcher = dispatcher;
   editable = editable;
+  hashRoute = hashRoute;
 
   createRouter() {
     let components = this.dispatcher.stores.ComponentStore.getState();
