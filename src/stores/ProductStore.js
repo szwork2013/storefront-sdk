@@ -14,6 +14,22 @@ let addProducts = function addProducts(state, products) {
   return newProducts;
 };
 
+let bootstrap = function bootstrap() {
+  let products = window.storefront.currentRoute.resources['products@vtex.storefront-sdk'];
+  let product = window.storefront.currentRoute.resources['product@vtex.storefront-sdk'];
+
+  let bootstrapData = Immutable.Map();
+  for (let searchKey in products) {
+    bootstrapData = addProducts(bootstrapData, products[searchKey]);
+  }
+  for (let searchKey in product) {
+    bootstrapData = addProducts(bootstrapData, product[searchKey]);
+  }
+
+  return bootstrapData;
+};
+
+
 @immutable
 class ProductStore {
   constructor(dispatcher) {
@@ -21,7 +37,7 @@ class ProductStore {
     this.bindActions(dispatcher.actions.ProductActions);
     this.bindActions(dispatcher.actions.ResourceActions);
 
-    this.state = Immutable.Map({});
+    this.state = bootstrap();
 
     this.exportPublicMethods({
       getProducts: this.getProducts
