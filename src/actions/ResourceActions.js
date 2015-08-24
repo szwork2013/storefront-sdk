@@ -20,20 +20,27 @@ class ResourceActions {
     return error;
   }
 
-  getRouteResources(route, params = {}) {
-    storefrontService.getRouteResources(route, params)
-      .then((response) => this.actions.getRouteResourcesSuccess(route, params, response.data.resources))
-      .catch((error) => this.actions.requestResoucesError(route, params, error));
+  getRouteResources(currentURL, route, params = {}) {
+    let resources = storefrontService.getRouteResources(route, params);
+    let settings = storefrontService.getRouteSettings(route);
+
+    Promise.all([resources, settings])
+      .then((response) => {
+        let [resourcesResponse, settingsResponse ] = response;
+        resourcesResponse.data.resources._settings = settingsResponse.data;
+        this.actions.getRouteResourcesSuccess(currentURL, route, params, resourcesResponse.data.resources);
+      })
+      .catch((error) => this.actions.requestResoucesError(currentURL, route, params, error));
 
     return { route, params };
   }
 
-  getRouteResourcesSuccess(route, params, resources) {
-    return {route, params, resources};
+  getRouteResourcesSuccess(currentURL, route, params, resources) {
+    return {currentURL, route, params, resources};
   }
 
-  getRouteResourcesError(route, params, error) {
-    return {route, params, error};
+  getRouteResourcesError(currentURL, route, params, error) {
+    return {currentURL, route, params, error};
   }
 }
 

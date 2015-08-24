@@ -2,13 +2,11 @@ import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
 import { pluck } from 'lodash';
 
-let bootstrap = function bootstrap() {
-  let products = window.storefront.currentRoute.resources['products@vtex.storefront-sdk'];
-  let product = window.storefront.currentRoute.resources['product@vtex.storefront-sdk'];
+function getDataFromResources(state, resources) {
+  let products = resources['products@vtex.storefront-sdk'];
+  let product = resources['product@vtex.storefront-sdk'];
 
-  let bootstrapData = Immutable.Map();
-
-  bootstrapData = bootstrapData.withMutations(map => {
+  return state.withMutations(map => {
     for (let searchKey in products) {
       let results = Immutable.Map({ results: pluck(products[searchKey], 'slug') });
       map.set(searchKey, results);
@@ -18,16 +16,15 @@ let bootstrap = function bootstrap() {
       map.set(searchKey, results);
     }
   });
-
-  return bootstrapData;
-};
+}
 
 @immutable
 class SearchStore {
   constructor(dispatcher) {
     this.bindActions(dispatcher.actions.SearchActions);
+    this.bindActions(dispatcher.actions.ResourceActions);
 
-    this.state = bootstrap();
+    this.state = getDataFromResources(Immutable.Map(), window.storefront.currentRoute.resources);
   }
 
   onRequestSearch(params) {
@@ -58,6 +55,10 @@ class SearchStore {
 
   onRequestFacetsFail({ params, error }) {
     this.setState(this.state.setIn([params.$id, 'error'], error));
+  }
+
+  onGetRouteResourcesSuccess({resources}) {
+    this.setState(getDataFromResources(this.state, resources));
   }
 }
 

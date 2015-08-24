@@ -12,22 +12,20 @@ function addProducts(state, products) {
   });
 
   return newProducts;
-};
+}
 
-let bootstrap = function bootstrap() {
-  let products = window.storefront.currentRoute.resources['products@vtex.storefront-sdk'];
-  let product = window.storefront.currentRoute.resources['product@vtex.storefront-sdk'];
-
-  let bootstrapData = Immutable.Map();
-  for (let searchKey in products) {
-    bootstrapData = addProducts(bootstrapData, products[searchKey]);
-  }
-  for (let searchKey in product) {
-    bootstrapData = addProducts(bootstrapData, product[searchKey]);
+function getDataFromResources(state, resources) {
+  let products = [];
+  if (resources['product@vtex.storefront-sdk']) {
+    products = values(resources['product@vtex.storefront-sdk']);
   }
 
-  return bootstrapData;
-};
+  if (resources['products@vtex.storefront-sdk']) {
+    products = products.concat(flatten(values(resources['products@vtex.storefront-sdk'])));
+  }
+
+  return addProducts(state, products);
+}
 
 
 @immutable
@@ -37,7 +35,7 @@ class ProductStore {
     this.bindActions(dispatcher.actions.ProductActions);
     this.bindActions(dispatcher.actions.ResourceActions);
 
-    this.state = bootstrap();
+    this.state = getDataFromResources(Immutable.Map(), window.storefront.currentRoute.resources);
 
     this.exportPublicMethods({
       getProducts: this.getProducts
@@ -70,14 +68,7 @@ class ProductStore {
   }
 
   onGetRouteResourcesSuccess({ resources }) {
-    if (resources['product@vtex.storefront-sdk']) {
-      let products = values(resources['product@vtex.storefront-sdk']);
-      return this.setState(addProducts(this.state, products));
-    }
-    if (resources['products@vtex.storefront-sdk']) {
-      let products = flatten(values(resources['products@vtex.storefront-sdk']));
-      return this.setState(addProducts(this.state, products));
-    }
+    this.setState(getDataFromResources(this.state, resources));
   }
 }
 

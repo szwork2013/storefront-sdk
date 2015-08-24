@@ -1,47 +1,36 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import hashRoute from 'utils/hashRoute';
+import { keys } from 'lodash';
+
+function getDataFromResources(state, currentURL, resources) {
+  return state.withMutations(map =>
+    map.setIn([currentURL, 'resources'], keys(resources))
+       .setIn([currentURL, 'error'], null)
+  );
+}
 
 @immutable
 class ResourceStore {
   constructor(dispatcher) {
     this.bindActions(dispatcher.actions.ResourceActions);
 
-    let resources = window.storefront.currentRoute.resources;
-    let routeHash = hashRoute('home');
-
-    this.state = Immutable.fromJS({[routeHash]: resources});
-
-    this.exportPublicMethods({
-      getResources: this.getResources
-    });
+    let currentURL = (window.location.pathname + window.location.search);
+    this.state = getDataFromResources(Immutable.Map(), currentURL, window.storefront.currentRoute.resources);
   }
 
-  getResources(route, params) {
-    let routeHash = hashRoute(route, params);
-
-    return this.state.get(routeHash);
+  onGetRouteResources({currentURL}) {
+    this.setState(this.state.set(currentURL, Immutable.Map()));
   }
 
-  onGetRouteResources({route, params}) {
-    let routeHash = hashRoute(route, params);
-
-    this.setState(this.state.set(routeHash, Immutable.Map()));
+  onGetRouteResourcesSuccess({currentURL, resources}) {
+    this.setState(getDataFromResources(this.state, currentURL, resources));
   }
 
-  onGetRouteResourcesSuccess({route, params, resources}) {
-    let routeHash = hashRoute(route, params);
-
-    let newState = this.state.setIn([routeHash, 'resources'], resources);
-    newState = newState.setIn([routeHash, 'error', null]);
-    this.setState(newState);
-  }
-
-  onGetRouteResourcesError({ route, params, error }) {
-    let routeHash = hashRoute(route, params);
-
-    let newState = this.state.setIn([routeHash, 'resources'], null);
-    newState = newState.setIn([routeHash, 'error', error]);
+  onGetRouteResourcesError({currentURL, error}) {
+    let newState = this.state.withMutations(map =>
+      map.setIn([currentURL, 'resources'], null)
+         .setIn([currentURL, 'error', error])
+    );
     this.setState(newState);
   }
 }
