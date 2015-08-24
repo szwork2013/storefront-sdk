@@ -2,7 +2,7 @@ import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
 import { isArray, values, flatten } from 'lodash';
 
-let addProducts = function addProducts(state, products) {
+function addProducts(state, products) {
   if (!isArray(products)) {
     products = [products];
   }

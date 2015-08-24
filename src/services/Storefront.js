@@ -29,6 +29,10 @@ class Storefront {
     return axios.get(`/_routes/${route}/resources/`, { params });
   }
 
+  getRouteSettings(route) {
+    return axios.get(`/_resources/_settings/?route=${route}`);
+  }
+
 }
 
 export default Storefront;
