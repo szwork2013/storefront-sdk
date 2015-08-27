@@ -39,22 +39,22 @@
   {% script reactLocaleUrl %}
 
   <script>
-  window._storefront = {
-    context: {
-      accountName: "{{ account.name }}",
-      culture: {
-        locale: "{{ culture.code }}",
-        language: "{{ culture.language }}",
-        countryCode: "{{ culture.country }}",
-        currency: "{{ culture.currency.code }}",
-      },
-      user: {
-        isAdmin: {{ user.roles.admin }},
-        isCustomer: {{ user.roles.customer }},
-        isDeveloper: {{ user.roles.developer }}
+    window._storefront = {
+      context: {
+        accountName: "{{ account.name }}",
+        culture: {
+          locale: "{{ culture.code }}",
+          language: "{{ culture.language }}",
+          countryCode: "{{ culture.country }}",
+          currency: "{{ culture.currency.code }}",
+        },
+        user: {
+          isAdmin: {{ user.roles.admin }},
+          isCustomer: {{ user.roles.customer }},
+          isDeveloper: {{ user.roles.developer }}
+        }
       }
-    }
-  };
+    };
   </script>
 
   {% dump scripts %}
