@@ -41,19 +41,19 @@
   <script>
   // TODO - extract "dump resources" from "dump scripts"
   window._storefront = {
-    user: {
-      roles: {
-        admin: {{ user.roles.admin }},
-        customer: {{ user.roles.customer }},
-        developer: {{ user.roles.developer }}
+    context: {
+      accountName: "{{ account.name }}",
+      culture: {
+        locale: "{{ culture.code }}",
+        language: "{{ culture.language }}",
+        countryCode: "{{ culture.country }}",
+        currency: "{{ culture.currency.code }}",
+      },
+      user: {
+        isAdmin: {{ user.roles.admin }},
+        isCustomer: {{ user.roles.customer }},
+        isDeveloper: {{ user.roles.developer }}
       }
-    },
-    ShopStore: {
-      locale: "{{ culture.code }}",
-      language: "{{ culture.language }}",
-      countryCode: "{{ culture.country }}",
-      currency: "{{ culture.currency.code }}",
-      accountName: "{{ account.name }}"
     }
   };
   </script>

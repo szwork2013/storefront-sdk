@@ -54,12 +54,13 @@ class StorefrontSDK {
 
   init() {
     this.router = this.createRouter();
-    let locale = this.dispatcher.stores.ShopStore.getState().get('locale');
-    this.router.run((Handler) =>
+    let locale = this.dispatcher.stores.ContextStore.getState().getIn(['culture', 'locale']);
+    this.router.run((Handler, state) => {
+      this.dispatcher.actions.ContextActions.changeRoute(state);
       rootInstance = React.render((
         <Handler messages={window.storefront.i18n} locales={locale}/>
-      ), document.getElementById('storefront-container'))
-    );
+      ), document.getElementById('storefront-container'));
+    });
     this.enableHotLoad();
   }
 }
