@@ -1,25 +1,78 @@
-import decorate from './decorate';
+/**
+ *    @editable(dispatcher)
+ *    class MyComponent extends React.Component {
+ *      render() {
+ *        ...
+ *      }
+ *    }
+ */
 
-function handleDescriptor(target, key, descriptor, [options = {}]) { // eslint-disable-line
-  if (typeof descriptor.value !== 'function' || key !== 'render') {
-    throw new SyntaxError('Only the render function can be marked as editable');
-  }
+import React from 'react';
+import { keys, assign } from 'lodash';
 
-  return {
-    ...descriptor,
-    value: function deprecationWrapper() {
-      const editMode = this.props.EditorStore.get('isActive');
-      const componentName = target.constructor.name + 'EditMode';
-      const EditComponent = this.props.ComponentStore.getIn([componentName, 'constructor']);
-      if (editMode && EditComponent) {
-        return <EditComponent {...this.props}/>;
+function editable(dispatcher) {
+  return function decorator(Component) {
+    class EditableComponent extends React.Component {
+      state = {
+        SettingsStore: dispatcher.stores.SettingsStore.getState(),
+        ComponentStore: dispatcher.stores.ComponentStore.getState(),
+        EditorStore: dispatcher.stores.EditorStore.getState()
       }
 
-      return descriptor.value.apply(this, arguments);
+      constructor(props) {
+        super(props);
+
+        dispatcher.stores.SettingsStore.listen(this.onChange);
+        dispatcher.stores.ComponentStore.listen(this.onChange);
+        dispatcher.stores.EditorStore.listen(this.onChange);
+      }
+
+      componentWillUnmount = () => {
+        dispatcher.stores.SettingsStore.unlisten(this.onChange);
+        dispatcher.stores.ComponentStore.unlisten(this.onChange);
+        dispatcher.stores.EditorStore.unlisten(this.onChange);
+      }
+
+      onChange = () => {
+        this.setState({
+          SettingsStore: dispatcher.stores.SettingsStore.getState(),
+          ComponentStore: dispatcher.stores.ComponentStore.getState(),
+          EditorStore: dispatcher.stores.EditorStore.getState()
+        });
+      }
+
+      handleOpenEditor = () => {
+        dispatcher.actions.EditorActions.openEditor({
+          component: (Component.storefront.name + 'Editor'),
+          route: this.props.route,
+          id: this.props.id
+        });
+      }
+
+      render() {
+        const editMode = this.state.EditorStore.get('isActive');
+        if (editMode) {
+          return (
+            <div className="v-editor__component" onTouchTap={this.handleOpenEditor.bind(this)}>
+              <span className="v-editor__component-name">{Component.storefront.name}</span>
+              <Component {...assign({}, this.props, this.state)}/>
+            </div>
+          );
+        }
+
+        return <Component {...assign({}, this.props, this.state)}/>;
+      }
     }
+
+    let staticProperties = keys(Component);
+
+    for (let i = 0; i < staticProperties.length; i++) {
+      let property = staticProperties[i];
+      EditableComponent[property] = Component[property];
+    }
+
+    return EditableComponent;
   };
 }
 
-export default function editable(...args) {
-  return decorate(handleDescriptor, args);
-}
+export default editable;
