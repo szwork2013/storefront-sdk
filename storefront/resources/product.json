@@ -3,8 +3,5 @@
   "cacheDuration": 60,
   "parameters": {
     "account": "{{ account.name }}"
-  },
-  "queryString": {
-    "query": "{{ parameters.query }}"
   }
 }
