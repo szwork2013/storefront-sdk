@@ -43,24 +43,27 @@ function editable(dispatcher) {
 
       handleOpenEditor = () => {
         dispatcher.actions.EditorActions.openEditor({
-          component: (Component.storefront.name + 'Editor'),
+          component: Component.storefront.name,
           route: this.props.route,
           id: this.props.id
         });
       }
 
       render() {
+        let settings = this.state.SettingsStore.getIn([this.props.route, this.props.id, 'settings']);
+
         const editMode = this.state.EditorStore.get('isActive');
+
         if (editMode) {
           return (
             <div className="v-editor__component" onTouchTap={this.handleOpenEditor.bind(this)}>
-              <span className="v-editor__component-name">{Component.storefront.name}</span>
-              <Component {...assign({}, this.props, this.state)}/>
+              <span className="v-editor__component-name">{Component.storefront.title}</span>
+              <Component {...assign({}, this.props, this.state)} settings={settings}/>
             </div>
           );
         }
 
-        return <Component {...assign({}, this.props, this.state)}/>;
+        return <Component {...assign({}, this.props, this.state)} settings={settings}/>;
       }
     }
 
