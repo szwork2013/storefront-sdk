@@ -2,6 +2,8 @@ import React from 'expose?React!react/addons';
 import 'expose?ReactMount!react/lib/ReactMount';
 import ReactRouter, { Route } from 'expose?ReactRouter!react-router';
 import 'expose?Intl!intl';
+import 'expose?Immutable!immutable';
+import immutableStore from 'alt/utils/ImmutableUtil';
 import 'expose?ReactIntl!react-intl';
 import 'expose?axios!axios';
 import _ from 'expose?lodash!lodash-compat';
@@ -18,6 +20,7 @@ class StorefrontSDK {
 
   register = register;
   connectToStores = connectToStores;
+  immutableStore = immutableStore;
 
   createRouter() {
     let components = this.dispatcher.stores.ComponentStore.getState();
