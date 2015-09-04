@@ -9,10 +9,19 @@
 
 import React from 'react';
 import { keys, assign } from 'lodash';
+import dispatcher from '../dispatcher/StorefrontDispatcher';
 
-function editable(dispatcher) {
+function editable(metadata) {
+  if (!metadata.title) {
+    console.warn('Please define the property "title" for the component: ' + metadata.name);
+  }
+
   return function decorator(Component) {
     class EditableComponent extends React.Component {
+      static storefront = {
+        title: metadata.title
+      }
+
       state = {
         SettingsStore: dispatcher.stores.SettingsStore.getState(),
         ComponentStore: dispatcher.stores.ComponentStore.getState(),
@@ -43,7 +52,8 @@ function editable(dispatcher) {
 
       handleOpenEditor = () => {
         dispatcher.actions.EditorActions.openEditor({
-          component: Component.storefront.name,
+          component: metadata.name,
+          title: metadata.title,
           route: this.props.route,
           id: this.props.id
         });
@@ -57,7 +67,7 @@ function editable(dispatcher) {
         if (editMode) {
           return (
             <div className="v-editor__component" onTouchTap={this.handleOpenEditor.bind(this)}>
-              <span className="v-editor__component-name">{Component.storefront.title}</span>
+              <span className="v-editor__component-name">{metadata.title}</span>
               <Component {...assign({}, this.props, this.state)} settings={settings}/>
             </div>
           );
