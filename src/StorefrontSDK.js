@@ -13,6 +13,9 @@ let rootInstance;
 
 class StorefrontSDK {
   dispatcher = dispatcher;
+  actions = dispatcher.actions;
+  stores = dispatcher.stores;
+
   register = register;
   connectToStores = connectToStores;
 
