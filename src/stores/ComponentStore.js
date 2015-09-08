@@ -2,9 +2,13 @@ import Immutable from 'immutable';
 import { isArray } from 'lodash';
 import immutable from 'alt/utils/ImmutableUtil';
 
-let _getComponentProperties = function _getComponentProperties(state, {name, role, area, constructor}) {
-  if (state.get(name)) {
-    console.warn(`${name} was overwritten by ${constructor.name}`);
+let _getComponentProperties = function _getComponentProperties(state, _component) {
+  let { name, role, area, constructor } = _component;
+
+  if (_component.constructor && _component.constructor.storefront) {
+    name = _component.constructor.storefront.name;
+    role = _component.constructor.storefront.role;
+    area = _component.constructor.storefront.area;
   }
 
   let component = Immutable.Map({
@@ -14,12 +18,6 @@ let _getComponentProperties = function _getComponentProperties(state, {name, rol
   });
 
   return {name, component};
-};
-
-let _registerComponent = function _registerComponent(state, _component) {
-  let {name, component} = _getComponentProperties(state, _component);
-
-  return state.set(name, component);
 };
 
 let _registerComponents = function _registerComponents(state, components) {
@@ -44,7 +42,7 @@ class ComponentStore {
     if (isArray(param)) {
       newState = _registerComponents(this.state, param);
     } else {
-      newState = _registerComponent(this.state, param);
+      newState = _registerComponents(this.state, [param]);
     }
 
     this.setState(newState);
