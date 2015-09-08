@@ -46,21 +46,14 @@ function handleDescriptor(target, key) {
     target = editable(metadata)(target);
   }
 
-  // Register component
-  if (!dispatcher.stores.ComponentStore.getState().get(metadata.name)) {
-    let components = [
-      {
-        name: metadata.name,
-        constructor: target
-      }
-    ];
-
-    dispatcher.actions.ComponentActions.register(components);
+  if (metadata.name) {
+    target.storefront = target.storefront || {};
+    target.storefront.name = metadata.name;
   }
 
   return target;
 }
 
-export default function register(...args) {
+export default function storefront(...args) {
   return decorate(handleDescriptor, args);
 }

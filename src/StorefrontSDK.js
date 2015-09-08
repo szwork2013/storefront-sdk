@@ -9,7 +9,7 @@ import 'expose?axios!axios';
 import _ from 'expose?lodash!lodash-compat';
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import connectToStores from './utils/connectToStores.js';
-import register from './utils/register.js';
+import storefront from './utils/storefront.js';
 
 let rootInstance;
 
@@ -18,7 +18,8 @@ class StorefrontSDK {
   actions = dispatcher.actions;
   stores = dispatcher.stores;
 
-  register = register;
+  storefront = storefront;
+  register = storefront;
   connectToStores = connectToStores;
   immutableStore = immutableStore;
 
@@ -71,6 +72,6 @@ class StorefrontSDK {
   }
 }
 
-let storefront = new StorefrontSDK();
+let sdk = new StorefrontSDK();
 
-export default storefront;
+export default sdk;
