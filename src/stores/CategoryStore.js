@@ -15,9 +15,8 @@ function addCategories(state, categories) {
 }
 
 function getDataFromResources(state) {
-  let categories = [];
   let resources = window.storefront.currentRoute.resources;
-  categories = categories.concat(flatten(values(resources['categories@vtex.storefront-sdk'])));
+  let categories = flatten(values(resources['categories@vtex.storefront-sdk']));
 
   return addCategories(state, categories);
 }
