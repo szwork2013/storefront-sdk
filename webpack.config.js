@@ -51,6 +51,7 @@ module.exports = {
     publicPath: publicPath,
     filename: '[name]/' + pkg.name + '.js',
     chunkFilename: pkg.name + '-[name].js',
+    jsonpFunction: 'webpackJsonp_' + meta.vendor.replace('-', '') + '_' + meta.name.replace('-', ''),
     devtoolModuleFilenameTemplate: 'webpack:///' + pkg.name + '/[resource]?[id]-[hash]'
   },
 
