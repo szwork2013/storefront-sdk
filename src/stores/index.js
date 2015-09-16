@@ -7,6 +7,7 @@ import SearchStore from './SearchStore';
 import SettingsStore from './SettingsStore';
 import ResourceStore from './ResourceStore';
 import CategoryStore from './CategoryStore';
+import FacetsStore from './FacetsStore';
 
 let stores = [
   {name: 'CartStore', obj: CartStore},
@@ -17,7 +18,8 @@ let stores = [
   {name: 'SearchStore', obj: SearchStore},
   {name: 'SettingsStore', obj: SettingsStore},
   {name: 'ResourceStore', obj: ResourceStore},
-  {name: 'CategoryStore', obj: CategoryStore}
+  {name: 'CategoryStore', obj: CategoryStore},
+  {name: 'FacetsStore', obj: FacetsStore}
 ];
 
 export default stores;
