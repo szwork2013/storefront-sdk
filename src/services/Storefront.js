@@ -10,7 +10,7 @@ class Storefront {
       'Accept': 'application/vnd.vtex.storefront.v0+json',
       'Authorization': `token ${token}`,
       'x-vtex-sandbox': sandbox,
-      'x-vtex-workspace': workspace
+      'x-vtex-workspace': workspace ? workspace : 'master'
     };
   }
 
