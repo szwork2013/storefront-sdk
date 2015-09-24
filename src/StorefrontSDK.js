@@ -1,17 +1,26 @@
-import React from 'expose?React!react/addons';
-import 'expose?ReactMount!react/lib/ReactMount';
-import ReactRouter, { Route } from 'expose?ReactRouter!react-router';
+import 'expose?React!react/addons';
+import 'expose?ReactRouter!react-router';
 import 'expose?Intl!intl';
 import 'expose?Immutable!immutable';
-import immutableStore from 'alt/utils/ImmutableUtil';
 import 'expose?ReactIntl!react-intl';
 import 'expose?axios!axios';
-import _ from 'expose?lodash!lodash-compat';
-import dispatcher from './dispatcher/StorefrontDispatcher';
-import connectToStores from './utils/connectToStores.js';
-import storefront from './utils/storefront.js';
+import 'expose?lodash!lodash-compat';
 
-let rootInstance;
+import createHistory from 'history/lib/createBrowserHistory';
+import useQueries from 'history/lib/useQueries';
+
+import immutableStore from 'alt/utils/ImmutableUtil';
+
+import dispatcher from './dispatcher/StorefrontDispatcher';
+import connectToStores from './utils/connectToStores';
+import storefront from './utils/storefront';
+import App from './App';
+
+let React = window.React;
+let { Router, Route } = window.ReactRouter;
+let map = window.lodash.map;
+
+let history = useQueries(createHistory)();
 
 class StorefrontSDK {
   dispatcher = dispatcher;
@@ -19,56 +28,45 @@ class StorefrontSDK {
   stores = dispatcher.stores;
 
   storefront = storefront;
-  register = storefront;
   connectToStores = connectToStores;
   immutableStore = immutableStore;
+  history = history;
 
-  createRouter() {
-    let components = this.dispatcher.stores.ComponentStore.getState();
-
-    let children = _.map(window.storefront.routes, (route, routeName) => {
-      let component = components.getIn([route.component, 'constructor']);
-      return <Route name={routeName} key={routeName} path={route.path} handler={component} />;
+  init() {
+    // Listen to route changes
+    this.history.listen((location) => {
+      this.dispatcher.actions.ContextActions.changeRoute(location);
     });
 
-    let handler;
-    if (components.get('AppEditor')) {
-      handler = components.getIn(['AppEditor', 'constructor']);
-    } else {
-      handler = components.getIn(['App', 'constructor']);
-    }
+    let components = this.dispatcher.stores.ComponentStore.getState();
 
-    let routes = (
-      <Route handler={handler}>
+    // Create routes based on the declared storefront components
+    let children = map(window.storefront.routes, (route, routeName) => {
+      let component = components.getIn([route.component, 'constructor']);
+      return <Route path={route.path} component={component} key={routeName}/>;
+    });
+
+    let wrapper = (
+      <Route component={App}>
         {children}
       </Route>
     );
-    // TODO check browser support, degrade to hash
-    return ReactRouter.create({routes, location: ReactRouter.HistoryLocation});
-  }
 
-  // Enable react hot loading with external React
-  // see https://github.com/gaearon/react-hot-loader/tree/master/docs#usage-with-external-react
-  enableHotLoad() {
-    if (window.RootInstanceProvider) {
-      window.RootInstanceProvider.injectProvider({
-        getRootInstances() {
-          return [rootInstance];
-        }
-      });
+    if (components.get('AppEditor')) {
+      let AppEditor = components.getIn(['AppEditor', 'constructor']);
+      wrapper = (
+        <Route component={AppEditor}>
+          {wrapper}
+        </Route>
+      );
     }
-  }
 
-  init() {
-    this.router = this.createRouter();
-    let locale = this.dispatcher.stores.ContextStore.getState().getIn(['culture', 'locale']);
-    this.router.run((Handler, state) => {
-      this.dispatcher.actions.ContextActions.changeRoute(state);
-      rootInstance = React.render((
-        <Handler messages={window.storefront.i18n} locales={locale}/>
-      ), document.getElementById('storefront-container'));
-    });
-    this.enableHotLoad();
+    // Finally, render
+    React.render(
+      <Router history={this.history}>
+        {wrapper}
+      </Router>
+    , document.getElementById('storefront-container'));
   }
 }
 

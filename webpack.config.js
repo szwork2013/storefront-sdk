@@ -4,34 +4,70 @@ var pkg = require('./package.json');
 var meta = require('./meta.json');
 var publicPath = '/assets/@' + meta.vendor + '.' + pkg.name + '/';
 var production = process.env.NODE_ENV === 'production';
-var hot = process.env.NODE_ENV === 'hot';
+
 var vendor = [
   'react',
+  'react-router',
   'intl',
+  'immutable',
   'react-intl',
   'axios',
   'lodash-compat'
 ];
+
 var commonsConfig = {
   name: 'vendor',
   filename: 'storefront-libs.js',
   minChunks: Infinity
 };
 
+var entryPoints = {
+  '.': [ './src/index.js' ],
+  'vendor': vendor
+}
+
 module.exports = {
-  devtool: 'sourcemap',
+  entry: entryPoints,
 
-  watch: production ? false : true,
+  module: {
+    preLoaders: [
+      {
+        test: /\.js$|\.jsx$/,
+        include: path.join(__dirname, 'src'),
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      }
+    ],
 
-  entry: hot ? {
-    '.': ['webpack-dev-server/client?http://0.0.0.0:3000',
-          'webpack/hot/only-dev-server',
-          './src/index.js'],
-    'vendor': vendor
-  } : {
-    '.': './src/index.js',
-    'vendor': vendor
+    loaders: [
+      {
+        test: /\.js$|\.jsx$/,
+        include: path.join(__dirname, 'src'),
+        exclude: /node_modules/,
+        loader: 'babel'
+      }
+    ]
   },
+
+  plugins: production ? [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.CommonsChunkPlugin(commonsConfig)
+  ] : [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin(commonsConfig)
+  ],
 
   externals: {
     'lodash': 'lodash'
@@ -59,57 +95,11 @@ module.exports = {
     configFile: '.eslintrc'
   },
 
-  module: {
-    preLoaders: [
-      {
-        test: /\.js$|\.jsx$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      }
-    ],
+  devtool: 'source-map',
 
-    loaders: [
-      {
-        test: /\.js$|\.jsx$/,
-        exclude: /node_modules/,
-        loaders: hot ? ['react-hot', 'babel-loader?stage=0'] : ['babel-loader?stage=0']
-      }
-    ]
-  },
-
-  plugins: production ? [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.CommonsChunkPlugin(commonsConfig)
-  ] : hot ? [
-    new webpack.HotModuleReplacementPlugin()
-  ] : [
-    new webpack.optimize.CommonsChunkPlugin(commonsConfig)
-  ],
+  watch: production ? false : true,
 
   quiet: false,
 
-  noInfo: false,
-
-  devServer: {
-    publicPath: publicPath,
-    port: 3000,
-    hot: true,
-    inline: true,
-    stats: {
-      assets: false,
-      colors: true,
-      version: true,
-      hash: false,
-      timings: true,
-      chunks: true,
-      chunkModules: false
-    },
-    historyApiFallback: true,
-    proxy: {
-      '*': 'http://janus-edge.vtex.com.br/'
-    }
-  }
+  noInfo: false
 };

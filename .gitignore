@@ -31,4 +31,4 @@ node_modules/
 .tmp
 .idea
 npm-debug.log
-storefront/assets/*storefront*
+storefront/assets/**/*
