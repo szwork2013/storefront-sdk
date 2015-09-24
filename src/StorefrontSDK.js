@@ -14,6 +14,7 @@ import immutableStore from 'alt/utils/ImmutableUtil';
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import connectToStores from './utils/connectToStores';
 import storefront from './utils/storefront';
+import App from './App';
 
 let React = window.React;
 let { Router, Route } = window.ReactRouter;
@@ -45,8 +46,6 @@ class StorefrontSDK {
       return <Route path={route.path} component={component} key={routeName}/>;
     });
 
-    // Get the root React component
-    let App = components.getIn(['App', 'constructor']);
     let wrapper = (
       <Route component={App}>
         {children}
