@@ -5,7 +5,6 @@ import EditorActions from './EditorActions';
 import ProductActions from './ProductActions';
 import ResourceActions from './ResourceActions';
 import SearchActions from './SearchActions';
-import CategoryActions from './CategoryActions';
 
 let actions = [
   {name: 'CartActions', obj: CartActions},
@@ -14,8 +13,7 @@ let actions = [
   {name: 'EditorActions', obj: EditorActions},
   {name: 'ProductActions', obj: ProductActions},
   {name: 'ResourceActions', obj: ResourceActions},
-  {name: 'SearchActions', obj: SearchActions},
-  {name: 'CategoryActions', obj: CategoryActions}
+  {name: 'SearchActions', obj: SearchActions}
 ];
 
 export default actions;
