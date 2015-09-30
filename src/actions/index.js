@@ -5,7 +5,6 @@ import EditorActions from './EditorActions';
 import ProductActions from './ProductActions';
 import ResourceActions from './ResourceActions';
 import SearchActions from './SearchActions';
-import FacetsActions from './FacetsActions';
 
 let actions = [
   {name: 'CartActions', obj: CartActions},
