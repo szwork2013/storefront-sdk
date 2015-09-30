@@ -1,9 +1,8 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import { isArray, values, flatten } from 'lodash';
+import { values, flatten } from 'lodash';
 
 function addFacets(state, facets) {
-  let route = Immutable.fromJS(state);
   let currentURL = (window.location.pathname + window.location.search);
   let newFacets = state.withMutations(map => {
      map.set(currentURL, facets[0]);
