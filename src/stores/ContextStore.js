@@ -11,9 +11,8 @@ class ContextStore {
     this.state = Immutable.fromJS(window._storefront.context);
   }
 
-  onChangeRoute(location) {
-    let route = Immutable.fromJS(location);
-    this.setState(this.state.set('route', route));
+  onChangeRoute(route) {
+    this.setState(this.state.set('route', Immutable.fromJS(route)));
   }
 }
 
