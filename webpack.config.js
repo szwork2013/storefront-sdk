@@ -11,8 +11,7 @@ var vendor = [
   'intl',
   'immutable',
   'react-intl',
-  'axios',
-  'lodash-compat'
+  'axios'
 ];
 
 var commonsConfig = {
@@ -68,10 +67,6 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin(commonsConfig)
   ],
-
-  externals: {
-    'lodash': 'lodash'
-  },
 
   resolve: {
     extensions: ['', '.js', '.jsx'],

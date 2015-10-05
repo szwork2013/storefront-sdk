@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import { values, flatten } from 'lodash';
+import { values } from 'lodash-compat/object';
+import { flatten } from 'lodash-compat/array';
 
 function addFacets(state, facets) {
   let currentURL = (window.location.pathname + window.location.search);

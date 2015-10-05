@@ -1,6 +1,6 @@
-import { each } from 'lodash';
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
+import { each } from 'lodash-compat/collection';
 
 @immutable
 class CartStore {
