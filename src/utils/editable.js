@@ -7,7 +7,7 @@
  *    }
  */
 
-import React from 'react';
+import React from 'react/addons';
 import { keys, assign } from 'lodash-compat/object';
 import dispatcher from '../dispatcher/StorefrontDispatcher';
 
