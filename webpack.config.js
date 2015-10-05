@@ -5,24 +5,25 @@ var meta = require('./meta.json');
 var publicPath = '/assets/@' + meta.vendor + '.' + pkg.name + '/';
 var production = process.env.NODE_ENV === 'production';
 
-var vendor = [
-  'react',
-  'react-router',
-  'intl',
-  'immutable',
-  'react-intl',
-  'axios'
-];
-
 var commonsConfig = {
-  name: 'vendor',
-  filename: 'storefront-libs.js',
+  name: ['core-libs', 'helper-libs'],
+  filename: 'storefront-[name].js',
   minChunks: Infinity
 };
 
 var entryPoints = {
-  '.': [ './src/index.js' ],
-  'vendor': vendor
+  '.': './src/index.js',
+  'helper-libs': [
+    'axios',
+    'immutable',
+    'intl'
+  ],
+  'core-libs': [
+    'alt',
+    'react',
+    'react-intl',
+    'react-router'
+  ]
 }
 
 module.exports = {

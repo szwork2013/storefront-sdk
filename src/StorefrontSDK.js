@@ -4,12 +4,11 @@ import 'expose?Intl!intl';
 import 'expose?Immutable!immutable';
 import 'expose?ReactIntl!react-intl';
 import 'expose?axios!axios';
+import 'expose?alt!alt';
 
 import { map } from 'lodash-compat/collection';
 import createHistory from 'history/lib/createBrowserHistory';
 import useQueries from 'history/lib/useQueries';
-
-import immutableStore from 'alt/utils/ImmutableUtil';
 
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import connectToStores from './utils/connectToStores';
@@ -28,7 +27,6 @@ class StorefrontSDK {
 
   storefront = storefront;
   connectToStores = connectToStores;
-  immutableStore = immutableStore;
   history = history;
 
   init() {

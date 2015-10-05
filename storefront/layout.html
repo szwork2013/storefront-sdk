@@ -30,7 +30,8 @@
 
   <div id="storefront-container"></div>
 
-  {% script 'storefront-libs.js@vtex.storefront-sdk' %}
+  {% script 'storefront-helper-libs.js@vtex.storefront-sdk' %}
+  {% script 'storefront-core-libs.js@vtex.storefront-sdk' %}
   {% script 'storefront-sdk.js@vtex.storefront-sdk' %}
 
   {% capture intlLocaleUrl %}//io.vtex.com.br/front-libs/intl/0.1.4/locale-data/jsonp/{{ culture.language | split: "-" | first }}.js{% endcapture %}
