@@ -33,11 +33,6 @@ class StorefrontSDK {
   }
 
   init() {
-    // Listen to route changes
-    this.history.listen((location) => {
-      this.dispatcher.actions.ContextActions.changeRoute(location);
-    });
-
     let components = this.dispatcher.stores.ComponentStore.getState();
 
     // Create routes based on the declared storefront components
