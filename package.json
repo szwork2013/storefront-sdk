@@ -10,7 +10,7 @@
     "postreleasy": "vtex publish"
   },
   "dependencies": {
-    "alt": "^0.17.0",
+    "alt": "^0.17.4",
     "axios": "^0.5.4",
     "es6-promise": "^3.0.2",
     "history": "^1.9.1",
@@ -29,7 +29,6 @@
     "eslint-loader": "^0.14.1",
     "eslint-plugin-react": "^3.0.0",
     "expose-loader": "^0.7.0",
-    "react-hot-loader": "^1.2.8",
-    "webpack": "~1.9.12"
+    "webpack": "~1.12.2"
   }
 }
