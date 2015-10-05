@@ -4,8 +4,8 @@ import 'expose?Intl!intl';
 import 'expose?Immutable!immutable';
 import 'expose?ReactIntl!react-intl';
 import 'expose?axios!axios';
-import 'expose?lodash!lodash-compat';
 
+import { map } from 'lodash-compat/collection';
 import createHistory from 'history/lib/createBrowserHistory';
 import useQueries from 'history/lib/useQueries';
 
@@ -18,7 +18,6 @@ import App from './App';
 
 let React = window.React;
 let { Router, Route } = window.ReactRouter;
-let map = window.lodash.map;
 
 let history = useQueries(createHistory)();
 

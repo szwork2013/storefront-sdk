@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { keys, assign } from 'lodash';
+import { keys, assign } from 'lodash-compat/object';
 
 const getStateFromStores = function (stores) {
   const state = {};

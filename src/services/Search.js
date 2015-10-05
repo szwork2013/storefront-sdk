@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { omit } from 'lodash';
+import { omit } from 'lodash-compat/object';
 
 class Search {
   static productResource = '/_resources/product@vtex.storefront-sdk/'
