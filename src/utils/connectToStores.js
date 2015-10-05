@@ -1,44 +1,64 @@
-/**
- *    @connectToStores([myStore])
- *    class MyComponent extends React.Component {
- *      render() {
- *        this.props.myStore // has myStore.state
- *      }
- *    }
- */
-
-import React from 'react';
+import React from 'react/addons';
+import { isFunction } from 'lodash-compat/lang';
 import { keys, assign } from 'lodash-compat/object';
 
-const getStateFromStores = function (stores) {
-  const state = {};
-  stores.forEach((store) =>
-    state[store.displayName] = store.getState()
-  );
-  return state;
-};
-
-function connectToStores(stores) {
+/**
+ *    import { stores, utils } from 'sdk';
+ *
+ *    @utils.connectToStores()
+ *    class MyComponent extends React.Component {
+ *      static getStores(props) {
+ *        return [stores.ProductStore]
+ *      }
+ *
+ *      static getPropsFromStores(props) {
+ *        return {
+ *          product: stores.ProductStore.getState().get(props.params.slug)
+ *        };
+ *      }
+ *
+ *      render() {
+ *        // Use this.props.product as you like...
+ *      }
+ *    }
+ *
+ *    export default MyComponent;
+ */
+function connectToStores() {
   return function decorator(Component) {
+    // Check for required static methods.
+    if (!isFunction(Component.getStores)) {
+      throw new Error('connectToStores() expects the wrapped component to have a static getStores() method');
+    }
+    if (!isFunction(Component.getPropsFromStores)) {
+      throw new Error('connectToStores() expects the wrapped component to have a static getPropsFromStores() method');
+    }
+
     class StoreConnection extends React.Component {
-      state = getStateFromStores(stores)
+      displayName = `Stateful${Component.displayName || Component.name || 'Container'}`
 
       constructor(props) {
         super(props);
 
-        stores.forEach((store) => {
-          store.listen(this.onChange);
+        this.contextTypes = Component.contextTypes;
+        this.state = Component.getPropsFromStores(props, this.context);
+
+        const stores = Component.getStores(props, this.context);
+        this.storesListeners = stores.map((store) => {
+          return store.listen(this.onChange);
         });
       }
 
       componentWillUnmount = () => {
-        stores.forEach((store) => {
-          store.unlisten(this.onChange);
-        });
+        this.storesListeners.forEach(unlisten => unlisten());
       }
 
       onChange = () => {
-        this.setState(assign(this.state, getStateFromStores(stores)));
+        this.setState(Component.getPropsFromStores(this.props, this.context));
+      }
+
+      shouldComponentUpdate = (nextProps, nextState) => {
+        return React.addons.PureRenderMixin.shouldComponentUpdate.call(this, nextProps, nextState);
       }
 
       render() {

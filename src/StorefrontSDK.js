@@ -26,8 +26,11 @@ class StorefrontSDK {
   stores = dispatcher.stores;
 
   storefront = storefront;
-  connectToStores = connectToStores;
   history = history;
+
+  utils = {
+    connectToStores: connectToStores
+  }
 
   init() {
     // Listen to route changes

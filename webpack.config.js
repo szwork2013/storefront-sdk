@@ -6,21 +6,21 @@ var publicPath = '/assets/@' + meta.vendor + '.' + pkg.name + '/';
 var production = process.env.NODE_ENV === 'production';
 
 var commonsConfig = {
-  name: ['core-libs', 'helper-libs'],
+  name: ['react-libs', 'libs'],
   filename: 'storefront-[name].js',
   minChunks: Infinity
 };
 
 var entryPoints = {
   '.': './src/index.js',
-  'helper-libs': [
+  'libs': [
+    'alt',
     'axios',
     'immutable',
     'intl'
   ],
-  'core-libs': [
-    'alt',
-    'react',
+  'react-libs': [
+    'react/addons',
     'react-intl',
     'react-router'
   ]
@@ -51,6 +51,8 @@ module.exports = {
 
   plugins: production ? [
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.PrefetchPlugin('lodash-compat'),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
@@ -65,6 +67,8 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin(commonsConfig)
   ] : [
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.PrefetchPlugin('lodash-compat'),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin(commonsConfig)
   ],
