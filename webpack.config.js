@@ -11,23 +11,22 @@ var commonsConfig = {
   minChunks: Infinity
 };
 
-var entryPoints = {
-  '.': './src/index.js',
-  'libs': [
-    'alt',
-    'axios',
-    'immutable',
-    'intl'
-  ],
-  'react-libs': [
-    'react/addons',
-    'react-intl',
-    'react-router'
-  ]
-}
-
 module.exports = {
-  entry: entryPoints,
+  entry: {
+    '.': './src/index.js',
+    'libs': [
+      'alt',
+      'axios',
+      'immutable',
+      'intl'
+    ],
+    'react-libs': [
+      'react',
+      'react-dom',
+      'react-intl',
+      'react-router'
+    ]
+  },
 
   module: {
     preLoaders: [
@@ -50,14 +49,9 @@ module.exports = {
   },
 
   plugins: production ? [
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.PrefetchPlugin('lodash-compat'),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false
@@ -67,7 +61,6 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin(commonsConfig)
   ] : [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
     new webpack.PrefetchPlugin('lodash-compat'),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin(commonsConfig)

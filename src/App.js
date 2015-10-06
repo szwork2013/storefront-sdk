@@ -1,5 +1,6 @@
-import React from 'react/addons';
+import React from 'react';
 import dispatcher from './dispatcher/StorefrontDispatcher';
+import { IntlProvider } from 'react-intl';
 
 class App extends React.Component {
   triggerRouteChange = () => {
@@ -21,9 +22,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <IntlProvider>
         {this.props.children}
-      </div>
+      </IntlProvider>
     );
   }
 }

@@ -1,4 +1,5 @@
-import 'expose?React!react/addons';
+import 'expose?React!react';
+import 'expose?ReactDOM!react-dom';
 import 'expose?ReactRouter!react-router';
 import 'expose?Intl!intl';
 import 'expose?Immutable!immutable';
@@ -15,7 +16,7 @@ import connectToStores from './utils/connectToStores';
 import storefront from './utils/storefront';
 import App from './App';
 
-let React = window.React;
+let ReactDOM = window.ReactDOM;
 let { Router, Route } = window.ReactRouter;
 
 let history = useQueries(createHistory)();
@@ -57,7 +58,7 @@ class StorefrontSDK {
     }
 
     // Finally, render
-    React.render(
+    ReactDOM.render(
       <Router history={this.history}>
         {wrapper}
       </Router>

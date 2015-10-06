@@ -1,4 +1,5 @@
-import React from 'react/addons';
+import React from 'react';
+import shallowCompare from 'react-addons-shallow-compare';
 import { isFunction } from 'lodash-compat/lang';
 import { keys, assign } from 'lodash-compat/object';
 
@@ -58,7 +59,7 @@ function connectToStores() {
       }
 
       shouldComponentUpdate = (nextProps, nextState) => {
-        return React.addons.PureRenderMixin.shouldComponentUpdate.call(this, nextProps, nextState);
+        return shallowCompare(this, nextProps, nextState);
       }
 
       render() {
