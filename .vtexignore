@@ -1,8 +1,10 @@
 .git/
 node_modules/
 src/
+docs/
 .eslintrc
 .gitignore
 webpack.config.js
 package.json
 README.md
+CHANGELOG.md
