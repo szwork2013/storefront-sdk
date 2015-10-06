@@ -2,7 +2,7 @@
 
 * [Read Me](/README.md)
 * [Basics](/docs/basics/README.md)
-  * [HowToUse](/docs/basics/HowToUse.md)
+  * [How To Use](/docs/basics/HowToUse.md)
   * [Routes](/docs/basics/Routes.md)
   * [Flux](/docs/basics/Flux.md)
 * [Advanced](/docs/advanced/README.md)

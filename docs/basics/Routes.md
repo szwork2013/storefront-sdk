@@ -1,6 +1,9 @@
 # Routes
 
-To create a new route, follow the steps:
+To create a new route, you need:
+1. A React component to handle the route rendering
+2. Declare this component in `storefront/components/`
+3. Register the React component
 
 ### 1. The React component
 
@@ -23,6 +26,8 @@ export default HomePage;
 ```
 
 ### 2. The Storefront component definition
+
+Now we need to tell the servers to add the Javascript that contains the React component and that this component will handle a route.
 
 We need to declare that the **HomePage** component of this app will handle the route **"/"**, for this, create a JSON file at `storefront/components/` with the name of the component. In our example, that file will be named **HomePage.json**.
 
