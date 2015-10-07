@@ -3,7 +3,7 @@
   "plugins": ["edit-link", "prism", "-highlight"],
   "pluginsConfig": {
     "edit-link": {
-      "base": "https://github.com/vtex-apps/storefront-sdk/tree/master",
+      "base": "https://github.com/vtex-apps/storefront-sdk/tree/master/docs/",
       "label": "Edit This Page"
     }
   }
