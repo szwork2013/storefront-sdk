@@ -23,8 +23,6 @@
   <![endif]-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-  <link href='http://fonts.googleapis.com/css?family=Lato:200,400,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -34,6 +32,7 @@
   {% script 'storefront-react-libs.js@vtex.storefront-sdk' %}
   {% script 'storefront-sdk.js@vtex.storefront-sdk' %}
 
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
   {% capture intlLocaleUrl %}//io.vtex.com.br/front-libs/intl/1.0.0/locale-data/jsonp/{{ culture.language | split: "-" | first }}.js{% endcapture %}
   {% script intlLocaleUrl %}
   {% capture reactLocaleUrl %}//io.vtex.com.br/front-libs/react-intl/2.0.0-pr-2/locale-data/{{ culture.language | split: "-" | first }}.js{% endcapture %}
