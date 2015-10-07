@@ -1,0 +1,21 @@
+# Referência da API
+
+- [Stores](/stores/README.md)
+  - CartStore
+  - CategoryStore
+  - ComponentStore
+  - ContextStore
+  - EditorStore
+  - FacetsStore
+  - ProductStore
+  - ResourceStore
+  - SearchStore
+  - SettingsStore
+- [Actions](/actions/README.md)
+  - CartActions
+  - ComponentActions
+  - ContextActions
+  - EditorActions
+  - ProductActions
+  - ResourceActions
+  - SearchActions

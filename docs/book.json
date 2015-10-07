@@ -1,0 +1,10 @@
+{
+  "gitbook": "2.4.3",
+  "plugins": ["edit-link", "prism", "-highlight"],
+  "pluginsConfig": {
+    "edit-link": {
+      "base": "https://github.com/vtex-apps/storefront-sdk/tree/master",
+      "label": "Edit This Page"
+    }
+  }
+}

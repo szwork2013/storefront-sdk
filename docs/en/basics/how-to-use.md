@@ -37,4 +37,4 @@ import sdk from 'sdk';
 ```
 
 ## Next Steps
-Now let's [create a new route](/docs/basics/Routes.md) in your app.
+Now let's [create a new route](routes.md) in your app.

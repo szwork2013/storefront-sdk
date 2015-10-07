@@ -12,10 +12,10 @@ All the stores offered by Storefront SDK are composed by [Immutable](http://face
 
 ### Documentation
 
-- [Basics](/docs/basics/README.md)
-- [Advanced](/docs/advanced/README.md)
-- [API Reference](/docs/api/README.md)
-- [Utils](/docs/utils/README.md)
+- [Basics](/basics/README.md)
+- [Advanced](/advanced/README.md)
+- [API Reference](/api/README.md)
+- [Utils](/utils/README.md)
 
 ### Changelog
 
