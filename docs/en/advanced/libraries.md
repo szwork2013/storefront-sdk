@@ -10,7 +10,7 @@ This document lists all the libraries that SDK provides and its versions.
 - [React](https://github.com/facebook/react) at v0.14.0, available at `window.React`
 - [ReactDOM](https://github.com/facebook/react) at v0.14.0, available at `window.ReactDOM`
 - [React Intl](https://github.com/yahoo/react-intl) at v1.2.0, available at `window.ReactIntl`
-- [React Router](https://github.com/rackt/react-router/) at v1.0.0-rc1, available at `window.ReactRouter`
+- [React Router](https://github.com/rackt/react-router/) at v1.0.0-rc2, available at `window.ReactRouter`
 
 To make the best use of them, add to your `webpack.config.js`:
 
