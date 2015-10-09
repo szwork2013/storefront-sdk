@@ -1,8 +1,6 @@
 # [Storefront SDK](http://vtex-apps.github.io/storefront-sdk)
 
-Storefront SDK é uma ferramenta essencial para o desenvolvimento de lojas usando a plataforma VTEX.
-
-Ela funciona como uma biblioteca core fazendo com que os apps vivam bem juntos. Ela provê roteamento, um dispatcher do Flux e stores e actions para as APIs VTEX.
+Storefront SDK permite criar aplicações no Storefront de forma fácil e extensível. Ele provê uma API uniforme para usar e manipular dados de serviços VTEX, como Catálogo, Checkout e o próprio Storefront.
 
 ### Documentação
 
