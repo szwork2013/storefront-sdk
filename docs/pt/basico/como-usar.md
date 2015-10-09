@@ -21,22 +21,29 @@ var React = window.React;
 var sdk = window.storefront.sdk;
 ```
 
-Para melhorar a experiência de desenvolvimento, coloque o `React` e o `storefront.sdk` dentro de "externals" no seu `webpack.config.js`:
+## Melhorando a experiência de desenvolvimento
+
+Coloque as [bibliotecas fornecidas pelo SDK](../avancado/bibliotecas.md) dentro de "externals" no seu `webpack.config.js`:
 
 ```js
 externals: {
+  'alt': 'alt',
+  'axios': 'axios',
+  'immutable': 'Immutable',
+  'intl': 'Intl',
   'react': 'React',
+  'react-dom': 'ReactDOM',
+  'react-intl': 'ReactIntl',
+  'react-router': 'ReactRouter',
   'sdk': 'storefront.sdk'
 },
 ```
 
-Isso permite que você escreva:
+Isso permite que você escreva, por exemplo:
 ```js
 import React from 'react';
 import sdk from 'sdk';
 ```
 
-> Veja a lista completa de [bibliotecas fornecidas pelo SDK](../avancado/bibliotecas.md)
-
 ## Próximo passo
-Agora vamos [criar uma nova rota](../basico/rotas.md) no seu app.
+[Como usar o Flux do SDK.](flux.md)

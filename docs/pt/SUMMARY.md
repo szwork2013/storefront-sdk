@@ -2,9 +2,10 @@
 
 * [Storefront SDK](/README.md)
 * [Básico](/basico/README.md)
-  * [Como Usar](/basico/como-usar.md)
-  * [Rotas](/basico/rotas.md)
-  * [Dados e Flux](/basico/dados-e-flux.md)
+  * [Como usar](/basico/como-usar.md)
+  * [Flux](/basico/flux.md)
+  * [Registro](/basico/registro.md)
+  * [Roteamento](/basico/roteamento.md)
 * [Avançado](/avancado/README.md)
   * [Bibliotecas](/avancado/bibliotecas.md)
 * [Referência da API](/api/README.md)

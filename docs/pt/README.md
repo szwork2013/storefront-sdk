@@ -4,12 +4,6 @@ Storefront SDK é uma ferramenta essencial para o desenvolvimento de lojas usand
 
 Ela funciona como uma biblioteca core fazendo com que os apps vivam bem juntos. Ela provê roteamento, um dispatcher do Flux e stores e actions para as APIs VTEX.
 
-### Flux
-
-Storefront SDK usa o [Alt](http://alt.js.org/) como sua implementação de Flux, então é fácil criar suas próprias stores e actions.
-
-Todas as stores oferecidas pelo SDK são compostas por objetos [Immutable](http://facebook.github.io/immutable-js/), melhorando a performance de seus apps e fazendo com que o código seja mais seguro.
-
 ### Documentação
 
 - [Básico](/basico/README.md)
