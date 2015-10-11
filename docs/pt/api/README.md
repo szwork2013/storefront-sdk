@@ -12,7 +12,7 @@
   - SearchStore
   - SettingsStore
 - [Actions](/actions/README.md)
-  - CartActions
+  - [CartActions](/api/actions/CartActions.md)
   - ComponentActions
   - ContextActions
   - EditorActions

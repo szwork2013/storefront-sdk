@@ -1,6 +1,6 @@
 # Actions
 
-- CartActions
+- [CartActions](/api/actions/CartActions.md)
 - ComponentActions
 - ContextActions
 - EditorActions
