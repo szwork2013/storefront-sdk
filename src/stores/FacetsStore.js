@@ -6,7 +6,7 @@ import { flatten } from 'lodash-compat/array';
 function addFacets(state, facets) {
   let currentURL = (window.location.pathname + window.location.search);
   let newFacets = state.withMutations(map => {
-     map.set(currentURL, facets[0]);
+    map.set(currentURL, facets[0]);
   });
   return newFacets;
 }

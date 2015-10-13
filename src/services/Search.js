@@ -25,12 +25,12 @@ class Search {
         params,
         headers: this.defaultHeaders
       });
-    } else {
-      return axios.get(this.productsResource, {
-        params,
-        headers: this.defaultHeaders
-      });
     }
+
+    return axios.get(this.productsResource, {
+      params,
+      headers: this.defaultHeaders
+    });
   }
 
   facets(params) {

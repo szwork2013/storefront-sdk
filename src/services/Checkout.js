@@ -8,7 +8,7 @@ class Checkout {
   }
 
   _getSaveAttachmentURL(orderFormId, attachmentId) {
-     return this._getBaseOrderFormURL(orderFormId) + '/attachments/' + attachmentId;
+    return this._getBaseOrderFormURL(orderFormId) + '/attachments/' + attachmentId;
   }
 
   _getBaseOrderFormURL() {

@@ -19,9 +19,9 @@ export function isDescriptor(desc) {
 export default function decorate(handleDescriptor, entryArgs) {
   if (isDescriptor(entryArgs[entryArgs.length - 1])) {
     return handleDescriptor(...entryArgs, []);
-  } else {
-    return function () {
-      return handleDescriptor(...arguments, entryArgs);
-    };
   }
+
+  return function () {
+    return handleDescriptor(...arguments, entryArgs);
+  };
 }
