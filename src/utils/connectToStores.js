@@ -41,7 +41,6 @@ function connectToStores() {
       constructor(props) {
         super(props);
 
-        this.contextTypes = Component.contextTypes;
         this.state = Component.getPropsFromStores(props, this.context);
 
         const stores = Component.getStores(props, this.context);
@@ -70,6 +69,7 @@ function connectToStores() {
       }
     }
 
+    StoreConnection.contextTypes = Component.contextTypes;
     let staticProperties = keys(Component);
 
     for (let i = 0; i < staticProperties.length; i++) {
