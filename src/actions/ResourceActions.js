@@ -32,7 +32,7 @@ class ResourceActions {
       })
       .catch((error) => this.actions.requestResoucesError(currentURL, route, params, error));
 
-    return { route, params };
+    return {currentURL, route, params};
   }
 
   getRouteResourcesSuccess(currentURL, route, params, resources) {
