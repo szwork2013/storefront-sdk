@@ -34,13 +34,13 @@
   {% script 'storefront-react-libs.js@vtex.storefront-sdk' %}
   {% script 'storefront-sdk.js@vtex.storefront-sdk' %}
 
-  {% capture intlLocaleUrl %}//io.vtex.com.br/front-libs/intl/1.0.0/locale-data/jsonp/{{ culture.language | split: "-" | first }}.js{% endcapture %}
+  {% capture intlLocaleUrl %}//io.vtex.com.br/front-libs/intl/1.0.0/locale-data/jsonp/{{ culture.language }}.js{% endcapture %}
   {% script intlLocaleUrl %}
-  {% capture reactLocaleUrl %}//io.vtex.com.br/front-libs/react-intl/2.0.0-pr-2/locale-data/{{ culture.language | split: "-" | first }}.js{% endcapture %}
+  {% capture reactLocaleUrl %}//io.vtex.com.br/front-libs/react-intl/2.0.0-pr-2/locale-data/{{ culture.language }}.js{% endcapture %}
   {% script reactLocaleUrl %}
   <script>
     window.addEventListener('load', function () {
-      ReactIntl.addLocaleData(ReactIntlLocaleData.{{ culture.language | split: "-" | first }});
+      ReactIntl.addLocaleData(ReactIntlLocaleData.{{ culture.language }});
     });
   </script>
 
