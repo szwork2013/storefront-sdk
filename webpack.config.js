@@ -52,6 +52,10 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.PrefetchPlugin('lodash-compat'),
+    new webpack.SourceMapDevToolPlugin({
+      name: ['react-libs', 'libs'],
+      filename: '[file].map'
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false
@@ -63,6 +67,10 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.PrefetchPlugin('lodash-compat'),
     new webpack.NoErrorsPlugin(),
+    new webpack.SourceMapDevToolPlugin({
+      name: ['react-libs', 'libs'],
+      filename: '[file].map'
+    }),
     new webpack.optimize.CommonsChunkPlugin(commonsConfig)
   ],
 
