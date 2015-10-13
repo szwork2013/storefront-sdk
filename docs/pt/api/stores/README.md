@@ -2,11 +2,11 @@
 
 - CartStore
 - CategoryStore
-- ComponentStore
-- ContextStore
+- [ComponentStore](ComponentStore.md)
+- [ContextStore](ContextStore.md)
 - EditorStore
 - FacetsStore
 - ProductStore
-- ResourceStore
+- [ResourceStore](ResourceStore.md)
 - SearchStore
-- SettingsStore
+- [SettingsStore](SettingsStore.md)

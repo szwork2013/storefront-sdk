@@ -12,14 +12,14 @@
   * [Stores](/api/stores/README.md)
     * CartStore
     * CategoryStore
-    * ComponentStore
-    * ContextStore
+    * [ComponentStore](/api/stores/ComponentStore.md)
+    * [ContextStore](/api/stores/ContextStore.md)
     * EditorStore
     * FacetsStore
     * ProductStore
-    * ResourceStore
+    * [ResourceStore](/api/stores/ResourceStore.md)
     * SearchStore
-    * SettingsStore
+    * [SettingsStore](/api/stores/SettingsStore.md)
   * [Actions](/api/actions/README.md)
     * [CartActions](/api/actions/CartActions.md)
     * ComponentActions
