@@ -2,28 +2,50 @@ import axios from 'axios';
 import { omit } from 'lodash-compat/object';
 
 class Search {
-  static productResource = '/_resources/product@vtex.storefront-sdk/'
-  static productsResource = '/_resources/products@vtex.storefront-sdk/'
+  constructor() {
+    let token = ('; ' + document.cookie).split('; VtexIdclientAutCookie=').pop().split(';').shift();
+    let workspace = ('; ' + document.cookie).split('; vtex_workspace=').pop().split(';').shift();
+    let sandbox = ('; ' + document.cookie).split('; vtex_sandbox=').pop().split(';').shift();
 
-  static products(params) {
+    this.defaultHeaders = {
+      'Accept': 'application/vnd.vtex.storefront.v0+json',
+      'Authorization': `token ${token}`,
+      'x-vtex-sandbox': sandbox,
+      'x-vtex-workspace': workspace ? workspace : 'master'
+    };
+
+    this.productResource = '/_resources/product@vtex.storefront-sdk/';
+    this.productsResource = '/_resources/products@vtex.storefront-sdk/';
+  }
+
+  products(params) {
     params = omit(params, ['$id']);
 
     if (params.product) {
-      return axios.get(this.productResource, { params: params });
+      return axios.get(this.productResource, {
+        params,
+        headers: this.defaultHeaders
+      });
     } else {
-      return axios.get(this.productsResource, { params: params });
+      return axios.get(this.productsResource, {
+        params,
+        headers: this.defaultHeaders
+      });
     }
   }
 
-  static facets(params) {
+  facets(params) {
     params = omit(params, ['$id']);
 
     const url = this.productsResource + '/facets';
 
-    return axios.get(url, { params: params });
+    return axios.get(url, {
+      params,
+      headers: this.defaultHeaders
+    });
   }
 
-  static categories(params) {
+  categories(params) {
     params = omit(params, ['$id']);
 
     const categoryId = params.category ? params.category : '';

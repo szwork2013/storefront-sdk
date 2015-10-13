@@ -26,11 +26,16 @@ class Storefront {
   }
 
   getRouteResources(route, params) {
-    return axios.get(`/_routes/${route}/resources/`, { params });
+    return axios.get(`/_routes/${route}/resources/`, {
+      headers: this.defaultHeaders,
+      params
+    });
   }
 
   getRouteSettings(route) {
-    return axios.get(`/_resources/_settings/?route=${route}`);
+    return axios.get(`/_resources/_settings/?route=${route}`, {
+      headers: this.defaultHeaders
+    });
   }
 }
 

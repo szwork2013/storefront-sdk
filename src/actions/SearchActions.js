@@ -1,9 +1,11 @@
 import Search from 'services/Search';
 
+const search = new Search();
+
 class SearchActions {
   requestSearch(params) {
     // Call API with query parameter
-    Search.products(params)
+    search.products(params)
       .then((result) => {
         let products;
         if (result.data['product@vtex.storefront-sdk']) {
@@ -30,7 +32,7 @@ class SearchActions {
 
   requestFacets(params) {
     // Call API with query parameter
-    Search.facets(params)
+    search.facets(params)
       .then((result) => {
         const results = result.data;
         this.actions.requestFacetsSuccess({ params, results });
