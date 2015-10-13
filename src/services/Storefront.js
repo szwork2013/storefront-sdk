@@ -7,7 +7,6 @@ class Storefront {
     let sandbox = ('; ' + document.cookie).split('; vtex_sandbox=').pop().split(';').shift();
 
     this.defaultHeaders = {
-      'Accept': 'application/vnd.vtex.storefront.v0+json',
       'Authorization': `token ${token}`,
       'x-vtex-sandbox': sandbox,
       'x-vtex-workspace': workspace ? workspace : 'master'
