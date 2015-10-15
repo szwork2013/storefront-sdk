@@ -4,7 +4,6 @@ import { isArray } from 'lodash-compat/lang';
 import { values } from 'lodash-compat/object';
 import { flatten } from 'lodash-compat/array';
 import { rest } from 'lodash-compat/array';
-import { filter } from 'lodash-compat/collection';
 
 function addCategories(state, categories) {
   if (!isArray(categories)) {
@@ -12,7 +11,9 @@ function addCategories(state, categories) {
   }
 
   let newCategories = state.withMutations(map => {
-    categories.forEach( category => map.set(category.slug, category) );
+    categories.forEach((category) => {
+      map.set(category.slug, Immutable.fromJS(category));
+    });
   });
 
   return newCategories;
@@ -36,13 +37,14 @@ class CategoryStore {
     });
   }
 
-  getCategory(slugs, categories = this.state.toJS()) {
-    let category = filter(categories, function(cat) {
-      return cat.slug === slugs[0];
-    })[0];
+  // Returns a category given an array of hierarchical category slugs
+  getCategory(slugs, categories = this.state) {
+    let category = categories.filter(function(cat) {
+      return cat.get('slug') === slugs[0];
+    }).first();
 
     return slugs.length === 1 ?
-      category : this.getCategory(rest(slugs), category.children);
+      category : this.getCategory(rest(slugs), category.get('children'));
   }
 }
 
