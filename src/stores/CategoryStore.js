@@ -3,8 +3,8 @@ import immutable from 'alt/utils/ImmutableUtil';
 import { isArray } from 'lodash-compat/lang';
 import { values } from 'lodash-compat/object';
 import { flatten } from 'lodash-compat/array';
-import { filter } from 'lodash-compat/collection';
 import { rest } from 'lodash-compat/array';
+import { filter } from 'lodash-compat/collection';
 
 function addCategories(state, categories) {
   if (!isArray(categories)) {
@@ -36,20 +36,13 @@ class CategoryStore {
     });
   }
 
-  getCategory(slugs) {
-    let filterCategory = function(categories, slugs) {
-      let filteredCategories = filter(categories, function(category) {
-        return category.slug === slugs[0];
-      }).pop();
+  getCategory(slugs, categories = this.state.toJS()) {
+    let category = filter(categories, function(cat) {
+      return cat.slug === slugs[0];
+    })[0];
 
-      if (slugs.length === 1) {
-        return filteredCategories;
-      }
-
-      return filterCategory(filteredCategories.children, rest(slugs));
-    }
-
-    return filterCategory(this.state.toJS(), slugs);
+    return slugs.length === 1 ?
+      category : this.getCategory(rest(slugs), category.children);
   }
 }
 
