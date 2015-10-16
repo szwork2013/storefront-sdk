@@ -30,7 +30,7 @@ class ResourceActions {
         resourcesResponse.data.resources._settings = settingsResponse.data;
         this.actions.getRouteResourcesSuccess(currentURL, route, params, resourcesResponse.data.resources);
       })
-      .catch((error) => this.actions.requestResoucesError(currentURL, route, params, error));
+      .catch((error) => this.actions.getRouteResourcesError(currentURL, route, params, error));
 
     return {currentURL, route, params};
   }
