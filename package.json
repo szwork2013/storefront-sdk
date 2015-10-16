@@ -17,7 +17,7 @@
   "dependencies": {
     "alt": "^0.17.4",
     "axios": "^0.7.0",
-    "history": "^1.12.2",
+    "history": "^1.12.5",
     "immutable": "^3.7.5",
     "intl": "^1.0.0",
     "lodash-compat": "^3.10.1",
@@ -25,7 +25,7 @@
     "react-addons-shallow-compare": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-intl": "^2.0.0-pr-2",
-    "react-router": "^1.0.0-rc2",
+    "react-router": "^1.0.0-rc3",
     "react-tap-event-plugin": "^0.2.0"
   },
   "devDependencies": {
