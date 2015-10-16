@@ -52,26 +52,21 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.PrefetchPlugin('lodash-compat'),
+    new webpack.optimize.CommonsChunkPlugin(commonsConfig),
     new webpack.SourceMapDevToolPlugin({
-      name: ['react-libs', 'libs'],
-      filename: '[file].map'
+      filename: '[file].map',
+      exclude: ['storefront-react-libs.js', 'storefront-libs.js']
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    }),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.CommonsChunkPlugin(commonsConfig)
+    new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}})
   ] : [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.PrefetchPlugin('lodash-compat'),
     new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin(commonsConfig),
     new webpack.SourceMapDevToolPlugin({
-      name: ['react-libs', 'libs'],
-      filename: '[file].map'
-    }),
-    new webpack.optimize.CommonsChunkPlugin(commonsConfig)
+      filename: '[file].map',
+      exclude: ['storefront-react-libs.js', 'storefront-libs.js']
+    })
   ],
 
   resolve: {
@@ -95,8 +90,6 @@ module.exports = {
   eslint: {
     configFile: '.eslintrc'
   },
-
-  devtool: 'source-map',
 
   watch: production ? false : true,
 
