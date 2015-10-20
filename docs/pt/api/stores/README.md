@@ -6,7 +6,7 @@
 - [ContextStore](ContextStore.md)
 - EditorStore
 - FacetsStore
-- ProductStore
+- [ProductStore](ProductStore.md)
 - [ResourceStore](ResourceStore.md)
 - SearchStore
 - [SettingsStore](SettingsStore.md)

@@ -16,7 +16,7 @@
     * [ContextStore](/api/stores/ContextStore.md)
     * EditorStore
     * FacetsStore
-    * ProductStore
+    * [ProductStore](/api/stores/ProductStore.md)
     * [ResourceStore](/api/stores/ResourceStore.md)
     * SearchStore
     * [SettingsStore](/api/stores/SettingsStore.md)
