@@ -5,7 +5,6 @@
   - CategoryStore
   - [ComponentStore](/stores/ComponentStore.md)
   - [ContextStore](/stores/ContextStore.md)
-  - EditorStore
   - FacetsStore
   - [ProductStore](/stores/ProductStore.md)
   - [ResourceStore](/stores/ResourceStore.md)
@@ -15,7 +14,6 @@
   - [CartActions](/api/actions/CartActions.md)
   - ComponentActions
   - ContextActions
-  - EditorActions
   - ProductActions
   - ResourceActions
   - SearchActions

@@ -14,7 +14,6 @@
     * CategoryStore
     * [ComponentStore](/api/stores/ComponentStore.md)
     * [ContextStore](/api/stores/ContextStore.md)
-    * EditorStore
     * FacetsStore
     * [ProductStore](/api/stores/ProductStore.md)
     * [ResourceStore](/api/stores/ResourceStore.md)
@@ -24,7 +23,6 @@
     * [CartActions](/api/actions/CartActions.md)
     * ComponentActions
     * ContextActions
-    * EditorActions
     * ProductActions
     * ResourceActions
     * SearchActions
