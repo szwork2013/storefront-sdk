@@ -4,15 +4,17 @@ import { values } from 'lodash-compat/object';
 import { flatten } from 'lodash-compat/array';
 
 function addFacets(state, facets) {
-  let currentURL = (window.location.pathname + window.location.search);
+  let path = window.location.pathname;
   let newFacets = state.withMutations(map => {
-    map.set(currentURL, facets[0]);
+    map.set(path, Immutable.fromJS(facets[0]));
   });
+
   return newFacets;
 }
 
 function getDataFromResources(state, resources) {
   let facets = flatten(values(resources['facets@vtex.storefront-sdk']));
+
   return addFacets(state, facets);
 }
 
@@ -32,3 +34,4 @@ class FacetsStore {
 }
 
 export default FacetsStore;
+
