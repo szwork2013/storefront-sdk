@@ -6,16 +6,14 @@ function getDataFromResources(state, resources) {
   let products = resources['products@vtex.storefront-sdk'];
   let product = resources['product@vtex.storefront-sdk'];
 
-  let currentURL = (window.location.pathname + window.location.search);
-
   return state.withMutations(map => {
-    for (let searchKey in products) {
+    for (let componentId in products) {
       let results = Immutable.Map({ results: pluck(products[searchKey], 'slug') });
-      map.set(currentURL, results);
+      map.set(componentId, results);
     }
-    for (let searchKey in product) {
+    for (let componentId in product) {
       let results = Immutable.Map({ results: pluck(product[searchKey], 'slug') });
-      map.set(currentURL, results);
+      map.set(componentId, results);
     }
   });
 }
