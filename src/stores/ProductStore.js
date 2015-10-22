@@ -45,8 +45,11 @@ class ProductStore {
   }
 
   getProducts(products) {
-    let result = [];
+    if (!products) {
+      return null;
+    }
 
+    let result = [];
     for (var i = 0; i < products.length; i++) {
       let product = this.state.get(products[i]);
       if (product) {
