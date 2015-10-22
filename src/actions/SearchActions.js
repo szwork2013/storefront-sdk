@@ -4,8 +4,13 @@ const search = new Search();
 
 class SearchActions {
   requestSearch(params) {
+    // params should be an immutable object
+    if (!params.toJS) {
+      return params;
+    }
+
     // Call API with query parameter
-    search.products(params)
+    search.products(params.toJS())
       .then((result) => {
         let products;
         if (result.data['product@vtex.storefront-sdk']) {
