@@ -8,11 +8,11 @@ function getDataFromResources(state, resources) {
 
   return state.withMutations(map => {
     for (let componentId in products) {
-      let results = Immutable.Map({ results: pluck(products[searchKey], 'slug') });
+      let results = Immutable.Map({ results: pluck(products[componentId], 'slug') });
       map.set(componentId, results);
     }
     for (let componentId in product) {
-      let results = Immutable.Map({ results: pluck(product[searchKey], 'slug') });
+      let results = Immutable.Map({ results: pluck(product[componentId], 'slug') });
       map.set(componentId, results);
     }
   });
