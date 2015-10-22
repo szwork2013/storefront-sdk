@@ -7,6 +7,8 @@
   * [Registro](/basico/registro.md)
   * [Roteamento](/basico/roteamento.md)
 * [Avançado](/avancado/README.md)
+  * [Criando uma store](/avancado/criando-uma-store.md)
+  * [Criando uma action](/avancado/criando-uma-action.md)
   * [Bibliotecas](/avancado/bibliotecas.md)
 * [Referência da API](/api/README.md)
   * [Resources](/api/resources/README.md)

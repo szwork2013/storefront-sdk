@@ -12,10 +12,11 @@ import { dispatcher } from 'sdk';
 
 ## Alt
 
-O SDK usa o [Alt](http://alt.js.org/) como sua implementação de Flux, então é fácil criar suas próprias stores e actions. Leia na documentação do Alt como fazer isso:
+O SDK usa o [Alt](http://alt.js.org/) como sua implementação de Flux, então é fácil criar suas próprias stores e actions.
 
-- [Criando stores no Alt](http://alt.js.org/guide/store/)
-- [Criando actions no Alt](http://alt.js.org/guide/actions/)
+Leia a documentação avançada para saber como criar stores e actions no SDK:
+- [Criando stores](../avancado/criando-uma-store.md)
+- [Criando actions](../avancado/criando-uma-action.md)
 
 ## Immutable
 
