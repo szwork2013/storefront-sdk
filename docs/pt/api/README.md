@@ -1,5 +1,10 @@
 # Referência da API
 
+- [Resources](/resources/README.md)
+  - categories
+  - facets
+  - product
+  - products
 - [Stores](/stores/README.md)
   - CartStore
   - CategoryStore

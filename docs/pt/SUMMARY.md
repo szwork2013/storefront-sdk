@@ -9,6 +9,11 @@
 * [Avançado](/avancado/README.md)
   * [Bibliotecas](/avancado/bibliotecas.md)
 * [Referência da API](/api/README.md)
+  * [Resources](/api/resources/README.md)
+    * categories
+    * facets
+    * product
+    * products
   * [Stores](/api/stores/README.md)
     * CartStore
     * CategoryStore
