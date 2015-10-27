@@ -9,6 +9,7 @@
 * [Avançado](/avancado/README.md)
   * [Criando uma store](/avancado/criando-uma-store.md)
   * [Criando uma action](/avancado/criando-uma-action.md)
+  * [Chamadas a API](/avancado/chamadas-a-api.md)
   * [Bibliotecas](/avancado/bibliotecas.md)
 * [Referência da API](/api/README.md)
   * [Resources](/api/resources/README.md)
