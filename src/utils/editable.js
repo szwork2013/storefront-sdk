@@ -8,7 +8,8 @@
  */
 
 import React from 'react';
-import { keys, assign } from 'lodash-compat/object';
+import shallowCompare from 'react-addons-shallow-compare';
+import { keys } from 'lodash-compat/object';
 import dispatcher from '../dispatcher/StorefrontDispatcher';
 
 function editable(metadata) {
@@ -24,7 +25,6 @@ function editable(metadata) {
 
       state = {
         SettingsStore: dispatcher.stores.SettingsStore.getState(),
-        ComponentStore: dispatcher.stores.ComponentStore.getState(),
         EditorStore: dispatcher.stores.EditorStore.getState()
       }
 
@@ -32,48 +32,49 @@ function editable(metadata) {
         super(props);
 
         dispatcher.stores.SettingsStore.listen(this.onChange);
-        dispatcher.stores.ComponentStore.listen(this.onChange);
         dispatcher.stores.EditorStore.listen(this.onChange);
       }
 
       componentWillUnmount = () => {
         dispatcher.stores.SettingsStore.unlisten(this.onChange);
-        dispatcher.stores.ComponentStore.unlisten(this.onChange);
         dispatcher.stores.EditorStore.unlisten(this.onChange);
       }
 
       onChange = () => {
+        let settings = dispatcher.stores.SettingsStore.getState().getIn([this.props.route, this.props.id, 'settings']);
+        let isEditing = dispatcher.stores.EditorStore.getState().get('isActive');
+
         this.setState({
-          SettingsStore: dispatcher.stores.SettingsStore.getState(),
-          ComponentStore: dispatcher.stores.ComponentStore.getState(),
-          EditorStore: dispatcher.stores.EditorStore.getState()
+          settings: settings,
+          isEditing: isEditing
         });
+      }
+
+      shouldComponentUpdate = (nextProps, nextState) => {
+        return shallowCompare(this, nextProps, nextState);
       }
 
       handleOpenEditor = () => {
         dispatcher.actions.EditorActions.openEditor({
           component: metadata.name,
           title: metadata.title,
-          route: this.props.route,
-          id: this.props.id
+          componentProps: this.props
         });
       }
 
       render() {
-        let settings = this.state.SettingsStore.getIn([this.props.route, this.props.id, 'settings']);
+        const { settings, isEditing } = this.state;
 
-        const editMode = this.state.EditorStore.get('isActive');
-
-        if (editMode) {
+        if (isEditing) {
           return (
             <div className="v-editor__component" onTouchTap={this.handleOpenEditor.bind(this)}>
               <span className="v-editor__component-name">{metadata.title}</span>
-              <Component {...assign({}, this.props, this.state)} settings={settings}/>
+              <Component {...this.props} settings={settings}/>
             </div>
           );
         }
 
-        return <Component {...assign({}, this.props, this.state)} settings={settings}/>;
+        return <Component {...this.props} settings={settings}/>;
       }
     }
 
