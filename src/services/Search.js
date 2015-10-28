@@ -5,11 +5,9 @@ class Search {
   constructor() {
     let token = ('; ' + document.cookie).split('; VtexIdclientAutCookie=').pop().split(';').shift();
     let workspace = ('; ' + document.cookie).split('; vtex_workspace=').pop().split(';').shift();
-    let sandbox = ('; ' + document.cookie).split('; vtex_sandbox=').pop().split(';').shift();
 
     this.defaultHeaders = {
       'Authorization': `token ${token}`,
-      'x-vtex-sandbox': sandbox,
       'x-vtex-workspace': workspace ? workspace : 'master'
     };
 
