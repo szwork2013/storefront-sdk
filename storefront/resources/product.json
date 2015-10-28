@@ -2,6 +2,7 @@
   "url": "http://api.beta.vtex.com/:account/products/:slug",
   "cacheDuration": 60,
   "parameters": {
-    "account": "{{ account.name }}"
+    "account": "{{ account.name }}",
+    "slug": "{{ parameters.slug }}"
   }
 }
