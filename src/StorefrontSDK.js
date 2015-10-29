@@ -12,8 +12,10 @@ import createHistory from 'history/lib/createBrowserHistory';
 import useQueries from 'history/lib/useQueries';
 
 import dispatcher from './dispatcher/StorefrontDispatcher';
-import connectToStores from './utils/connectToStores';
 import storefront from './utils/storefront';
+import connectToStores from './utils/connectToStores';
+import Price from './utils/Price';
+import Img from './utils/Img';
 import App from './App';
 
 let ReactDOM = window.ReactDOM;
@@ -30,7 +32,9 @@ class StorefrontSDK {
   history = history;
 
   utils = {
-    connectToStores: connectToStores
+    connectToStores,
+    Price,
+    Img
   }
 
   init() {
