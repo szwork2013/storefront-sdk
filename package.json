@@ -25,7 +25,7 @@
     "react-addons-shallow-compare": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-intl": "^2.0.0-pr-2",
-    "react-router": "^1.0.0-rc3",
+    "react-router": "^1.0.0-rc4",
     "react-tap-event-plugin": "^0.2.1"
   },
   "devDependencies": {
