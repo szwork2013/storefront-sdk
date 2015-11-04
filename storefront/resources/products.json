@@ -6,10 +6,7 @@
   },
   "queryString": {
     "query": "{{ parameters.query }}",
-    "brand": "{{ parameters.brand }}",
     "category": "{{ parameters.category }}",
-    "page": "{{ parameters.page }}",
-    "pageSize": "{{ parameters.pageSize }}",
-    "filter": "{{ parameters.filter }}"
+    "brands": "{{ parameters.brand }}"
   }
 }
