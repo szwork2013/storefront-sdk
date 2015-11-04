@@ -10,14 +10,15 @@ function addCategories(state, categories) {
   }
 
   let newCategories = state.withMutations(map => {
-    categories.forEach( category => map.set(category.slug, category) );
+    categories.forEach((category) => {
+      map.set(category.slug, Immutable.fromJS(category));
+    });
   });
 
   return newCategories;
 }
 
-function getDataFromResources(state) {
-  let resources = window.storefront.currentRoute.resources;
+function getDataFromResources(state, resources) {
   let categories = flatten(values(resources['categories@vtex.storefront-sdk']));
 
   return addCategories(state, categories);
@@ -27,7 +28,14 @@ function getDataFromResources(state) {
 class CategoryStore {
   constructor(dispatcher) {
     this.bindActions(dispatcher.actions.CategoryActions);
-    this.state = getDataFromResources(Immutable.Map());
+    this.bindActions(dispatcher.actions.ResourceActions);
+    let resources = window.storefront.currentRoute.resources;
+
+    this.state = getDataFromResources(Immutable.Map(), resources);
+  }
+
+  onGetRouteResourcesSuccess({ resources }) {
+    this.setState(getDataFromResources(this.state, resources));
   }
 }
 
