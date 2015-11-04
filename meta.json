@@ -4,5 +4,7 @@
   "title": "VTEX Storefront SDK",
   "description": "React routing, component registry, Flux and VTEX common stores and actions for Storefront apps.",
   "vendor": "vtex",
-  "dependencies": {}
+  "dependencies": {
+    "vtex.storefront": "0"
+  }
 }
