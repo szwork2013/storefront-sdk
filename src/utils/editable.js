@@ -23,13 +23,10 @@ function editable(metadata) {
         title: metadata.title
       }
 
-      state = {
-        SettingsStore: dispatcher.stores.SettingsStore.getState(),
-        EditorStore: dispatcher.stores.EditorStore.getState()
-      }
-
       constructor(props) {
         super(props);
+
+        this.state = this.getDataFromStores(props);
 
         dispatcher.stores.SettingsStore.listen(this.onChange);
         dispatcher.stores.EditorStore.listen(this.onChange);
@@ -40,14 +37,15 @@ function editable(metadata) {
         dispatcher.stores.EditorStore.unlisten(this.onChange);
       }
 
-      onChange = () => {
-        let settings = dispatcher.stores.SettingsStore.getState().getIn([this.props.route, this.props.id, 'settings']);
-        let isEditing = dispatcher.stores.EditorStore.getState().get('isActive');
+      getDataFromStores = (props) => {
+        return {
+          settings: dispatcher.stores.SettingsStore.getState().getIn([props.route, props.id, 'settings']),
+          isEditing: dispatcher.stores.EditorStore.getState().get('isActive')
+        }
+      }
 
-        this.setState({
-          settings: settings,
-          isEditing: isEditing
-        });
+      onChange = () => {
+        this.setState(this.getDataFromStores(this.props));
       }
 
       shouldComponentUpdate = (nextProps, nextState) => {
