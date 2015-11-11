@@ -1,15 +1,8 @@
-import 'expose?React!react';
-import 'expose?ReactDOM!react-dom';
-import 'expose?ReactRouter!react-router';
-import 'expose?Intl!intl';
-import 'expose?Immutable!immutable';
-import 'expose?ReactIntl!react-intl';
-import 'expose?axios!axios';
-import 'expose?alt!alt';
 
 import { map } from 'lodash-compat/collection';
-import createHistory from 'history/lib/createBrowserHistory';
-import useQueries from 'history/lib/useQueries';
+import { createHistory, useQueries } from 'history';
+import { Router, Route } from 'react-router';
+import ReactDOM from 'react-dom';
 
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import storefront from './utils/storefront';
@@ -17,9 +10,6 @@ import connectToStores from './utils/connectToStores';
 import Price from './utils/Price';
 import Img from './utils/Img';
 import App from './App';
-
-let ReactDOM = window.ReactDOM;
-let { Router, Route } = window.ReactRouter;
 
 let history = useQueries(createHistory)();
 

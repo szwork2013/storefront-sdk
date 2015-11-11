@@ -6,32 +6,23 @@ var publicPath = '/assets/@' + meta.vendor + '.' + pkg.name + '/';
 var production = process.env.NODE_ENV === 'production';
 
 var commonsConfig = {
-  name: ['react-libs', 'libs'],
+  name: ['sdk-libs'],
   filename: 'storefront-[name].js',
-  minChunks: Infinity
+  minChunks: Infinity,
 };
 
 module.exports = {
   entry: {
     '.': './src/index.js',
-    'libs': [
-      'alt',
-      'axios',
-      'immutable',
-      'intl'
-    ],
-    'react-libs': [
-      'react',
-      'react-dom',
-      'react-intl',
-      'react-router'
+    'sdk-libs': [
+      'react-helmet'
     ]
   },
 
   module: {
     preLoaders: [
       {
-        test: /\.js$|\.jsx$/,
+        test: /\.js$/,
         include: path.join(__dirname, 'src'),
         exclude: /node_modules/,
         loader: 'eslint-loader'
@@ -40,7 +31,7 @@ module.exports = {
 
     loaders: [
       {
-        test: /\.js$|\.jsx$/,
+        test: /\.js$/,
         include: path.join(__dirname, 'src'),
         exclude: /node_modules/,
         loader: 'babel'
@@ -55,19 +46,30 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin(commonsConfig),
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map',
-      exclude: ['storefront-react-libs.js', 'storefront-libs.js']
+      exclude: ['storefront-sdk-libs.js']
     }),
     new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}})
   ] : [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.PrefetchPlugin('lodash-compat'),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin(commonsConfig),
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map',
-      exclude: ['storefront-react-libs.js', 'storefront-libs.js']
+      exclude: ['storefront-sdk-libs.js']
     })
   ],
+
+  externals: {
+    'alt': 'Alt',
+    'axios': 'axios',
+    'immutable': 'Immutable',
+    'intl': 'Intl',
+    'react': 'React',
+    'history': 'History',
+    'react-dom': 'ReactDOM',
+    'react-intl': 'ReactIntl',
+    'react-router': 'ReactRouter'
+  },
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
