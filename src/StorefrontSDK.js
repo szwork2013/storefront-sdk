@@ -1,3 +1,4 @@
+import 'expose?ReactHelmet!react-helmet';
 
 import { map } from 'lodash-compat/collection';
 import { createHistory, useQueries } from 'history';
