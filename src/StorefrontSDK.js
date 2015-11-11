@@ -34,7 +34,21 @@ class StorefrontSDK {
     // Create routes based on the declared storefront components
     let children = map(window.storefront.routes, (route, routeName) => {
       let component = components.getIn([route.component, 'constructor']);
-      return <Route path={route.path} component={component} key={routeName}/>;
+
+      let routeProps = {
+        path: route.path,
+        component: component,
+        key: routeName
+      };
+
+      if (component.onEnter) {
+        routeProps.onEnter = component.onEnter;
+      }
+      if (component.onLeave) {
+        routeProps.onLeave = component.onLeave;
+      }
+
+      return <Route {...routeProps}/>;
     });
 
     let wrapper = (
