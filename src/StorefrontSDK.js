@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import storefront from './utils/storefront';
 import connectToStores from './utils/connectToStores';
+import ComponentNotFound from './utils/ComponentNotFound';
 import Price from './utils/Price';
 import Img from './utils/Img';
 import App from './App';
@@ -40,6 +41,11 @@ class StorefrontSDK {
         component: component,
         key: routeName
       };
+
+      if (!component) {
+        console.error(`Component ${route.component} not found.`);
+        return <Route {...routeProps} component={ComponentNotFound(routeName, route.component)}/>
+      }
 
       if (component.onEnter) {
         routeProps.onEnter = component.onEnter;
