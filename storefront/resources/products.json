@@ -7,6 +7,8 @@
   "queryString": {
     "query": "{{ parameters.query }}",
     "category": "{{ parameters.category }}",
-    "brands": "{{ parameters.brand }}"
+    "brands": "{{ parameters.brands }}",
+    "page": "{{ parameters.page }}",
+    "pageSize": "{{ parameters.pageSize }}"
   }
 }
