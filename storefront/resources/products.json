@@ -8,5 +8,7 @@
     "query": "{{ parameters.query }}",
     "category": "{{ parameters.category }}",
     "brands": "{{ parameters.brand }}"
+    "page": "{{ parameters.page }}",
+    "pageSize": "{{ parameters.pageSize }}"
   }
 }
