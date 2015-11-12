@@ -1,5 +1,5 @@
 import 'expose?React!react';
-import 'expose?ReactDom!react-dom';
+import 'expose?ReactDOM!react-dom';
 import 'expose?ReactRouter!react-router';
 import 'expose?ReactIntl!react-intl';
 import 'expose?ReactHelmet!react-helmet';
