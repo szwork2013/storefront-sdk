@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { each } from 'lodash-compat/collection';
 
 class Storefront {
   constructor() {
@@ -24,9 +23,9 @@ class Storefront {
   }
 
   getRouteResources(route, params, query) {
-    each(query, function(value, key) {
-      params[`query.${key}`] = value;
-    });
+    for (let key in query) {
+      params[`query.${key}`] = query[key];
+    }
 
     return axios.get(`/_routes/${route}/resources/`, {
       headers: this.defaultHeaders,
