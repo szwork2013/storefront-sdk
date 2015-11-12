@@ -4,7 +4,7 @@ import { values } from 'lodash-compat/object';
 import { flatten } from 'lodash-compat/array';
 
 function addFacets(state, facets) {
-  let path = window.location.pathname;
+  let path = window.location.pathname + window.location.search;
   let newFacets = state.withMutations(map => {
     map.set(path, Immutable.fromJS(facets[0]));
   });
