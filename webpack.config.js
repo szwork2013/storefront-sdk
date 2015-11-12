@@ -15,6 +15,11 @@ module.exports = {
   entry: {
     '.': './src/index.js',
     'sdk-libs': [
+      'react',
+      'react-dom',
+      'react-tap-event-plugin',
+      'react-router',
+      'react-intl',
       'react-helmet'
     ]
   },
@@ -64,11 +69,7 @@ module.exports = {
     'axios': 'axios',
     'immutable': 'Immutable',
     'intl': 'Intl',
-    'react': 'React',
-    'history': 'History',
-    'react-dom': 'ReactDOM',
-    'react-intl': 'ReactIntl',
-    'react-router': 'ReactRouter'
+    'history': 'History'
   },
 
   resolve: {

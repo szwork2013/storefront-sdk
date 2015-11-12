@@ -1,8 +1,13 @@
+import 'expose?React!react';
+import 'expose?ReactDom!react-dom';
+import 'expose?ReactRouter!react-router';
+import 'expose?ReactIntl!react-intl';
 import 'expose?ReactHelmet!react-helmet';
 
 import { map } from 'lodash-compat/collection';
 import { createHistory, useQueries } from 'history';
 import { Router, Route } from 'react-router';
+import { IntlProvider } from 'react-intl';
 import ReactDOM from 'react-dom';
 
 import dispatcher from './dispatcher/StorefrontDispatcher';
@@ -67,10 +72,14 @@ class StorefrontSDK {
     }
 
     // Finally, render
+    let locale = this.dispatcher.stores.ContextStore.getState().getIn(['culture', 'language']);
+    ReactIntl.addLocaleData(ReactIntlLocaleData[locale]);
     ReactDOM.render(
-      <Router history={this.history}>
-        {wrapper}
-      </Router>
+      <IntlProvider locale={locale}>
+        <Router history={this.history}>
+          {wrapper}
+        </Router>
+      </IntlProvider>
     , document.getElementById('storefront-container'));
   }
 }
