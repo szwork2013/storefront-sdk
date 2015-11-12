@@ -13,7 +13,7 @@ class Price extends React.Component {
 
     this.state = {
       currency: dispatcher.stores.ContextStore.getState().getIn(['culture' ,'currency'])
-    }
+    };
   }
 
   render() {
