@@ -22,7 +22,11 @@ class Storefront {
     });
   }
 
-  getRouteResources(route, params) {
+  getRouteResources(route, params, query) {
+    for (let key in query) {
+      params[`query.${key}`] = query[key];
+    }
+
     return axios.get(`/_routes/${route}/resources/`, {
       headers: this.defaultHeaders,
       params

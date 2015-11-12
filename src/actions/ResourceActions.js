@@ -20,8 +20,8 @@ class ResourceActions {
     return error;
   }
 
-  getRouteResources(currentURL, route, params = {}) {
-    let resources = storefrontService.getRouteResources(route, params);
+  getRouteResources(currentURL, route, params = {}, query = {}) {
+    let resources = storefrontService.getRouteResources(route, params, query);
     let settings = storefrontService.getRouteSettings(route);
 
     Promise.all([resources, settings])
