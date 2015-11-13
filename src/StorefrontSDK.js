@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import dispatcher from './dispatcher/StorefrontDispatcher';
 import storefront from './utils/storefront';
 import connectToStores from './utils/connectToStores';
-import ComponentNotFound from './utils/ComponentNotFound';
+import ComponentNotFound from './utils/ComponentNotFound/';
 import Price from './utils/Price';
 import Img from './utils/Img';
 import App from './App';
