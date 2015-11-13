@@ -44,7 +44,7 @@ class StorefrontSDK {
 
       if (!component) {
         console.error(`Component ${route.component} not found.`);
-        return <Route {...routeProps} component={ComponentNotFound(routeName, route.component)}/>
+        return <Route {...routeProps} component={ComponentNotFound(routeName, route.component)}/>;
       }
 
       if (component.onEnter) {

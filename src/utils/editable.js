@@ -41,7 +41,7 @@ function editable(metadata) {
         return {
           settings: dispatcher.stores.SettingsStore.getState().getIn([props.route, props.id, 'settings']),
           isEditing: dispatcher.stores.EditorStore.getState().get('isActive')
-        }
+        };
       }
 
       onChange = () => {

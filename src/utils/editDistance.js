@@ -1,6 +1,6 @@
 export default function(a, b) {
-  if (a.length == 0) { return b.length };
-  if (b.length == 0) { return a.length };
+  if (a.length == 0) { return b.length; }
+  if (b.length == 0) { return a.length; }
 
   var matrix = [];
 
@@ -30,4 +30,4 @@ export default function(a, b) {
   }
 
   return matrix[b.length][a.length];
-};
+}

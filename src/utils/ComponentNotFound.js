@@ -15,7 +15,7 @@ const findSimilarRegisteredComponent = (componentId) => {
   }
 
   return similar;
-}
+};
 
 export default function ComponentNotFound(routeName, componentId) {
   return class ComponentNotFound extends React.Component {
@@ -35,5 +35,5 @@ export default function ComponentNotFound(routeName, componentId) {
         </div>
       );
     }
-  }
-};
+  };
+}
