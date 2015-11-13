@@ -53,6 +53,11 @@ module.exports = {
       filename: '[file].map',
       exclude: ['storefront-sdk-libs.js']
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': '"production"'
+      }
+    }),
     new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}})
   ] : [
     new webpack.optimize.OccurenceOrderPlugin(),
