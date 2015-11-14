@@ -4,7 +4,7 @@ import 'expose?ReactRouter!react-router';
 import 'expose?ReactIntl!react-intl';
 import 'expose?ReactHelmet!react-helmet';
 
-import { map } from 'lodash-compat/collection';
+import map from 'lodash-compat/collection/map';
 import { createHistory, useQueries } from 'history';
 import { Router, Route } from 'react-router';
 import { IntlProvider } from 'react-intl';

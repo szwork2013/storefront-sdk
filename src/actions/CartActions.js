@@ -1,5 +1,5 @@
 import Checkout from 'services/Checkout';
-import { debounce } from 'lodash-compat/function';
+import debounce from 'debounce';
 import StorefrontConstants from 'constants/StorefrontConstants';
 
 const checkout = new Checkout();
