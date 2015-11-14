@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { isArray } from 'lodash-compat/lang';
+import isArray from 'lodash-compat/lang/isArray';
 import immutable from 'alt/utils/ImmutableUtil';
 
 let _getComponentProperties = function _getComponentProperties(state, _component) {

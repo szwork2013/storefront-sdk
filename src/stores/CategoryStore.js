@@ -1,8 +1,8 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import { isArray } from 'lodash-compat/lang';
-import { values } from 'lodash-compat/object';
-import { flatten } from 'lodash-compat/array';
+import isArray from 'lodash-compat/lang/isArray';
+import values from 'lodash-compat/object/values';
+import flatten from 'lodash-compat/array/flatten';
 
 function addCategories(state, categories) {
   if (!isArray(categories)) {
@@ -40,4 +40,3 @@ class CategoryStore {
 }
 
 export default CategoryStore;
-

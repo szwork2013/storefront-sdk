@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import { keys } from 'lodash-compat/object';
+import keys from 'lodash-compat/object/keys';
 
 function getDataFromResources(state, currentURL, resources) {
   return state.withMutations(map =>

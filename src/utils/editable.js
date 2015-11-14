@@ -9,7 +9,7 @@
 
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
-import { keys } from 'lodash-compat/object';
+import keys from 'lodash-compat/object/keys';
 import dispatcher from '../dispatcher/StorefrontDispatcher';
 
 function editable(metadata) {
