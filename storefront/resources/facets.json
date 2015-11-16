@@ -5,6 +5,7 @@
     "account": "{{ account.name }}"
   },
   "queryString": {
-    "category": "{{ parameters.category }}"
+    "category": "{{ parameters.category }}",
+    "brands": "{{ parameters.brands }}"
   }
 }
