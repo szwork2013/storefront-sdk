@@ -1,19 +1,17 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import values from 'lodash-compat/object/values';
-import flatten from 'lodash-compat/array/flatten';
 
 function addFacets(state, facets) {
   let path = window.location.pathname + window.location.search;
   let newFacets = state.withMutations(map => {
-    map.set(path, Immutable.fromJS(facets[0]));
+    map.set(path, Immutable.fromJS(facets));
   });
 
   return newFacets;
 }
 
 function getDataFromResources(state, resources) {
-  let facets = flatten(values(resources['facets@vtex.storefront-sdk']));
+  let facets = resources['facets@vtex.storefront-sdk'];
 
   return addFacets(state, facets);
 }
