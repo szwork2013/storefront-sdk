@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { omit } from 'lodash-compat/object';
+import omit from 'lodash-compat/object/omit';
 
 class Search {
   constructor() {

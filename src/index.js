@@ -1,7 +1,7 @@
 import sdk from 'expose?storefront.sdk!./StorefrontSDK';
 import actions from './actions';
 import stores from './stores';
-import { map } from 'lodash-compat/collection';
+import map from 'lodash-compat/collection/map';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release

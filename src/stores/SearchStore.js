@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import { pluck } from 'lodash-compat/collection';
+import pluck from 'lodash-compat/collection/pluck';
 
 function getDataFromResources(state, resources) {
   let products = resources['products@vtex.storefront-sdk'];

@@ -1,4 +1,4 @@
-import { each } from 'lodash-compat/collection';
+import each from 'lodash-compat/collection/each';
 import StorefrontConstants from 'constants/StorefrontConstants';
 import axios from 'axios';
 

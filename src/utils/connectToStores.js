@@ -1,7 +1,8 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
-import { isFunction } from 'lodash-compat/lang';
-import { keys, assign } from 'lodash-compat/object';
+import isFunction from 'lodash-compat/lang/isFunction';
+import keys from 'lodash-compat/object/keys';
+import assign from 'lodash-compat/object/assign';
 
 /**
  *    import { stores, utils } from 'sdk';

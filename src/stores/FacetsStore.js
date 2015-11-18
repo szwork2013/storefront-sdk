@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
-import { values } from 'lodash-compat/object';
-import { flatten } from 'lodash-compat/array';
+import values from 'lodash-compat/object/values';
+import flatten from 'lodash-compat/array/flatten';
 
 function addFacets(state, facets) {
   let path = window.location.pathname + window.location.search;
@@ -34,4 +34,3 @@ class FacetsStore {
 }
 
 export default FacetsStore;
-
