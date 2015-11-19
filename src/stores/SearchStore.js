@@ -3,17 +3,20 @@ import immutable from 'alt/utils/ImmutableUtil';
 import pluck from 'lodash-compat/collection/pluck';
 
 function getDataFromResources(state, resources) {
+  let path = window.location.pathname + window.location.search;
   let products = resources['products@vtex.storefront-sdk'];
   let product = resources['product@vtex.storefront-sdk'];
 
   return state.withMutations(map => {
     for (let componentId in products) {
-      let results = Immutable.Map({ results: pluck(products[componentId], 'slug') });
-      map.set(componentId, results);
+      let productSlug = pluck(products[componentId], 'slug');
+      let results = Immutable.Map().setIn([componentId, 'results'], productSlug);
+      map.set(path, results);
     }
     for (let componentId in product) {
-      let results = Immutable.Map({ results: pluck(product[componentId], 'slug') });
-      map.set(componentId, results);
+      let productSlug = pluck(product[componentId], 'slug');
+      let results = Immutable.Map().setIn([componentId, 'results'], productSlug);
+      map.set(path, results);
     }
   });
 }
