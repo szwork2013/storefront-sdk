@@ -17,6 +17,7 @@ module.exports = {
     'sdk-libs': [
       'react',
       'react-dom',
+      'react-addons-css-transition-group',
       'react-tap-event-plugin',
       'react-router',
       'react-intl',
