@@ -22,7 +22,7 @@ class ResourceActions {
 
   getRouteResources(currentURL, route, params = {}, query = {}) {
     let resources = storefrontService.getRouteResources(route, params, query);
-    let settings = storefrontService.getRouteSettings(route);
+    let settings = storefrontService.getComponentSettings(route);
 
     Promise.all([resources, settings])
       .then((response) => {

@@ -11,9 +11,9 @@ class Storefront {
     };
   }
 
-  saveComponentSettings({route, id, component, settings}) {
+  saveComponentSettings({id, component, settings}) {
     const url = `/_resources/_settings/`;
-    const params = { route, id };
+    const params = { id };
     const data = { component, settings };
 
     return axios.put(url, data, {
@@ -33,8 +33,8 @@ class Storefront {
     });
   }
 
-  getRouteSettings(route) {
-    return axios.get(`/_resources/_settings/?route=${route}`, {
+  getComponentSettings(component) {
+    return axios.get(`/_resources/_settings/?id=${component}`, {
       headers: this.defaultHeaders
     });
   }
