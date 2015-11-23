@@ -1,5 +1,4 @@
 import decorate from './decorate';
-import editable from './editable';
 import dispatcher from '../dispatcher/StorefrontDispatcher';
 
 function validateParams(target, key) {
@@ -40,11 +39,6 @@ function handleDescriptor(target, key) {
   }
 
   let metadata = key[0];
-
-  // Wrap editable component
-  if (metadata.editable) {
-    target = editable(metadata)(target);
-  }
 
   if (metadata.name) {
     target.storefront = target.storefront || {};
