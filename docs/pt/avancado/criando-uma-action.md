@@ -13,10 +13,7 @@ class MyCustomActions {
   }
 }
 
-// Check if the action is already registered at the dispatcher
-if (!dispatcher.actions.MyCustomActions) {
-  dispatcher.addActions('MyCustomActions', MyCustomActions);
-}
+dispatcher.addActions('MyCustomActions', MyCustomActions);
 
 export default dispatcher.actions.MyCustomActions;
 ```

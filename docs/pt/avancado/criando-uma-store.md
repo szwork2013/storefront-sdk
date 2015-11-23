@@ -27,10 +27,7 @@ class MyCustomStore {
   }
 }
 
-// Check if the store is already registered at the dispatcher
-if (!dispatcher.stores.MyCustomStore) {
-  dispatcher.addStore('MyCustomStore', MyCustomStore, dispatcher);
-}
+dispatcher.addStore('MyCustomStore', MyCustomStore, dispatcher);
 
 export default dispatcher.stores.MyCustomStore;
 ```
