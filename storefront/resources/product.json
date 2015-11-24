@@ -1,4 +1,4 @@
 {
-  "url": "http://api.beta.vtex.com/:account/products/:slug",
+  "url": "http://api.beta.vtex.com",
   "cacheDuration": 60
 }
