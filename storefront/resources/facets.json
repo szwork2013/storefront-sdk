@@ -1,11 +1,4 @@
 {
   "url": "http://api.beta.vtex.com/:account/facets/",
-  "cacheDuration": 60,
-  "parameters": {
-    "account": "{{ account.name }}"
-  },
-  "queryString": {
-    "category": "{{ parameters.category }}",
-    "brands": "{{ parameters.brands }}"
-  }
+  "cacheDuration": 60
 }
