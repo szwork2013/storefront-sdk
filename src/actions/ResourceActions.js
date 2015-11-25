@@ -21,16 +21,13 @@ class ResourceActions {
   }
 
   getAreaResources(currentURL, area, params = {}, query = {}) {
-    let resources = storefrontService.getAreaResources(area, params, query);
-    let settings = storefrontService.getAreaSettings(area);
 
-    Promise.all([resources, settings])
-      .then((response) => {
-        let [resourcesResponse, settingsResponse ] = response;
-        resourcesResponse.data.resources._settings = settingsResponse.data;
-        this.actions.getAreaResourcesSuccess(currentURL, area, params, resourcesResponse.data.resources);
-      })
-      .catch((error) => this.actions.getAreaResourcesError(currentURL, area, params, error));
+    storefrontService.getAreaResources(area, params, query)
+    .then((response) =>
+      this.actions.getAreaResourcesSuccess(currentURL, area, params, response.data.resources)
+    ).catch((error) =>
+      this.actions.getAreaResourcesError(currentURL, area, params, error)
+    );
 
     return {currentURL, area, params};
   }
