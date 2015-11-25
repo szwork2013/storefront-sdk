@@ -17,7 +17,7 @@ import connectToStores from './utils/connectToStores';
 import Price from './utils/Price';
 import Img from './utils/Img';
 import Area from './components/Area';
-import App from './App';
+import App from './components/App';
 
 let history = useQueries(createHistory)();
 

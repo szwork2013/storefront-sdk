@@ -1,5 +1,5 @@
 import React from 'react';
-import dispatcher from './dispatcher/StorefrontDispatcher';
+import dispatcher from '../dispatcher/StorefrontDispatcher';
 
 class App extends React.Component {
   triggerRouteChange = () => {
