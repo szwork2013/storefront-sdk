@@ -43,9 +43,9 @@ class Area extends React.Component {
   getDataFromStores = (props) => {
     const componentSettings = dispatcher.stores.SettingsStore.getState().get(props.id);
     if (!componentSettings) {
-      console.warn(`Area: there\'s no such area with the id ${props.id}`);
       return { setings: null, component: null };
     }
+
     const settings = componentSettings.get('settings');
     const componentName = props.component ? props.component : componentSettings.get('component');
     const component = dispatcher.stores.ComponentStore.getState().getIn([componentName, 'constructor']);
