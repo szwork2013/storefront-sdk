@@ -30,7 +30,7 @@ class SettingsStore {
     this.setState(this.oldState);
   }
 
-  onGetRouteResourcesSuccess({resources}) {
+  onGetAreaResourcesSuccess({resources}) {
     this.setState(getDataFromResources(this.state, resources));
   }
 }

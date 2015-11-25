@@ -112,7 +112,7 @@
 
 ### Actions relacionadas
 
-- [`ResourceActions.getRouteResources`](../actions/ResourceActions.md): pega os resources da página
+- [`ResourceActions.getAreaResources`](../actions/ResourceActions.md): pega os resources da página
 - [`SearchActions.onRequestSearch`](../actions/SearchActions.md): faz uma busca por produtos
 - [`ProductActions.requestProduct`](../actions/ProductActions.md): pega dados de um produto específico
 

@@ -62,7 +62,7 @@ class SearchStore {
     this.setState(this.state.setIn([params, 'error'], error));
   }
 
-  onGetRouteResourcesSuccess({resources}) {
+  onGetAreaResourcesSuccess({resources}) {
     this.setState(getDataFromResources(this.state, resources));
   }
 }

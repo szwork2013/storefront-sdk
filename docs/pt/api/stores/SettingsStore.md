@@ -28,7 +28,7 @@
 
 ### Actions relacionadas
 
-- [`ResourceActions.getRouteResources`](../actions/ResourceActions.md): pega os resources da página
+- [`ResourceActions.getAreaResources`](../actions/ResourceActions.md): pega os resources da página
 
 ### Exemplo
 

@@ -34,7 +34,7 @@ class CategoryStore {
     this.state = getDataFromResources(Immutable.Map(), resources);
   }
 
-  onGetRouteResourcesSuccess({ resources }) {
+  onGetAreaResourcesSuccess({ resources }) {
     this.setState(getDataFromResources(this.state, resources));
   }
 }

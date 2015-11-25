@@ -5,7 +5,7 @@ let storefrontService = new Storefront();
 class ResourceActions {
 
   saveSettings({accountName, route, component, id, settings}) {
-    storefrontService.saveComponentSettings({accountName, route, component, id, settings})
+    storefrontService.saveAreaSettings({accountName, route, component, id, settings})
       .then(() => this.actions.saveSettingsSuccess({route, id, settings}))
       .catch(this.actions.saveSettingsError);
 
@@ -20,27 +20,27 @@ class ResourceActions {
     return error;
   }
 
-  getRouteResources(currentURL, route, params = {}, query = {}) {
-    let resources = storefrontService.getRouteResources(route, params, query);
-    let settings = storefrontService.getComponentSettings(route);
+  getAreaResources(currentURL, area, params = {}, query = {}) {
+    let resources = storefrontService.getAreaResources(area, params, query);
+    let settings = storefrontService.getAreaSettings(area);
 
     Promise.all([resources, settings])
       .then((response) => {
         let [resourcesResponse, settingsResponse ] = response;
         resourcesResponse.data.resources._settings = settingsResponse.data;
-        this.actions.getRouteResourcesSuccess(currentURL, route, params, resourcesResponse.data.resources);
+        this.actions.getAreaResourcesSuccess(currentURL, area, params, resourcesResponse.data.resources);
       })
-      .catch((error) => this.actions.getRouteResourcesError(currentURL, route, params, error));
+      .catch((error) => this.actions.getAreaResourcesError(currentURL, area, params, error));
 
-    return {currentURL, route, params};
+    return {currentURL, area, params};
   }
 
-  getRouteResourcesSuccess(currentURL, route, params, resources) {
-    return {currentURL, route, params, resources};
+  getAreaResourcesSuccess(currentURL, area, params, resources) {
+    return {currentURL, area, params, resources};
   }
 
-  getRouteResourcesError(currentURL, route, params, error) {
-    return {currentURL, route, params, error};
+  getAreaResourcesError(currentURL, area, params, error) {
+    return {currentURL, area, params, error};
   }
 }
 

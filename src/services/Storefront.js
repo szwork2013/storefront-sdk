@@ -11,7 +11,7 @@ class Storefront {
     };
   }
 
-  saveComponentSettings({id, component, settings}) {
+  saveAreaSettings({id, component, settings}) {
     const url = `/_resources/_settings/`;
     const params = { id };
     const data = { component, settings };
@@ -22,7 +22,7 @@ class Storefront {
     });
   }
 
-  getRouteResources(route, params, query) {
+  getAreaResources(route, params, query) {
     for (let key in query) {
       params[`query.${key}`] = query[key];
     }
@@ -33,7 +33,7 @@ class Storefront {
     });
   }
 
-  getComponentSettings(component) {
+  getAreaSettings(component) {
     return axios.get(`/_resources/_settings/?id=${component}`, {
       headers: this.defaultHeaders
     });
