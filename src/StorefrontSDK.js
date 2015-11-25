@@ -1,6 +1,7 @@
 import 'expose?React!react';
 import 'expose?ReactDOM!react-dom';
 import 'expose?ReactCSSTransitionGroup!react-addons-css-transition-group';
+import 'expose?ReactShallowCompare!react-addons-shallow-compare';
 import 'expose?ReactRouter!react-router';
 import 'expose?ReactIntl!react-intl';
 import 'expose?ReactHelmet!react-helmet';
