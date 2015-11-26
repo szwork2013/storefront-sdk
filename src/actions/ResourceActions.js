@@ -35,15 +35,15 @@ class ResourceActions {
       this.actions.getAreaResourcesError({currentURL, id, params, error})
     );
 
-    return {currentURL, area, params};
+    return {currentURL, id, params};
   }
 
-  getAreaResourcesSuccess({currentURL, area, params, resources}) {
-    return {currentURL, area, params, resources};
+  getAreaResourcesSuccess({currentURL, id, params, resources}) {
+    return {currentURL, id, params, resources};
   }
 
-  getAreaResourcesError({currentURL, area, params, error}) {
-    return {currentURL, area, params, error};
+  getAreaResourcesError({currentURL, id, params, error}) {
+    return {currentURL, id, params, error};
   }
 }
 
