@@ -4,10 +4,10 @@ let storefrontService = new Storefront();
 
 class ResourceActions {
 
-  saveSettings({accountName, route, component, id, settings}) {
-    storefrontService.saveAreaSettings({accountName, route, component, id, settings})
-      .then(() => this.actions.saveSettingsSuccess({route, id, settings}))
-      .catch(this.actions.saveSettingsError);
+  saveSettings({id, component, settings}) {
+    storefrontService.saveAreaSettings({id, component, settings})
+      .then(() => this.actions.saveSettingsSuccess({id, settings}))
+      .catch((error) => this.actions.saveSettingsError({id, settings, error}));
 
     return arguments[0];
   }
