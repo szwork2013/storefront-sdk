@@ -33,8 +33,8 @@ class Storefront {
     });
   }
 
-  getAreaSettings(component) {
-    return axios.get(`/_resources/_settings/?id=${component}`, {
+  getAreaSettings({id}) {
+    return axios.get(`/_resources/_settings/?route=${id}`, {
       headers: this.defaultHeaders
     });
   }
