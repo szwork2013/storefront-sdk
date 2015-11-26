@@ -20,23 +20,29 @@ class ResourceActions {
     return error;
   }
 
-  getAreaResources(currentURL, area, params = {}, query = {}) {
+  getAreaResources({currentURL, id, params = {}, query = {}}) {
 
-    storefrontService.getAreaResources(area, params, query)
-    .then((response) =>
-      this.actions.getAreaResourcesSuccess(currentURL, area, params, response.data.resources)
-    ).catch((error) =>
-      this.actions.getAreaResourcesError(currentURL, area, params, error)
+    storefrontService.getAreaResources({id, params, query})
+    .then((response) => {
+      let result = {
+        currentURL,
+        id,
+        params,
+        resources: response.data.resources
+      };
+      this.actions.getAreaResourcesSuccess(result);
+    }).catch((error) =>
+      this.actions.getAreaResourcesError({currentURL, id, params, error})
     );
 
     return {currentURL, area, params};
   }
 
-  getAreaResourcesSuccess(currentURL, area, params, resources) {
+  getAreaResourcesSuccess({currentURL, area, params, resources}) {
     return {currentURL, area, params, resources};
   }
 
-  getAreaResourcesError(currentURL, area, params, error) {
+  getAreaResourcesError({currentURL, area, params, error}) {
     return {currentURL, area, params, error};
   }
 }
