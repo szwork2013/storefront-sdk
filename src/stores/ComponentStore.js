@@ -5,12 +5,6 @@ import immutable from 'alt/utils/ImmutableUtil';
 let _getComponentProperties = function _getComponentProperties(state, _component) {
   let { name, role, area, constructor } = _component;
 
-  if (_component.constructor && _component.constructor.storefront) {
-    name = _component.constructor.storefront.name;
-    role = _component.constructor.storefront.role;
-    area = _component.constructor.storefront.area;
-  }
-
   let component = Immutable.Map({
     role,
     area,
