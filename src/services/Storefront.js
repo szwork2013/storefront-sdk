@@ -22,12 +22,12 @@ class Storefront {
     });
   }
 
-  getAreaResources(route, params, query) {
+  getAreaResources({id, params, query}) {
     for (let key in query) {
       params[`query.${key}`] = query[key];
     }
 
-    return axios.get(`/_routes/${route}/resources/`, {
+    return axios.get(`/_routes/${id}/resources/`, {
       headers: this.defaultHeaders,
       params
     });

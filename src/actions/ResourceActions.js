@@ -12,8 +12,8 @@ class ResourceActions {
     return arguments[0];
   }
 
-  saveSettingsSuccess(settings) {
-    return settings;
+  saveSettingsSuccess(data) {
+    return data;
   }
 
   saveSettingsError(error) {
