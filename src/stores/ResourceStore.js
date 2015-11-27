@@ -18,15 +18,15 @@ class ResourceStore {
     this.state = getDataFromResources(Immutable.Map(), currentURL, window.storefront.currentRoute.resources);
   }
 
-  onGetRouteResources({currentURL}) {
+  onGetAreaResources({currentURL}) {
     this.setState(this.state.set(currentURL, Immutable.Map()));
   }
 
-  onGetRouteResourcesSuccess({currentURL, resources}) {
+  onGetAreaResourcesSuccess({currentURL, resources}) {
     this.setState(getDataFromResources(this.state, currentURL, resources));
   }
 
-  onGetRouteResourcesError({currentURL, error}) {
+  onGetAreaResourcesError({currentURL, error}) {
     let newState = this.state.withMutations(map =>
       map.setIn([currentURL, 'resources'], null)
          .setIn([currentURL, 'error', error])

@@ -11,9 +11,9 @@ class Storefront {
     };
   }
 
-  saveComponentSettings({route, id, component, settings}) {
+  saveAreaSettings({id, component, settings}) {
     const url = `/_resources/_settings/`;
-    const params = { route, id };
+    const params = { id };
     const data = { component, settings };
 
     return axios.put(url, data, {
@@ -22,19 +22,19 @@ class Storefront {
     });
   }
 
-  getRouteResources(route, params, query) {
+  getAreaResources({id, params, query}) {
     for (let key in query) {
       params[`query.${key}`] = query[key];
     }
 
-    return axios.get(`/_routes/${route}/resources/`, {
+    return axios.get(`/_routes/${id}/resources/`, {
       headers: this.defaultHeaders,
       params
     });
   }
 
-  getRouteSettings(route) {
-    return axios.get(`/_resources/_settings/?route=${route}`, {
+  getAreaSettings({id}) {
+    return axios.get(`/_resources/_settings/?route=${id}`, {
       headers: this.defaultHeaders
     });
   }

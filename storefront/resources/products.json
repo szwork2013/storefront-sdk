@@ -1,15 +1,4 @@
 {
-  "url": "http://api.beta.vtex.com/:account/products/",
-  "cacheDuration": 60,
-  "parameters": {
-    "account": "{{ account.name }}"
-  },
-  "queryString": {
-    "query": "{{ parameters.query }}",
-    "category": "{{ parameters.category }}",
-    "brands": "{{ parameters.brands }}",
-    "sort": "{{ parameters.sort }}",
-    "page": "{{ parameters.page }}",
-    "pageSize": "{{ parameters.pageSize }}"
-  }
+  "url": "http://api.beta.vtex.com",
+  "cacheDuration": 60
 }

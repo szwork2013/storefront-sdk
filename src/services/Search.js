@@ -5,14 +5,15 @@ class Search {
   constructor() {
     let token = ('; ' + document.cookie).split('; VtexIdclientAutCookie=').pop().split(';').shift();
     let workspace = ('; ' + document.cookie).split('; vtex_workspace=').pop().split(';').shift();
+    let accountName = global._storefront.context.accountName;
 
     this.defaultHeaders = {
       'Authorization': `token ${token}`,
       'x-vtex-workspace': workspace ? workspace : 'master'
     };
 
-    this.productResource = '/_resources/product@vtex.storefront-sdk/';
-    this.productsResource = '/_resources/products@vtex.storefront-sdk/';
+    this.productResource = `/_proxy/product@vtex.storefront-sdk/${accountName}/product`;
+    this.productsResource = `/_proxy/products@vtex.storefront-sdk/${accountName}/products`;
   }
 
   products(params) {

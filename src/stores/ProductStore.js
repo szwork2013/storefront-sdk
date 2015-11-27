@@ -72,7 +72,7 @@ class ProductStore {
     this.setState(addProducts(this.state, products));
   }
 
-  onGetRouteResourcesSuccess({ resources }) {
+  onGetAreaResourcesSuccess({ resources }) {
     this.setState(getDataFromResources(this.state, resources));
   }
 }

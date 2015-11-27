@@ -63,9 +63,8 @@ function connectToStores() {
       }
 
       render() {
-        return React.createElement(
-          Component,
-          assign({}, this.props, this.state)
+        return (
+          <Component {...assign({}, this.props, this.state)}/>
         );
       }
     }

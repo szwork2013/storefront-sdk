@@ -26,7 +26,7 @@
 
 ### Actions relacionadas
 
-- [`ResourceActions.getRouteResources`](../actions/ResourceActions.md): pega os resources da página
+- [`ResourceActions.getAreaResources`](../actions/ResourceActions.md): pega os resources da página
 
 ### Exemplo
 
@@ -39,7 +39,7 @@ class HomePage extends React.Component {
     let currentURL = (window.location.pathname + window.location.search);
 
     if (!stores.ResourceStore.getState().get(currentURL)) {
-      actions.ResourceActions.getRouteResources(currentURL, 'home');
+      actions.ResourceActions.getAreaResources(currentURL, 'home');
     }
   }
 

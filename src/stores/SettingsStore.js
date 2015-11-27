@@ -1,10 +1,10 @@
 import Immutable from 'immutable';
 import immutable from 'alt/utils/ImmutableUtil';
 
-function getDataFromResources(state, route, resources) {
+function getDataFromResources(state, resources) {
   if (resources._settings) {
     let settings = resources._settings;
-    return state.set(route, Immutable.fromJS(settings));
+    return state.merge(Immutable.fromJS(settings));
   }
   return state;
 }
@@ -14,14 +14,14 @@ class SettingsStore {
   constructor(dispatcher) {
     this.bindActions(dispatcher.actions.ResourceActions);
 
-    this.state = getDataFromResources(Immutable.Map(), window.storefront.currentRoute.name, window.storefront.currentRoute.resources);
+    this.state = getDataFromResources(Immutable.Map(), window.storefront.currentRoute.resources);
   }
 
-  onSaveSettings({route, id, settings}) {
+  onSaveSettings({id, settings}) {
     // Here we are doing an optmistic update. The data is not saved on the
     // server yet, but it probably will.
     this.oldState = this.state;
-    this.setState(this.state.setIn([route, id, 'settings'], Immutable.Map(settings)));
+    this.setState(this.state.setIn([id, 'settings'], Immutable.Map(settings)));
   }
 
   onSaveSettingsFail(error) {
@@ -30,8 +30,8 @@ class SettingsStore {
     this.setState(this.oldState);
   }
 
-  onGetRouteResourcesSuccess({route, resources}) {
-    this.setState(getDataFromResources(this.state, route, resources));
+  onGetAreaResourcesSuccess({resources}) {
+    this.setState(getDataFromResources(this.state, resources));
   }
 }
 

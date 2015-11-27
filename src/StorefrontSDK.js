@@ -16,7 +16,8 @@ import dispatcher from './dispatcher/StorefrontDispatcher';
 import connectToStores from './utils/connectToStores';
 import Price from './utils/Price';
 import Img from './utils/Img';
-import App from './App';
+import Area from './components/Area';
+import App from './components/App';
 
 let history = useQueries(createHistory)();
 
@@ -26,6 +27,8 @@ class StorefrontSDK {
   stores = dispatcher.stores;
 
   history = history;
+
+  Area = Area;
 
   utils = {
     connectToStores,

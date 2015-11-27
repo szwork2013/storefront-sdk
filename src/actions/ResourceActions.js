@@ -4,43 +4,46 @@ let storefrontService = new Storefront();
 
 class ResourceActions {
 
-  saveSettings({accountName, route, component, id, settings}) {
-    storefrontService.saveComponentSettings({accountName, route, component, id, settings})
-      .then(() => this.actions.saveSettingsSuccess({route, id, settings}))
-      .catch(this.actions.saveSettingsError);
+  saveSettings({id, component, settings}) {
+    storefrontService.saveAreaSettings({id, component, settings})
+      .then(() => this.actions.saveSettingsSuccess({id, settings}))
+      .catch((error) => this.actions.saveSettingsError({id, settings, error}));
 
     return arguments[0];
   }
 
-  saveSettingsSuccess(settings) {
-    return settings;
+  saveSettingsSuccess(data) {
+    return data;
   }
 
   saveSettingsError(error) {
     return error;
   }
 
-  getRouteResources(currentURL, route, params = {}, query = {}) {
-    let resources = storefrontService.getRouteResources(route, params, query);
-    let settings = storefrontService.getRouteSettings(route);
+  getAreaResources({currentURL, id, params = {}, query = {}}) {
 
-    Promise.all([resources, settings])
-      .then((response) => {
-        let [resourcesResponse, settingsResponse ] = response;
-        resourcesResponse.data.resources._settings = settingsResponse.data;
-        this.actions.getRouteResourcesSuccess(currentURL, route, params, resourcesResponse.data.resources);
-      })
-      .catch((error) => this.actions.getRouteResourcesError(currentURL, route, params, error));
+    storefrontService.getAreaResources({id, params, query})
+    .then((response) => {
+      let result = {
+        currentURL,
+        id,
+        params,
+        resources: response.data.resources
+      };
+      this.actions.getAreaResourcesSuccess(result);
+    }).catch((error) =>
+      this.actions.getAreaResourcesError({currentURL, id, params, error})
+    );
 
-    return {currentURL, route, params};
+    return {currentURL, id, params};
   }
 
-  getRouteResourcesSuccess(currentURL, route, params, resources) {
-    return {currentURL, route, params, resources};
+  getAreaResourcesSuccess({currentURL, id, params, resources}) {
+    return {currentURL, id, params, resources};
   }
 
-  getRouteResourcesError(currentURL, route, params, error) {
-    return {currentURL, route, params, error};
+  getAreaResourcesError({currentURL, id, params, error}) {
+    return {currentURL, id, params, error};
   }
 }
 
