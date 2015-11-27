@@ -13,7 +13,6 @@ import { IntlProvider } from 'react-intl';
 import ReactDOM from 'react-dom';
 
 import dispatcher from './dispatcher/StorefrontDispatcher';
-import storefront from './utils/storefront';
 import connectToStores from './utils/connectToStores';
 import Price from './utils/Price';
 import Img from './utils/Img';
@@ -26,7 +25,6 @@ class StorefrontSDK {
   actions = dispatcher.actions;
   stores = dispatcher.stores;
 
-  storefront = storefront;
   history = history;
 
   utils = {
