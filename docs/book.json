@@ -1,6 +1,6 @@
 {
-  "gitbook": "2.4.3",
-  "plugins": ["edit-link", "prism", "-highlight"],
+  "gitbook": "2.6.2",
+  "plugins": ["-highlight"],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/vtex-apps/storefront-sdk/tree/master/docs/",
